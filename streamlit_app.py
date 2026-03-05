@@ -76,9 +76,25 @@ FPS, TOTAL = meta["fps"], meta["total"]
 st.sidebar.header("⚙️ Controls")
 enable_spikes = st.sidebar.toggle("⚡ Spike Overlay", value=True,
     help="Toggle spike-event visualisation on each frame")
-conf_thr = st.sidebar.slider("Confidence Threshold", 0.50, 0.99, 0.85, 0.01)
+conf_thr = st.sidebar.slider("Confidence Threshold", 0.50, 0.99, 0.70, 0.01,
+    help="Minimum confidence score to display detections")
 skip = st.sidebar.slider("Frame Skip (speed)", 1, 10, 3,
     help="Higher = faster playback")
+
+# Advanced crack detection parameters
+with st.sidebar.expander("🔬 Advanced Detection", expanded=False):
+    st.markdown("**Edge Detection**")
+    canny_low = st.slider("Canny Low Threshold", 10, 100, 50, 5,
+        help="Lower threshold for edge detection")
+    canny_high = st.slider("Canny High Threshold", 100, 200, 150, 10,
+        help="Upper threshold for edge detection")
+    
+    st.markdown("**Filtering**")
+    min_area = st.slider("Min Crack Area (px²)", 50, 500, 100, 50,
+        help="Minimum area to consider as crack")
+    min_length = st.slider("Min Dimension (px)", 10, 50, 20, 5,
+        help="Minimum width/height of crack bounding box")
+
 st.sidebar.divider()
 st.sidebar.markdown("**Legend**")
 st.sidebar.markdown("🟥 High · 🟧 Medium · 🟩 Low · 🟡 Spikes")
@@ -96,18 +112,136 @@ st.info(f"📊 **{meta['w']}×{meta['h']}** @ **{FPS:.0f} fps** · "
 # ── Helper functions ─────────────────────────────────────────────────────────
 SEV_CLR = {"High": (0, 0, 255), "Medium": (0, 165, 255), "Low": (0, 255, 0)}
 
-def simulate_cracks(w, h, fidx, threshold):
-    rng = random.Random(fidx * 7 + 31)
+def detect_cracks_cv(frame, threshold, canny_low=50, canny_high=150, min_area=100, min_length=20):
+    """
+    Real crack detection using computer vision techniques.
+    
+    Algorithm:
+    1. Convert to grayscale and apply preprocessing
+    2. Use edge detection (Canny) to find potential cracks
+    3. Apply morphological operations to connect crack segments
+    4. Find contours representing crack candidates
+    5. Filter and classify cracks based on dimensions
+    6. Calculate severity based on crack size and characteristics
+    
+    Args:
+        frame: Input BGR frame
+        threshold: Confidence threshold for filtering detections
+        canny_low: Lower threshold for Canny edge detection
+        canny_high: Upper threshold for Canny edge detection
+        min_area: Minimum area (in px²) to consider as crack
+        min_length: Minimum bounding box dimension (px)
+    
+    Returns:
+        List of crack dictionaries with bbox, severity, confidence, length, width, area
+    """
+    h, w = frame.shape[:2]
+    
+    # Preprocessing for crack detection
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    
+    # Apply bilateral filter to reduce noise while preserving edges
+    denoised = cv2.bilateralFilter(gray, 9, 75, 75)
+    
+    # Enhance contrast using CLAHE (Contrast Limited Adaptive Histogram Equalization)
+    clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
+    enhanced = clahe.apply(denoised)
+    
+    # Apply Canny edge detection to find crack edges
+    edges = cv2.Canny(enhanced, canny_low, canny_high)
+    
+    # Morphological operations to connect crack segments
+    # Use a line-shaped kernel to connect linear crack segments
+    kernel_horizontal = cv2.getStructuringElement(cv2.MORPH_RECT, (15, 1))
+    kernel_vertical = cv2.getStructuringElement(cv2.MORPH_RECT, (1, 15))
+    
+    # Dilate to connect nearby edges
+    dilated_h = cv2.dilate(edges, kernel_horizontal, iterations=1)
+    dilated_v = cv2.dilate(edges, kernel_vertical, iterations=1)
+    dilated = cv2.bitwise_or(dilated_h, dilated_v)
+    
+    # Close small gaps
+    kernel_close = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))
+    closed = cv2.morphologyEx(dilated, cv2.MORPH_CLOSE, kernel_close, iterations=1)
+    
+    # Find contours (crack candidates)
+    contours, _ = cv2.findContours(closed, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    
     cracks = []
-    for _ in range(rng.randint(0, 5)):
-        x1 = rng.randint(50, max(51, w - 220))
-        y1 = rng.randint(50, max(51, h - 170))
-        bw, bh = rng.randint(60, 200), rng.randint(30, 100)
-        sev = rng.choice(["Low", "Medium", "High"])
-        conf = rng.uniform(0.80, 0.99)
-        if conf >= threshold:
-            cracks.append(dict(x1=x1, y1=y1, x2=x1+bw, y2=y1+bh,
-                               severity=sev, confidence=conf))
+    for contour in contours:
+        # Get bounding box
+        x, y, bw, bh = cv2.boundingRect(contour)
+        
+        # Filter out very small detections (noise)
+        area = cv2.contourArea(contour)
+        if area < min_area or bw < min_length or bh < min_length:
+            continue
+        
+        # Filter out detections too close to borders (likely edge artifacts)
+        border_margin = 10
+        if x < border_margin or y < border_margin or x + bw > w - border_margin or y + bh > h - border_margin:
+            continue
+        
+        # Calculate crack characteristics
+        # Length: approximate as the perimeter of the contour
+        length_px = cv2.arcLength(contour, False)
+        
+        # Width: estimate as the minimum dimension of bounding box
+        width_px = min(bw, bh)
+        
+        # Aspect ratio: helps identify elongated cracks
+        aspect_ratio = max(bw, bh) / max(min(bw, bh), 1)
+        
+        # Calculate confidence based on detection quality
+        # Higher confidence for:
+        # - Larger area
+        # - Higher aspect ratio (elongated shapes typical of cracks)
+        # - Longer length
+        confidence = 0.70  # Base confidence
+        
+        # Area factor (normalize to reasonable range)
+        area_factor = min(area / 5000.0, 1.0)
+        confidence += area_factor * 0.15
+        
+        # Aspect ratio factor (cracks are typically elongated)
+        if aspect_ratio > 2.0:
+            confidence += min((aspect_ratio - 2.0) / 10.0, 0.10)
+        
+        # Length factor
+        length_factor = min(length_px / 300.0, 1.0)
+        confidence += length_factor * 0.05
+        
+        # Ensure confidence stays in valid range
+        confidence = min(confidence, 0.99)
+        
+        # Determine severity based on crack dimensions
+        # Severity criteria:
+        # - High: Large area (>3000px²) OR long length (>200px) OR wide (>15px)
+        # - Medium: Moderate area (1000-3000px²) OR length (100-200px) OR width (8-15px)
+        # - Low: Small area (<1000px²) AND short length (<100px) AND narrow (<8px)
+        
+        if area > 3000 or length_px > 200 or width_px > 15:
+            severity = "High"
+        elif area > 1000 or length_px > 100 or width_px > 8:
+            severity = "Medium"
+        else:
+            severity = "Low"
+        
+        # Only include detections above threshold
+        if confidence >= threshold:
+            cracks.append({
+                'x1': x,
+                'y1': y,
+                'x2': x + bw,
+                'y2': y + bh,
+                'severity': severity,
+                'confidence': confidence,
+                'length_px': length_px,
+                'width_px': width_px,
+                'area': area,
+                'aspect_ratio': aspect_ratio
+            })
+    
     return cracks
 
 def draw_boxes(frame, cracks):
@@ -206,7 +340,7 @@ def video_stream():
         if frame_raw is not None:
             h, w = frame_raw.shape[:2]
             frame_det = frame_raw.copy()
-            cracks = simulate_cracks(w, h, fidx, conf_thr)
+            cracks = detect_cracks_cv(frame_raw, conf_thr, canny_low, canny_high, min_area, min_length)
             draw_boxes(frame_det, cracks)
             if enable_spikes:
                 draw_spikes(frame_det, cracks, fidx)
@@ -249,13 +383,19 @@ def video_stream():
     if frame_raw is not None and n_cracks > 0:
         parts = []
         for i, c in enumerate(cracks[:5], 1):
-            l = ((c["x2"]-c["x1"])**2+(c["y2"]-c["y1"])**2)**0.5*0.05
+            # Use actual crack measurements from CV detection
+            # Convert pixels to mm (assuming ~0.5mm per pixel as calibration factor)
+            length_mm = c.get("length_px", 0) * 0.5
+            width_mm = c.get("width_px", 0) * 0.5
+            area_mm2 = c.get("area", 0) * 0.25  # 0.5mm² per pixel²
+            
             b = f'badge-{c["severity"].lower()}'
             parts.append(
                 f'<span style="padding:3px 8px;background:#f5f5f5;'
                 f'border-radius:4px;margin:2px;font-size:.85rem;display:inline-block">'
-                f'<b>#{i}</b> <span class="{b}">{c["severity"]}</span>'
-                f' {l:.1f}mm {c["confidence"]*100:.0f}%</span>')
+                f'<b>#{i}</b> <span class="{b}">{c["severity"]}</span> '
+                f'L:{length_mm:.1f}mm W:{width_mm:.1f}mm A:{area_mm2:.0f}mm² '
+                f'{c["confidence"]*100:.0f}%</span>')
         st.markdown(" ".join(parts), unsafe_allow_html=True)
 
     # Advance frame
