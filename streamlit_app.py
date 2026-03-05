@@ -101,7 +101,8 @@ st.sidebar.markdown("🟥 High · 🟧 Medium · 🟩 Low · 🟡 Spikes")
 
 # ── Init session state ──────────────────────────────────────────────────────
 for k, v in [("playing", False), ("fidx", 0),
-             ("total_high", 0), ("confs", [])]:
+             ("total_high", 0), ("confs", []),
+             ("prev_cracks", []), ("prev_frame", None)]:
     if k not in st.session_state:
         st.session_state[k] = v
 
@@ -244,6 +245,85 @@ def detect_cracks_cv(frame, threshold, canny_low=50, canny_high=150, min_area=10
     
     return cracks
 
+def compute_iou(box1, box2):
+    """
+    Compute Intersection over Union (IoU) between two bounding boxes.
+    Used for temporal tracking of cracks across frames.
+    
+    Args:
+        box1, box2: Dicts with 'x1', 'y1', 'x2', 'y2' keys
+    
+    Returns:
+        IoU score (0.0 to 1.0)
+    """
+    # Calculate intersection rectangle
+    x1 = max(box1['x1'], box2['x1'])
+    y1 = max(box1['y1'], box2['y1'])
+    x2 = min(box1['x2'], box2['x2'])
+    y2 = min(box1['y2'], box2['y2'])
+    
+    # Check if there's any intersection
+    if x2 < x1 or y2 < y1:
+        return 0.0
+    
+    intersection = (x2 - x1) * (y2 - y1)
+    
+    # Calculate areas
+    area1 = (box1['x2'] - box1['x1']) * (box1['y2'] - box1['y1'])
+    area2 = (box2['x2'] - box2['x1']) * (box2['y2'] - box2['y1'])
+    
+    # Calculate union
+    union = area1 + area2 - intersection
+    
+    return intersection / union if union > 0 else 0.0
+
+def filter_with_temporal_consistency(current_cracks, prev_cracks, iou_threshold=0.3):
+    """
+    Filter and enhance crack detections using temporal consistency.
+    Boosts confidence for cracks that persist across frames.
+    
+    Args:
+        current_cracks: List of cracks detected in current frame
+        prev_cracks: List of cracks from previous frame
+        iou_threshold: Minimum IoU to consider a match
+    
+    Returns:
+        Filtered and enhanced list of cracks
+    """
+    if not prev_cracks:
+        return current_cracks
+    
+    enhanced_cracks = []
+    
+    for curr_crack in current_cracks:
+        best_iou = 0.0
+        matched_prev = None
+        
+        # Find best matching crack from previous frame
+        for prev_crack in prev_cracks:
+            iou = compute_iou(curr_crack, prev_crack)
+            if iou > best_iou:
+                best_iou = iou
+                matched_prev = prev_crack
+        
+        # Clone the crack dict
+        enhanced_crack = curr_crack.copy()
+        
+        # If matched with previous frame, boost confidence
+        if best_iou >= iou_threshold:
+            # Increase confidence for temporal consistency
+            boost = min(best_iou * 0.10, 0.15)  # Up to 15% boost
+            enhanced_crack['confidence'] = min(curr_crack['confidence'] + boost, 0.99)
+            enhanced_crack['temporal_match'] = True
+            enhanced_crack['iou'] = best_iou
+        else:
+            enhanced_crack['temporal_match'] = False
+            enhanced_crack['iou'] = 0.0
+        
+        enhanced_cracks.append(enhanced_crack)
+    
+    return enhanced_cracks
+
 def draw_boxes(frame, cracks):
     for c in cracks:
         clr = SEV_CLR[c["severity"]]
@@ -307,6 +387,8 @@ with b2:
         st.session_state.fidx = 0
         st.session_state.total_high = 0
         st.session_state.confs = []
+        st.session_state.prev_cracks = []
+        st.session_state.prev_frame = None
 
 # ── Fragment: auto-refreshes every 150 ms while playing ─────────────────────
 # Only the fragment re-executes — the rest of the page (header, sidebar,
@@ -340,7 +422,18 @@ def video_stream():
         if frame_raw is not None:
             h, w = frame_raw.shape[:2]
             frame_det = frame_raw.copy()
+            
+            # Detect cracks
             cracks = detect_cracks_cv(frame_raw, conf_thr, canny_low, canny_high, min_area, min_length)
+            
+            # Apply temporal consistency filtering
+            if st.session_state.prev_cracks:
+                cracks = filter_with_temporal_consistency(cracks, st.session_state.prev_cracks)
+            
+            # Store for next frame
+            st.session_state.prev_cracks = cracks
+            st.session_state.prev_frame = frame_raw.copy()
+            
             draw_boxes(frame_det, cracks)
             if enable_spikes:
                 draw_spikes(frame_det, cracks, fidx)
