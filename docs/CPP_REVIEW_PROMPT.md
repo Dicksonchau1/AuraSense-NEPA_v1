@@ -89,7 +89,7 @@ Provide:
 std::vector<uint8_t> buffer(size);
 
 // ✅ DO: Pre-allocated pool
-static std::array<uint8_t[MAX_SIZE], 16> buffer_pool;
+static std::array<std::array<uint8_t, MAX_SIZE>, 16> buffer_pool;
 
 // ❌ DON'T: Mutex in control loop
 std::lock_guard<std::mutex> lock(mutex_);
@@ -138,10 +138,16 @@ struct alignas(64) LaneState {
 uint8_t* buffer = new uint8_t[1920 * 1080];
 __m256i vec = _mm256_load_si256((__m256i*)buffer); // May crash!
 
-// ✅ FIX: Aligned allocation
+// ✅ FIX: Aligned allocation (with error checking)
+size_t size = 1920 * 1080;
+// NOTE: size must be multiple of alignment for aligned_alloc
 uint8_t* buffer = static_cast<uint8_t*>(
-    aligned_alloc(32, 1920 * 1080));
-// Or use _mm256_loadu_si256 (slower but safe)
+    aligned_alloc(32, (size + 31) & ~31));  // Round up to multiple of 32
+if (!buffer) {
+    // Handle allocation failure
+    return ErrorCode::OUT_OF_MEMORY;
+}
+// Or use _mm256_loadu_si256 (slower but safe, no alignment requirement)
 ```
 
 ### Issue 3: Memory Ordering Bugs

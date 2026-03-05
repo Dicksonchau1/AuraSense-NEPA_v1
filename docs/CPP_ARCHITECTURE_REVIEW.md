@@ -170,7 +170,7 @@ class FrameBuffer {
     
 public:
     FrameBuffer(size_t size) 
-        : data_(new uint8_t[size], std::default_delete<uint8_t[]>()),
+        : data_(std::shared_ptr<uint8_t[]>(new uint8_t[size])),
           size_(size) {}
     
     // Shallow copy (reference counted)
@@ -223,11 +223,13 @@ class SpikeEncoder {
     static constexpr uint8_t OFF_THRESHOLD = 15;
     
 public:
+    static constexpr double EXPECTED_SPARSITY_RATIO = 0.06; // 6% sparsity
+    
     std::vector<SpikeEvent> encode(const uint8_t* diff_frame,
                                     size_t width, size_t height,
                                     uint32_t timestamp) {
         std::vector<SpikeEvent> spikes;
-        spikes.reserve(width * height * 0.06); // Expect ~6% sparsity
+        spikes.reserve(width * height * EXPECTED_SPARSITY_RATIO);
         
         for (size_t y = 0; y < height; ++y) {
             for (size_t x = 0; x < width; ++x) {
@@ -299,9 +301,21 @@ public:
 private:
     bool has_spatial_neighbors(const std::vector<uint8_t>& map,
                                 const SpikeEvent& spike) {
-        // Check 3×3 neighborhood for connected spikes
-        // (Implementation omitted for brevity)
-        return true; // Placeholder
+        // Example: Check 3×3 neighborhood for connected spikes
+        // NOTE: This is pseudocode - production code should handle boundary conditions
+        // and optimize with SIMD for performance-critical paths
+        const int dx[] = {-1, 0, 1, -1, 1, -1, 0, 1};
+        const int dy[] = {-1, -1, -1, 0, 0, 1, 1, 1};
+        
+        for (int i = 0; i < 8; ++i) {
+            int nx = spike.x + dx[i];
+            int ny = spike.y + dy[i];
+            // Check bounds and spike presence (simplified)
+            if (nx >= 0 && ny >= 0 && map[ny * width_ + nx] > 0) {
+                return true;
+            }
+        }
+        return false;
     }
 };
 ```
@@ -395,10 +409,14 @@ void* allocate_numa_local(size_t size, int node) {
 **GCC/Clang Flags:**
 ```bash
 # Production build flags
+# NOTE: -ffast-math disables strict IEEE 754 compliance - use with caution
+# NOTE: -fno-exceptions requires error-code based error handling throughout
 CXXFLAGS = -O3 -march=native -mtune=native \
-           -ffast-math -funroll-loops \
-           -flto -fno-exceptions -fno-rtti \
+           -funroll-loops -flto -fno-rtti \
            -DNDEBUG
+
+# Optional: Use -ffast-math only if you've verified no NaN/Inf issues
+# Optional: Use -fno-exceptions if error codes are used instead of exceptions
 
 # Profile-guided optimization (PGO)
 # Step 1: Generate profile
@@ -448,6 +466,7 @@ class RobustEngine {
     
     HealthState health_state_ = HealthState::HEALTHY;
     
+    // NOTE: If using -fno-exceptions, replace std::exception with error codes
     void handle_lane_failure(int lane_id, const std::exception& e) {
         if (lane_id == 1) {
             // Lane 1 failure is CRITICAL (control loop)
