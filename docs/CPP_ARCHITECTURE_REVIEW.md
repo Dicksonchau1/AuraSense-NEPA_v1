@@ -126,7 +126,8 @@ void compute_diff_simd(const uint8_t* prev, const uint8_t* curr,
         __m256i prev_vec = _mm256_loadu_si256((__m256i*)(prev + i));
         __m256i curr_vec = _mm256_loadu_si256((__m256i*)(curr + i));
         
-        // Compute |curr - prev| using saturating arithmetic
+// Compute |curr - prev| using saturating arithmetic
+        // Note: Cast to int to prevent underflow with uint8_t operands
         __m256i diff_vec = _mm256_abs_epi8(
             _mm256_sub_epi8(curr_vec, prev_vec));
         
@@ -165,12 +166,13 @@ class NaiveProcessor {
 
 // ✅ PREFER: Reference-counted zero-copy buffers
 class FrameBuffer {
-    std::shared_ptr<uint8_t[]> data_;
+    std::shared_ptr<uint8_t[]> data_;  // C++17: shared_ptr supports arrays
     size_t size_;
     
 public:
+    // C++17+: Use array-aware shared_ptr
     FrameBuffer(size_t size) 
-        : data_(std::shared_ptr<uint8_t[]>(new uint8_t[size])),
+        : data_(new uint8_t[size]),  // C++17+: shared_ptr<T[]> handles array delete
           size_(size) {}
     
     // Shallow copy (reference counted)
@@ -289,7 +291,7 @@ public:
         for (const auto& spike : spikes) {
             // Keep spike if it has temporal support (present in prev frame)
             size_t idx = spike.y * width + spike.x;
-            if (prev_spikes_[idx] > 0 || has_spatial_neighbors(curr_map, spike)) {
+            if (prev_spikes_[idx] > 0 || has_spatial_neighbors(curr_map, spike, width, height)) {
                 filtered.push_back(spike);
             }
         }
@@ -300,7 +302,8 @@ public:
     
 private:
     bool has_spatial_neighbors(const std::vector<uint8_t>& map,
-                                const SpikeEvent& spike) {
+                                const SpikeEvent& spike,
+                                size_t width, size_t height) {
         // Example: Check 3×3 neighborhood for connected spikes
         // NOTE: This is pseudocode - production code should handle boundary conditions
         // and optimize with SIMD for performance-critical paths
@@ -310,8 +313,10 @@ private:
         for (int i = 0; i < 8; ++i) {
             int nx = spike.x + dx[i];
             int ny = spike.y + dy[i];
-            // Check bounds and spike presence (simplified)
-            if (nx >= 0 && ny >= 0 && map[ny * width_ + nx] > 0) {
+            // Check bounds and spike presence
+            if (nx >= 0 && nx < static_cast<int>(width) && 
+                ny >= 0 && ny < static_cast<int>(height) &&
+                map[ny * width + nx] > 0) {
                 return true;
             }
         }

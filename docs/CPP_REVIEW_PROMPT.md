@@ -139,10 +139,12 @@ uint8_t* buffer = new uint8_t[1920 * 1080];
 __m256i vec = _mm256_load_si256((__m256i*)buffer); // May crash!
 
 // ✅ FIX: Aligned allocation (with error checking)
+constexpr size_t ALIGNMENT = 32;
+constexpr size_t ALIGNMENT_MASK = ALIGNMENT - 1;
 size_t size = 1920 * 1080;
 // NOTE: size must be multiple of alignment for aligned_alloc
 uint8_t* buffer = static_cast<uint8_t*>(
-    aligned_alloc(32, (size + 31) & ~31));  // Round up to multiple of 32
+    aligned_alloc(ALIGNMENT, (size + ALIGNMENT_MASK) & ~ALIGNMENT_MASK));
 if (!buffer) {
     // Handle allocation failure
     return ErrorCode::OUT_OF_MEMORY;
