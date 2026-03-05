@@ -2,7 +2,7 @@
 
 **Quick Reference for Principal C++ Architect Reviews**  
 **Project:** AuraSense SFSVC Neuromorphic Codec  
-**Context:** Real-time drone infrastructure inspection (crack detection)
+**Context:** Real-time neuromorphic codec for drone infrastructure inspection
 
 ---
 

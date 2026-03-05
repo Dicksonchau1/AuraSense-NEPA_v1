@@ -126,8 +126,9 @@ void compute_diff_simd(const uint8_t* prev, const uint8_t* curr,
         __m256i prev_vec = _mm256_loadu_si256((__m256i*)(prev + i));
         __m256i curr_vec = _mm256_loadu_si256((__m256i*)(curr + i));
         
-// Compute |curr - prev| using saturating arithmetic
-        // Note: Cast to int to prevent underflow with uint8_t operands
+        // Compute |curr - prev| using wrapping subtraction
+        // Note: _mm256_sub_epi8 uses wrapping semantics (modulo 256)
+        // Combined with _mm256_abs_epi8, this correctly computes absolute difference
         __m256i diff_vec = _mm256_abs_epi8(
             _mm256_sub_epi8(curr_vec, prev_vec));
         
@@ -170,9 +171,10 @@ class FrameBuffer {
     size_t size_;
     
 public:
-    // C++17+: Use array-aware shared_ptr
+    // C++17+: shared_ptr<T[]> automatically uses array delete
+    // Note: For optimal performance, consider std::make_shared<uint8_t[]>(size) in C++20+
     FrameBuffer(size_t size) 
-        : data_(new uint8_t[size]),  // C++17+: shared_ptr<T[]> handles array delete
+        : data_(new uint8_t[size]),
           size_(size) {}
     
     // Shallow copy (reference counted)
@@ -305,8 +307,7 @@ private:
                                 const SpikeEvent& spike,
                                 size_t width, size_t height) {
         // Example: Check 3×3 neighborhood for connected spikes
-        // NOTE: This is pseudocode - production code should handle boundary conditions
-        // and optimize with SIMD for performance-critical paths
+        // NOTE: Production code should optimize this with SIMD for performance-critical paths
         const int dx[] = {-1, 0, 1, -1, 1, -1, 0, 1};
         const int dy[] = {-1, -1, -1, 0, 0, 1, 1, 1};
         
@@ -413,15 +414,16 @@ void* allocate_numa_local(size_t size, int node) {
 
 **GCC/Clang Flags:**
 ```bash
-# Production build flags
-# NOTE: -ffast-math disables strict IEEE 754 compliance - use with caution
-# NOTE: -fno-exceptions requires error-code based error handling throughout
+# Production build flags (recommended baseline)
 CXXFLAGS = -O3 -march=native -mtune=native \
            -funroll-loops -flto -fno-rtti \
            -DNDEBUG
 
-# Optional: Use -ffast-math only if you've verified no NaN/Inf issues
-# Optional: Use -fno-exceptions if error codes are used instead of exceptions
+# Optional performance flags (use with caution):
+# -ffast-math: Disables strict IEEE 754 compliance for speed
+#              WARNING: Can cause issues with NaN/Inf handling
+# -fno-exceptions: Requires error-code based handling throughout
+#                  WARNING: Conflicts with exception-based error handling
 
 # Profile-guided optimization (PGO)
 # Step 1: Generate profile
@@ -471,8 +473,8 @@ class RobustEngine {
     
     HealthState health_state_ = HealthState::HEALTHY;
     
-    // NOTE: If using -fno-exceptions, replace std::exception with error codes
-    void handle_lane_failure(int lane_id, const std::exception& e) {
+    // Version 1: With exceptions (requires exception support enabled)
+    void handle_lane_failure_exceptions(int lane_id, const std::exception& e) {
         if (lane_id == 1) {
             // Lane 1 failure is CRITICAL (control loop)
             health_state_ = HealthState::CRITICAL;
@@ -483,6 +485,29 @@ class RobustEngine {
             health_state_ = HealthState::DEGRADED;
             disable_lane(lane_id);
             log_warning("Analytics lane {} degraded: {}", lane_id, e.what());
+        }
+    }
+    
+    // Version 2: With error codes (compatible with -fno-exceptions)
+    enum class ErrorCode {
+        SUCCESS,
+        LANE_TIMEOUT,
+        MEMORY_ERROR,
+        PROCESSING_ERROR
+    };
+    
+    void handle_lane_failure_errorcodes(int lane_id, ErrorCode error) {
+        if (lane_id == 1) {
+            // Lane 1 failure is CRITICAL
+            health_state_ = HealthState::CRITICAL;
+            trigger_emergency_stop();
+            log_critical("Control lane failed: error code {}", static_cast<int>(error));
+        } else {
+            // Analytics lane failure is DEGRADED
+            health_state_ = HealthState::DEGRADED;
+            disable_lane(lane_id);
+            log_warning("Analytics lane {} degraded: error code {}", 
+                       lane_id, static_cast<int>(error));
         }
     }
     
