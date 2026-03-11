@@ -1,330 +1,470 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AuraSense — Edge AI for Safety-Critical Environments</title>
-    <meta name="description" content="AuraSense builds AI products that work where cloud fails. SFSVC for industrial drone vision and AuraPlay for dyslexia support — real-time, on-device intelligence.">
-    <meta name="keywords" content="edge AI, drone vision, SFSVC, AuraPlay, dyslexia, phonics, real-time AI, structural inspection, AuraSense">
-    <meta property="og:title" content="AuraSense — Edge AI for Safety-Critical Environments">
-    <meta property="og:description" content="AI products that work where cloud fails. Industrial drone vision and phonics-based learning — real-time, on-device.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.aurasensehk.com/">
-    <link rel="canonical" href="https://www.aurasensehk.com/">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/responsive.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AuraSense SFSVC — Neuromorphic perception SDK for autonomous drone inspection. Sub-2ms latency. No GPU. Edge-native." />
+  <meta name="theme-color" content="#06060A" />
+  <title>AuraSense SFSVC — Neuromorphic Codec for Autonomous Drones</title>
+  <meta property="og:title"       content="AuraSense SFSVC" />
+  <meta property="og:description" content="Spike-based perception SDK for autonomous drone inspection. Sub-2ms. No GPU." />
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://aurasensehk.com" />
+  <link rel="stylesheet" href="css/design.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/animate.css" />
 </head>
 <body>
 
-<!-- ═══════════ NAVIGATION ═══════════ -->
-<nav class="navbar" id="navbar">
-    <div class="nav-container">
-        <a href="index.html" class="nav-logo">
-            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="32" height="32" rx="8" fill="#2D5BFF"/>
-                <path d="M16 6L26 24H6L16 6Z" fill="white" opacity="0.9"/>
-                <circle cx="16" cy="18" r="3" fill="#2D5BFF"/>
-            </svg>
-            AuraSense
-        </a>
+<!-- ═══════════════════════════════════════════════
+     NAVIGATION
+     ═══════════════════════════════════════════════ -->
+<nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav__inner">
 
-        <button class="nav-toggle" id="navToggle" aria-label="Menu">
-            <span></span><span></span><span></span>
-        </button>
+    <a href="#" class="nav__brand" aria-label="AuraSense SFSVC home">
+      <span class="nav__wordmark">
+        <span class="nav__wordmark-aura">AURA</span><span class="nav__wordmark-sense">SENSE</span>
+      </span>
+      <span class="nav__badge" aria-label="Product: SFSVC">SFSVC</span>
+    </a>
 
-        <div class="nav-links" id="navLinks">
-            <a href="index.html" class="active">Home</a>
+    <ul class="nav__links" id="navLinks">
+      <li><a href="#technology" class="nav__link" data-nav>Technology</a></li>
+      <li><a href="#benchmark"  class="nav__link" data-nav>Benchmark</a></li>
+      <li><a href="#licensing"  class="nav__link" data-nav>Licensing</a></li>
+      <li><a href="#about"      class="nav__link" data-nav>About</a></li>
+    </ul>
 
-            <div class="nav-dropdown">
-                <a href="#" class="nav-dropdown-trigger" onclick="return false;">
-                    Products
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-                </a>
-                <div class="nav-dropdown-menu">
-                    <a href="sfsvc.html">
-                        <div class="dropdown-icon blue">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-                        </div>
-                        <div class="dropdown-text">
-                            <strong>SFSVC</strong>
-                            <span>Industrial Drone Vision</span>
-                        </div>
-                    </a>
-                    <a href="auraplay.html">
-                        <div class="dropdown-icon purple">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
-                        </div>
-                        <div class="dropdown-text">
-                            <strong>AuraPlay</strong>
-                            <span>Dyslexia &amp; Phonics</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <a href="contact.html">Contact</a>
-            <a href="contact.html" class="nav-cta">Get Started</a>
-        </div>
+    <div class="nav__cta">
+      <a href="#licensing" class="btn-outline-cyan">Get License</a>
     </div>
+
+    <button class="nav__hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+  </div>
 </nav>
 
-<!-- ═══════════ HERO ═══════════ -->
-<section class="hero hero-home">
-    <div class="hero-particles">
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
+
+<!-- ═══════════════════════════════════════════════
+     HERO
+     ═══════════════════════════════════════════════ -->
+<section class="hero" id="hero" aria-labelledby="hero-heading">
+
+  <div class="hero__bg" aria-hidden="true">
+    <div class="hero__bg-glow"></div>
+    <div class="hero__bg-grid"></div>
+    <div class="hero__bg-line-left"></div>
+    <div class="hero__bg-line-right"></div>
+  </div>
+
+  <div class="hero__content">
+
+    <div class="hero__badge hero-anim hero-anim--badge" aria-label="Neuromorphic Perception, SDK version 2">
+      <span class="hero__badge-dot" aria-hidden="true"></span>
+      Neuromorphic Perception &nbsp;·&nbsp; SDK v2
     </div>
-    <div class="container">
-        <div class="hero-grid">
-            <div class="hero-content">
-                <div class="hero-eyebrow">AuraSense Limited &bull; Hong Kong</div>
-                <h1>AI that works where<br><span class="gradient-text">cloud fails</span></h1>
-                <p class="hero-sub">From elevator shafts to classrooms — we build real-time, on-device AI for safety-critical environments and underserved learners.</p>
-                <div class="hero-actions">
-                    <a href="sfsvc.html" class="btn btn-primary btn-lg">
-                        Explore SFSVC
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </a>
-                    <a href="auraplay.html" class="btn btn-outline-white btn-lg">Try AuraPlay</a>
-                </div>
-                <div class="hero-proof">
-                    <span class="hero-proof-check">&#10003;</span> Real-time edge inference
-                    <span style="margin: 0 4px;">|</span>
-                    <span class="hero-proof-check">&#10003;</span> No cloud dependency
-                    <span style="margin: 0 4px;">|</span>
-                    <span class="hero-proof-check">&#10003;</span> Hong Kong R&amp;D
-                </div>
-            </div>
-            <div class="hero-visual">
-                <div class="hero-visual-card">
-                    <video autoplay muted loop playsinline>
-                        <source src="videos/demo_building.mp4" type="video/mp4">
-                    </video>
-                </div>
-            </div>
-        </div>
+
+    <div class="hero__headline" id="hero-heading">
+      <span class="hero__line1 hero-anim hero-anim--line1">Neuromorphic Codec.</span>
+      <span class="hero__line2 hero-anim hero-anim--line2">Retina for Drones.</span>
     </div>
+
+    <p class="hero__sub hero-anim hero-anim--sub">
+      SFSVC encodes drone video through biological spike trains.<br>
+      Edge-native. Sub-2ms. No GPU.
+    </p>
+
+    <div class="hero__cta hero-anim hero-anim--cta">
+      <a href="#licensing" class="btn btn-primary">Start at $9.9 / drone</a>
+      <a href="#benchmark" class="btn btn-secondary">Watch Benchmark &#9654;</a>
+    </div>
+
+    <div class="hero__metrics hero-anim hero-anim--metrics" aria-label="Key performance metrics">
+
+      <div class="hero__metric">
+        <span class="hero__metric-value" data-counter data-target="2" data-prefix="&lt;&nbsp;" data-suffix="ms" aria-label="P95 Latency: under 2 milliseconds">
+          &lt;&nbsp;2ms
+        </span>
+        <span class="hero__metric-label">P95 Latency</span>
+      </div>
+
+      <div class="hero__metric">
+        <span class="hero__metric-value" data-counter data-target="8" data-suffix="" aria-label="8 parallel lanes">
+          8
+        </span>
+        <span class="hero__metric-label">Lanes Parallel</span>
+      </div>
+
+      <div class="hero__metric">
+        <span class="hero__metric-value" data-suffix=" GPU" aria-label="Zero GPU required">
+          0 GPU
+        </span>
+        <span class="hero__metric-label">Required</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="hero__scroll hero-anim hero-anim--scroll" aria-hidden="true">
+    <div class="hero__scroll-arrow"></div>
+  </div>
+
 </section>
 
-<!-- ═══════════ PRODUCTS SHOWCASE ═══════════ -->
-<section class="section" id="products">
-    <div class="container">
-        <div class="section-header" data-aos>
-            <span class="section-badge">Our Products</span>
-            <h2>Two products. One mission:<br><span class="gradient-text">intelligence at the edge.</span></h2>
-            <p>We deploy AI where connectivity is unreliable, latency is unacceptable, and accuracy is life-or-death.</p>
-        </div>
 
-        <!-- SFSVC Product -->
-        <div class="product-card" data-aos>
-            <div class="product-visual">
-                <video autoplay muted loop playsinline>
-                    <source src="videos/demo_runway.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="product-info">
-                <div class="product-badge blue">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-                    B2B &bull; Industrial
-                </div>
-                <h2>SFSVC</h2>
-                <p>Selective Frame Streaming with Visual Confirmation. Our edge-AI codec eliminates 94% of drone video bandwidth while maintaining 98.7% detection accuracy — all on CPU.</p>
-                <ul class="product-features">
-                    <li>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-                        <span><strong>94% bandwidth reduction</strong> — edge-side delta compression</span>
-                    </li>
-                    <li>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-                        <span><strong>0.4 ms latency</strong> — real-time structural analysis</span>
-                    </li>
-                    <li>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-                        <span><strong>YOLOv8 + CPU-only</strong> — no GPU dependency</span>
-                    </li>
-                    <li>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-                        <span><strong>Crack &amp; spall detection</strong> — buildings, bridges, runways</span>
-                    </li>
-                </ul>
-                <a href="sfsvc.html" class="btn btn-primary">
-                    Learn More
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
-            </div>
-        </div>
+<!-- ═══════════════════════════════════════════════
+     MARQUEE STRIP
+     ═══════════════════════════════════════════════ -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-track" id="marqueeTrack">
+    <span class="marquee-item">SFSVC SDK v2</span>
+    <span class="marquee-item">Sub-2ms Latency</span>
+    <span class="marquee-item">Edge-Native</span>
+    <span class="marquee-item">No GPU Required</span>
+    <span class="marquee-item">Ed25519 Licensed</span>
+    <span class="marquee-item">BVLOS-Ready</span>
+    <span class="marquee-item">Hong Kong &#x1F1ED;&#x1F1F0;</span>
+    <span class="marquee-item">Neuromorphic Perception</span>
+    <span class="marquee-item">Spike-Based Encoding</span>
+    <span class="marquee-item">Linux ARM x86</span>
+    <span class="marquee-item">SFSVC SDK v2</span>
+    <span class="marquee-item">Sub-2ms Latency</span>
+    <span class="marquee-item">Edge-Native</span>
+    <span class="marquee-item">No GPU Required</span>
+    <span class="marquee-item">Ed25519 Licensed</span>
+    <span class="marquee-item">BVLOS-Ready</span>
+    <span class="marquee-item">Hong Kong &#x1F1ED;&#x1F1F0;</span>
+    <span class="marquee-item">Neuromorphic Perception</span>
+    <span class="marquee-item">Spike-Based Encoding</span>
+    <span class="marquee-item">Linux ARM x86</span>
+  </div>
+</div>
 
-        <div style="height: 32px;"></div>
 
-        <!-- AuraPlay Product -->
-        <div class="product-card reverse" data-aos>
-            <div class="product-visual" style="background: linear-gradient(135deg, #8B5CF6, #6D28D9); display: flex; align-items: center; justify-content: center; min-height: 380px; border-radius: 24px;">
-                <div style="text-align: center; padding: 40px; color: white;">
-                    <div style="font-size: 4rem; margin-bottom: 16px;">&#127908;</div>
-                    <h3 style="color: white; font-size: 1.6rem; margin-bottom: 8px;">AuraPlay</h3>
-                    <p style="color: rgba(255,255,255,0.8); font-size: 0.95rem;">Real-time lip tracking &amp; phoneme feedback</p>
-                    <div style="display: flex; gap: 16px; justify-content: center; margin-top: 24px;">
-                        <div style="background:rgba(255,255,255,0.15); border-radius: 12px; padding: 12px 20px;">
-                            <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 800;">70%+</div>
-                            <div style="font-size: 0.75rem; opacity: 0.8;">Accuracy</div>
-                        </div>
-                        <div style="background:rgba(255,255,255,0.15); border-radius: 12px; padding: 12px 20px;">
-                            <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 800;">&lt;50ms</div>
-                            <div style="font-size: 0.75rem; opacity: 0.8;">Latency</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="product-info">
-                <div class="product-badge purple">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/></svg>
-                    B2C &bull; Education
-                </div>
-                <h2>AuraPlay</h2>
-                <p>A phonics-first learning app for children with dyslexia. Real-time lip tracking and instant feedback help young readers build confidence — no reading specialist required.</p>
-                <ul class="product-features">
-                    <li>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-                        <span><strong>Real-time lip tracking</strong> — camera-based phoneme detection</span>
-                    </li>
-                    <li>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-                        <span><strong>&lt;50 ms feedback loop</strong> — instant pronunciation guidance</span>
-                    </li>
-                    <li>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-                        <span><strong>Gamified experience</strong> — keeps children engaged &amp; motivated</span>
-                    </li>
-                    <li>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-                        <span><strong>Works offline</strong> — runs entirely on-device in the browser</span>
-                    </li>
-                </ul>
-                <a href="auraplay.html" class="btn btn-secondary">
-                    Try AuraPlay
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
-            </div>
+<!-- ═══════════════════════════════════════════════
+     TECHNOLOGY SECTION
+     ═══════════════════════════════════════════════ -->
+<section class="section-tech" id="technology" aria-labelledby="tech-title">
+  <div class="container">
+
+    <header class="section-tech__header scroll-reveal">
+      <span class="section-label">Architecture</span>
+      <h2 class="text-section" id="tech-title">Built different.</h2>
+      <p class="section-tech__subtitle">
+        Not a neural network. Not a traditional codec.<br>
+        A new class of perception engine.
+      </p>
+    </header>
+
+    <div class="tech-grid-wrapper">
+
+      <article class="tech-card scroll-reveal delay-1">
+        <div class="tech-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M2 12C4.5 6 9 3 12 3s7.5 3 10 9c-2.5 6-7 9-10 9s-7.5-3-10-9z"/>
+            <circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/>
+          </svg>
         </div>
+        <h3 class="tech-card__title">Retinal Spike Encoding</h3>
+        <p class="tech-card__body">
+          Temporal contrast detection converts raw video to sparse spike trains at
+          source — eliminating redundant pixel data before any processing begins.
+        </p>
+      </article>
+
+      <article class="tech-card scroll-reveal delay-2">
+        <div class="tech-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5" stroke-linecap="round">
+            <line x1="4" y1="6"  x2="20" y2="6"/>
+            <line x1="4" y1="10" x2="20" y2="10"/>
+            <line x1="4" y1="14" x2="20" y2="14"/>
+            <line x1="4" y1="18" x2="20" y2="18"/>
+          </svg>
+        </div>
+        <h3 class="tech-card__title">Multi-Lane Parallel Processing</h3>
+        <p class="tech-card__body">
+          SIMD-parallelised frequency decomposition across independent processing
+          lanes. Controlled latency under 2ms on embedded Linux — no GPU, no cloud.
+        </p>
+      </article>
+
+      <article class="tech-card scroll-reveal delay-3">
+        <div class="tech-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5" stroke-linecap="round">
+            <rect x="7" y="7" width="10" height="10" rx="1"/>
+            <line x1="9"  y1="7"  x2="9"  y2="4"/>
+            <line x1="12" y1="7"  x2="12" y2="4"/>
+            <line x1="15" y1="7"  x2="15" y2="4"/>
+            <line x1="9"  y1="17" x2="9"  y2="20"/>
+            <line x1="12" y1="17" x2="12" y2="20"/>
+            <line x1="15" y1="17" x2="15" y2="20"/>
+            <line x1="7"  y1="9"  x2="4"  y2="9"/>
+            <line x1="7"  y1="12" x2="4"  y2="12"/>
+            <line x1="7"  y1="15" x2="4"  y2="15"/>
+            <line x1="17" y1="9"  x2="20" y2="9"/>
+            <line x1="17" y1="12" x2="20" y2="12"/>
+            <line x1="17" y1="15" x2="20" y2="15"/>
+          </svg>
+        </div>
+        <h3 class="tech-card__title">Edge-Native Deployment</h3>
+        <p class="tech-card__body">
+          Runs entirely on-device across mini PCs, drone payloads, and embedded ARM.
+          License validates offline via Ed25519 cryptographic proof.
+        </p>
+      </article>
+
     </div>
+  </div>
 </section>
 
-<!-- ═══════════ METRICS BAR ═══════════ -->
-<section class="section section-dark">
-    <div class="container">
-        <div class="grid-4" data-aos>
-            <div class="metric-card">
-                <div class="metric-value">94<span class="metric-unit">%</span></div>
-                <span class="metric-label">Bandwidth Reduced</span>
+
+<!-- ═══════════════════════════════════════════════
+     BENCHMARK VIDEO SECTION
+     ═══════════════════════════════════════════════ -->
+<section class="section-benchmark" id="benchmark" aria-labelledby="benchmark-title">
+  <div class="container">
+    <div class="benchmark-layout">
+
+      <div class="scroll-reveal">
+        <div class="benchmark-video-wrap">
+          <video
+            id="benchmarkVideo"
+            src="./assets/sfsvc_demo.mp4"
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            aria-label="Live SFSVC crack detection demo video"
+          ></video>
+          <div class="benchmark-video-overlay" id="videoOverlay" role="button" tabindex="0" aria-label="Play demo video">
+            <div class="benchmark-play-btn" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor" style="color:var(--accent-cyan)">
+                <polygon points="5,3 19,12 5,21"/>
+              </svg>
             </div>
-            <div class="metric-card">
-                <div class="metric-value">0.4<span class="metric-unit">ms</span></div>
-                <span class="metric-label">Processing Latency</span>
-            </div>
-            <div class="metric-card">
-                <div class="metric-value">98.7<span class="metric-unit">%</span></div>
-                <span class="metric-label">Detection Accuracy</span>
-            </div>
-            <div class="metric-card">
-                <div class="metric-value">2</div>
-                <span class="metric-label">Products in Market</span>
-            </div>
+          </div>
         </div>
+        <p class="benchmark-caption">Live crack detection &nbsp;·&nbsp; 1280x720 &nbsp;·&nbsp; 30fps</p>
+      </div>
+
+      <div class="scroll-reveal delay-2">
+        <span class="section-label">Benchmark</span>
+        <h2 class="benchmark-stats__title" id="benchmark-title">Numbers that matter.</h2>
+
+        <div class="benchmark-metrics" id="benchmarkMetrics">
+
+          <div class="benchmark-metric">
+            <div class="benchmark-metric__row">
+              <span class="benchmark-metric__label">P95 Latency</span>
+              <span class="benchmark-metric__value">1.87ms</span>
+            </div>
+            <div class="benchmark-bar-bg">
+              <div class="benchmark-bar-fill bar-delay-0" style="--bar-target:94%" data-bar="94"></div>
+            </div>
+          </div>
+
+          <div class="benchmark-metric">
+            <div class="benchmark-metric__row">
+              <span class="benchmark-metric__label">Detection Accuracy</span>
+              <span class="benchmark-metric__value">99.2%</span>
+            </div>
+            <div class="benchmark-bar-bg">
+              <div class="benchmark-bar-fill bar-delay-1" style="--bar-target:99%" data-bar="99"></div>
+            </div>
+          </div>
+
+          <div class="benchmark-metric">
+            <div class="benchmark-metric__row">
+              <span class="benchmark-metric__label">Power Draw</span>
+              <span class="benchmark-metric__value">4.2W</span>
+            </div>
+            <div class="benchmark-bar-bg">
+              <div class="benchmark-bar-fill bar-delay-2" style="--bar-target:28%" data-bar="28"></div>
+            </div>
+          </div>
+
+          <div class="benchmark-metric">
+            <div class="benchmark-metric__row">
+              <span class="benchmark-metric__label">GPU Usage</span>
+              <span class="benchmark-metric__value">0.0%</span>
+            </div>
+            <div class="benchmark-bar-bg">
+              <div class="benchmark-bar-fill bar-delay-3 bar-dim" style="--bar-target:0%" data-bar="0"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <p class="benchmark-highlight">87x less power than GPU-based CV pipelines.</p>
+      </div>
+
     </div>
+  </div>
 </section>
 
-<!-- ═══════════ ABOUT ═══════════ -->
-<section class="section" id="about">
-    <div class="container">
-        <div class="section-header" data-aos>
-            <span class="section-badge">About AuraSense</span>
-            <h2>Hong Kong-built.<br><span class="gradient-text-green">Globally ambitious.</span></h2>
-            <p>AuraSense Limited is a Hong Kong technology company developing on-device AI products for safety-critical and education markets.</p>
-        </div>
 
-        <div class="grid-3" data-aos>
-            <div class="card">
-                <div class="card-icon blue">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-                </div>
-                <h3>Edge-First Architecture</h3>
-                <p>All our products process data on-device. No cloud round-trip. No latency spikes. No data leaving the edge.</p>
-            </div>
-            <div class="card">
-                <div class="card-icon green">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
-                </div>
-                <h3>Safety-Critical Focus</h3>
-                <p>From structural inspections to language learning — we choose markets where real-time accuracy can change outcomes.</p>
-            </div>
-            <div class="card">
-                <div class="card-icon purple">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-                </div>
-                <h3>Impact-Driven</h3>
-                <p>We measure success by lives made safer, infrastructure maintained, and children empowered to read with confidence.</p>
-            </div>
+<!-- ═══════════════════════════════════════════════
+     PRICING / LICENSING SECTION
+     ═══════════════════════════════════════════════ -->
+<section class="section-pricing" id="licensing" aria-labelledby="pricing-title">
+  <div class="container">
+
+    <header class="section-pricing__header scroll-reveal">
+      <span class="section-label">Licensing</span>
+      <h2 class="text-section" id="pricing-title">Per drone. Per month.</h2>
+      <p class="section-pricing__subtitle">
+        One key per drone. Validates offline. Cancel anytime.
+      </p>
+    </header>
+
+    <div class="pricing-grid">
+
+      <article class="pricing-card scroll-reveal delay-1" aria-labelledby="tier-starter">
+        <span class="pricing-tier-label" id="tier-starter">Starter</span>
+        <div class="pricing-price">
+          <span class="pricing-price__amount">$9.9</span>
+          <span class="pricing-price__unit">/mo</span>
         </div>
+        <span class="pricing-drones">1 drone activation</span>
+        <hr class="pricing-divider" />
+        <ul class="pricing-features" aria-label="Starter plan features">
+          <li class="pricing-feature">1 drone activation</li>
+          <li class="pricing-feature">Ed25519 license key</li>
+          <li class="pricing-feature">Offline validation</li>
+          <li class="pricing-feature">Email delivery</li>
+          <li class="pricing-feature">30-day renewal</li>
+        </ul>
+        <a href="#" data-tier="starter" class="btn-card-outline">Get Starter License</a>
+      </article>
+
+      <article class="pricing-card scroll-reveal delay-2" aria-labelledby="tier-growth">
+        <span class="pricing-tier-label" id="tier-growth">Growth</span>
+        <div class="pricing-price">
+          <span class="pricing-price__amount">$19.9</span>
+          <span class="pricing-price__unit">/mo</span>
+        </div>
+        <span class="pricing-drones">4 drone activations</span>
+        <hr class="pricing-divider" />
+        <ul class="pricing-features" aria-label="Growth plan features">
+          <li class="pricing-feature">4 drone activations</li>
+          <li class="pricing-feature">Floating license</li>
+          <li class="pricing-feature">Ed25519 license key</li>
+          <li class="pricing-feature">Offline validation</li>
+          <li class="pricing-feature">Email delivery</li>
+        </ul>
+        <a href="#" data-tier="growth" class="btn-card-outline">Get Growth License</a>
+      </article>
+
+      <article class="pricing-card pricing-card--featured scroll-reveal delay-3" aria-labelledby="tier-group">
+        <span class="pricing-popular-badge" aria-label="Most popular plan">POPULAR</span>
+        <span class="pricing-tier-label" id="tier-group">Group</span>
+        <div class="pricing-price">
+          <span class="pricing-price__amount">$29.9</span>
+          <span class="pricing-price__unit">/mo</span>
+        </div>
+        <span class="pricing-drones">6 drone activations</span>
+        <hr class="pricing-divider" />
+        <ul class="pricing-features" aria-label="Group plan features">
+          <li class="pricing-feature">6 drone activations</li>
+          <li class="pricing-feature">Floating license</li>
+          <li class="pricing-feature">Ed25519 license key</li>
+          <li class="pricing-feature">Offline validation</li>
+          <li class="pricing-feature">Priority email support</li>
+        </ul>
+        <a href="#" data-tier="group" class="btn-card-filled">Get Group License</a>
+      </article>
+
+      <article class="pricing-card scroll-reveal delay-4" aria-labelledby="tier-enterprise">
+        <span class="pricing-tier-label" id="tier-enterprise">Enterprise</span>
+        <div class="pricing-price">
+          <span class="pricing-price__amount">$99.9</span>
+          <span class="pricing-price__unit">/mo</span>
+        </div>
+        <span class="pricing-drones">15 drones &middot; 3 fleets</span>
+        <hr class="pricing-divider" />
+        <ul class="pricing-features" aria-label="Enterprise plan features">
+          <li class="pricing-feature">15 drones &middot; 3 fleets</li>
+          <li class="pricing-feature">Floating license</li>
+          <li class="pricing-feature">Ed25519 license key</li>
+          <li class="pricing-feature">Offline validation</li>
+          <li class="pricing-feature">Dedicated support</li>
+        </ul>
+        <a href="#" data-tier="enterprise" class="btn-card-outline">Get Enterprise License</a>
+      </article>
+
     </div>
+  </div>
 </section>
 
-<!-- ═══════════ CTA ═══════════ -->
-<section class="cta-banner">
-    <div class="container" data-aos>
-        <h2>Ready to deploy intelligence at the edge?</h2>
-        <p>Whether you're inspecting bridges or helping children read, AuraSense puts real-time AI in your hands.</p>
-        <div>
-            <a href="contact.html" class="btn btn-white btn-lg">Contact Us</a>
-            <a href="sfsvc.html" class="btn btn-outline-white btn-lg">Explore SFSVC</a>
-        </div>
-    </div>
-</section>
 
-<!-- ═══════════ FOOTER ═══════════ -->
-<footer class="footer">
-    <div class="container">
-        <div class="footer-grid">
-            <div class="footer-brand">
-                <a href="index.html" class="nav-logo" style="font-size:1.2rem;">
-                    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="28" height="28">
-                        <rect width="32" height="32" rx="8" fill="#2D5BFF"/>
-                        <path d="M16 6L26 24H6L16 6Z" fill="white" opacity="0.9"/>
-                        <circle cx="16" cy="18" r="3" fill="#2D5BFF"/>
-                    </svg>
-                    AuraSense
-                </a>
-                <p>Edge AI products for safety-critical environments and underserved learners. Built in Hong Kong.</p>
-            </div>
-            <div class="footer-links">
-                <h4>Products</h4>
-                <a href="sfsvc.html">SFSVC</a>
-                <a href="auraplay.html">AuraPlay</a>
-            </div>
-            <div class="footer-links">
-                <h4>Company</h4>
-                <a href="index.html#about">About</a>
-                <a href="contact.html">Contact</a>
-            </div>
-            <div class="footer-links">
-                <h4>Resources</h4>
-                <a href="https://stellular-meerkat-b623ea.netlify.app/" target="_blank" rel="noopener">AuraPlay Demo</a>
-                <a href="mailto:support@aurasensehk.com">support@aurasensehk.com</a>
-            </div>
+<!-- ═══════════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════════ -->
+<footer class="footer" id="about" role="contentinfo">
+  <div class="container">
+
+    <div class="footer__grid">
+
+      <div>
+        <div class="footer__brand-name">
+          AURASENSE&nbsp;<span>SFSVC</span>
         </div>
-        <div class="footer-bottom">
-            <span>&copy; 2025 AuraSense Limited. All rights reserved.</span>
-            <div class="footer-bottom-links">
-                <a href="#">Privacy</a>
-                <a href="#">Terms</a>
-            </div>
-        </div>
+        <p class="footer__tagline">
+          Neuromorphic perception for autonomous systems.
+        </p>
+        <p class="footer__copyright">&copy; 2026 AuraSense Limited</p>
+      </div>
+
+      <nav aria-label="Product links">
+        <span class="footer__col-label">Product</span>
+        <ul class="footer__links">
+          <li><a href="#technology" class="footer__link">Technology</a></li>
+          <li><a href="#benchmark"  class="footer__link">Benchmark</a></li>
+          <li><a href="#licensing"  class="footer__link">Licensing</a></li>
+          <li><a href="#"           class="footer__link">Documentation</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-label="Company links">
+        <span class="footer__col-label">Company</span>
+        <ul class="footer__links">
+          <li><a href="#about"                        class="footer__link">About</a></li>
+          <li><a href="mailto:support@aurasensehk.com" class="footer__link">Contact</a></li>
+          <li><a href="#"                             class="footer__link">Privacy Policy</a></li>
+          <li><a href="#"                             class="footer__link">Terms of Service</a></li>
+        </ul>
+      </nav>
+
+      <div>
+        <span class="footer__col-label">Contact</span>
+        <ul class="footer__links">
+          <li>
+            <a href="mailto:support@aurasensehk.com" class="footer__link">
+              support@aurasensehk.com
+            </a>
+          </li>
+          <li><a href="https://github.com/Dicksonchau1" class="footer__link" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="#" class="footer__link">LinkedIn</a></li>
+        </ul>
+      </div>
+
     </div>
+
+    <div class="footer__bottom">
+      SFSVC SDK v2.0 &nbsp;&mdash;&nbsp; Ed25519 Licensed &nbsp;&mdash;&nbsp;
+      Neuromorphic Perception Engine &nbsp;&mdash;&nbsp; Built in Hong Kong &#x1F1ED;&#x1F1F0;
+    </div>
+
+  </div>
 </footer>
 
-<script src="assets/js/main.js"></script>
+
+<script src="js/main.js" defer></script>
+
 </body>
 </html>
