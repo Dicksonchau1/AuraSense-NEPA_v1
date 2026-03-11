@@ -67,6 +67,8 @@ Using AuraSense's **C++‑accelerated SFSVC engine** on a 720p runway inspection
 
 > **Note:** These numbers come from AuraSense's **production C++ engine**, which is part of a private SDK used in pilot programs. This public repo provides a **simple Python neuromorphic codec** and benchmark structure for concept exploration; it is not the full commercial engine.
 
+> **For developers:** See [`docs/CPP_ARCHITECTURE_REVIEW.md`](docs/CPP_ARCHITECTURE_REVIEW.md) for comprehensive C++ architecture guidance and [`docs/CPP_REVIEW_PROMPT.md`](docs/CPP_REVIEW_PROMPT.md) for code review templates.
+
 ---
 
 ## What's in this repository
@@ -88,3 +90,41 @@ A minimal Python implementation showing:
 
 ```bash
 python examples/simple_neurocodec_python.py --input your_video.mp4
+```
+
+---
+
+## 📚 Documentation
+
+### For Python Developers
+- **Streamlit Demo:** [`streamlit_app.py`](streamlit_app.py) - Interactive ROI calculator
+- **Deployment Guide:** [`STREAMLIT_DEPLOYMENT.md`](STREAMLIT_DEPLOYMENT.md) - How to deploy the demo
+
+### For C++ Developers
+- **Architecture Review:** [`docs/CPP_ARCHITECTURE_REVIEW.md`](docs/CPP_ARCHITECTURE_REVIEW.md) - Comprehensive C++ engine architecture, design patterns, and optimization strategies
+- **Code Review Prompts:** [`docs/CPP_REVIEW_PROMPT.md`](docs/CPP_REVIEW_PROMPT.md) - Quick reference and templates for reviewing C++ code
+
+### For Operations
+- **Performance Datasheet:** [`docs/SFSVC_DATASHEET.md`](docs/SFSVC_DATASHEET.md) - Technical specifications and integration paths
+- **Deployment Checklist:** [`docs/DEPLOYMENT_CHECKLIST.md`](docs/DEPLOYMENT_CHECKLIST.md) - Production deployment guide
+- **Pilot Onboarding:** [`docs/PILOT_ONBOARDING.md`](docs/PILOT_ONBOARDING.md) - Getting started with pilot programs
+
+### Customer Journey
+- **End-to-End Demo:** [`END_TO_END_CUSTOMER_JOURNEY_DEMO.md`](END_TO_END_CUSTOMER_JOURNEY_DEMO.md) - Complete sales and onboarding flow
+
+---
+
+## 🚀 Getting Started
+
+This public repository focuses on the **concept and demo**. For production deployment inquiries or access to the full C++ SDK, contact **DicksonChau@aurasensehk.com**.
+
+---
+
+## 📄 License
+
+See individual files for licensing information.
+
+---
+
+**AuraSense SFSVC** | Neuromorphic Vision for Autonomous Drones  
+*Real-time crack detection. Bandwidth savings at scale.*
