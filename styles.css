@@ -300,16 +300,25 @@ ul { list-style: none; }
     font-size: clamp(1rem, 1.8vw, 1.15rem);
     color: #475569;
     max-width: 600px;
-    margin: 0 auto 48px;
+    margin: 0 auto 16px;
     line-height: 1.7;
+}
+
+.hero-pilot-note {
+    font-size: 0.85rem;
+    color: #64748b;
+    letter-spacing: 0.02em;
+    font-style: italic;
+    max-width: 520px;
+    margin: 0 auto 40px;
 }
 
 /* Comparison cards */
 .hero-comparison {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 24px;
-    max-width: 700px;
+    max-width: 420px;
     margin: 0 auto 48px;
 }
 
