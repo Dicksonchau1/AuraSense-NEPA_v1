@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   AuraSense SFSVC — Website JavaScript
+   NEPA — Website JavaScript
    Handles: navigation, animations, demo canvas, ROI calculator, form
    ═══════════════════════════════════════════════════════════════════════════ */
 
@@ -169,16 +169,14 @@ function initTypedEffect() {
     setTimeout(tick, 800);
 }
 
-/* ── Starfield Background ─────────────────────────────────────────────────── */
+/* ── Background Canvas ────────────────────────────────────────────────────── */
 function initStarfield() {
     const canvas = document.getElementById('starfield');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     let W, H;
     const stars = [];
-    const STAR_COUNT = 180;
-    const NEBULA_COUNT = 4;
-    const nebulae = [];
+    const STAR_COUNT = 100;
 
     function resize() {
         W = canvas.width = window.innerWidth;
@@ -187,60 +185,31 @@ function initStarfield() {
     resize();
     window.addEventListener('resize', resize);
 
-    // Init stars
+    // Init stars — subtle, low count
     for (let i = 0; i < STAR_COUNT; i++) {
         stars.push({
             x: Math.random() * W,
             y: Math.random() * H,
-            r: 0.3 + Math.random() * 1.2,
-            speed: 0.02 + Math.random() * 0.06,
+            r: 0.2 + Math.random() * 0.8,
+            speed: 0.01 + Math.random() * 0.03,
             phase: Math.random() * Math.PI * 2,
-            bright: 0.3 + Math.random() * 0.7
-        });
-    }
-
-    // Init nebulae (large soft blobs)
-    for (let i = 0; i < NEBULA_COUNT; i++) {
-        nebulae.push({
-            x: Math.random() * W,
-            y: Math.random() * H,
-            r: 200 + Math.random() * 300,
-            hue: 200 + Math.random() * 40,
-            alpha: 0.02 + Math.random() * 0.03,
-            dx: (Math.random() - 0.5) * 0.15,
-            dy: (Math.random() - 0.5) * 0.1
+            bright: 0.15 + Math.random() * 0.4
         });
     }
 
     let t = 0;
     function draw() {
         t++;
-        ctx.fillStyle = '#020617';
+        ctx.fillStyle = '#020c1b';
         ctx.fillRect(0, 0, W, H);
 
-        // Nebulae
-        nebulae.forEach(n => {
-            n.x += n.dx;
-            n.y += n.dy;
-            if (n.x < -n.r) n.x = W + n.r;
-            if (n.x > W + n.r) n.x = -n.r;
-            if (n.y < -n.r) n.y = H + n.r;
-            if (n.y > H + n.r) n.y = -n.r;
-
-            const grad = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.r);
-            grad.addColorStop(0, `hsla(${n.hue}, 80%, 50%, ${n.alpha})`);
-            grad.addColorStop(1, 'transparent');
-            ctx.fillStyle = grad;
-            ctx.fillRect(n.x - n.r, n.y - n.r, n.r * 2, n.r * 2);
-        });
-
-        // Stars
+        // Stars — muted navy-white
         stars.forEach(s => {
             const twinkle = 0.5 + 0.5 * Math.sin(t * s.speed + s.phase);
             const alpha = s.bright * twinkle;
             ctx.beginPath();
             ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(180,210,255,${alpha})`;
+            ctx.fillStyle = `rgba(148,163,184,${alpha})`;
             ctx.fill();
         });
 
@@ -317,38 +286,24 @@ function initHeroCanvas() {
                 const dist = Math.sqrt(dx * dx + dy * dy);
 
                 if (dist < 160) {
-                    const alpha = (1 - dist / 160) * 0.2;
-                    ctx.strokeStyle = `rgba(96, 165, 250, ${alpha})`;
-                    ctx.lineWidth = 0.8;
+                    const alpha = (1 - dist / 160) * 0.15;
+                    ctx.strokeStyle = `rgba(59, 130, 246, ${alpha})`;
+                    ctx.lineWidth = 0.6;
                     ctx.beginPath();
                     ctx.moveTo(nodes[i].x, nodes[i].y);
                     ctx.lineTo(nodes[j].x, nodes[j].y);
                     ctx.stroke();
-
-                    // Occasional data pulse along the line
-                    if (Math.sin(nodes[i].pulse * 3) > 0.97) {
-                        const t = (Math.sin(nodes[i].pulse * 5) + 1) / 2;
-                        const px = nodes[i].x + (nodes[j].x - nodes[i].x) * t;
-                        const py = nodes[i].y + (nodes[j].y - nodes[i].y) * t;
-                        ctx.fillStyle = `rgba(0, 242, 254, ${0.6 * (1 - dist / 160)})`;
-                        ctx.beginPath();
-                        ctx.arc(px, py, 2, 0, Math.PI * 2);
-                        ctx.fill();
-                    }
                 }
             }
         }
 
-        // Draw nodes with glow
+        // Draw nodes — muted, no glow
         nodes.forEach(n => {
-            const glow = 0.4 + Math.sin(n.pulse) * 0.3;
-            ctx.fillStyle = `rgba(96, 165, 250, ${glow})`;
-            ctx.shadowColor = 'rgba(96, 165, 250, 0.5)';
-            ctx.shadowBlur = 8;
+            const alpha = 0.25 + Math.sin(n.pulse) * 0.15;
+            ctx.fillStyle = `rgba(59, 130, 246, ${alpha})`;
             ctx.beginPath();
             ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
             ctx.fill();
-            ctx.shadowBlur = 0;
         });
 
         requestAnimationFrame(animate);
@@ -686,13 +641,13 @@ function initROI() {
         const rate = parseFloat(cellRate.value);
         const bitrate = parseFloat(resolution.value);
 
-        // Monthly data per drone (GB)
+        // Monthly data per inspection unit (GB)
         // bitrate (Mbps) * 3600 sec * hours / 8 / 1024 = GB
         const gbPerDrone = bitrate * 3600 * h / 8 / 1024;
         const totalGB = gbPerDrone * n;
         const monthlyCostBefore = totalGB * rate;
 
-        // SFSVC reduces by 93.8%
+        // NEPA sparse encoding reduces transmission by 93.8%
         const reduction = 0.938;
         const sfsvcBitrate = bitrate * (1 - reduction);
         const sfsvcGB = totalGB * (1 - reduction);
@@ -701,7 +656,7 @@ function initROI() {
         const monthlySavings = monthlyCostBefore - monthlyCostAfter;
         const annualSavings = monthlySavings * 12;
 
-        // SFSVC license cost estimate: $500/drone/month for small, scaling down
+        // NEPA license cost estimate: $500/unit/month for small deployments, scaling down
         const sfsvcCost = n <= 10 ? n * 500 : n <= 50 ? n * 400 : n * 300;
         const sfsvcAnnual = sfsvcCost * 12;
         const netAnnualSavings = annualSavings - sfsvcAnnual;
@@ -709,7 +664,7 @@ function initROI() {
         const roi = sfsvcAnnual > 0 ? Math.round((netAnnualSavings / sfsvcAnnual) * 100) : 0;
 
         // Update UI
-        document.getElementById('roiDronesVal').textContent = n + ' drones';
+        document.getElementById('roiDronesVal').textContent = n + ' units';
         document.getElementById('roiHoursVal').textContent = h + ' hrs';
         document.getElementById('roiCellRateVal').textContent = '$' + rate.toFixed(rate % 1 === 0 ? 0 : 1) + '/GB';
 
@@ -745,13 +700,13 @@ function initROI() {
 
         const text = [
             '═══════════════════════════════════════════',
-            '  AuraSense SFSVC — ROI Report',
+            '  NEPA — Cost Reduction Report',
             '  Generated: ' + new Date().toLocaleDateString(),
             '═══════════════════════════════════════════',
             '',
-            `  Fleet Size:        ${n} drones`,
+            `  Inspection Units:  ${n}`,
             `  Current Cost:      ${before}/month`,
-            `  With SFSVC:        ${after}/month`,
+            `  With NEPA:         ${after}/month`,
             `  Monthly Savings:   ${savings}`,
             `  Annual Savings:    ${annual}`,
             `  Payback Period:    ${payback}`,
@@ -767,7 +722,7 @@ function initROI() {
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = `AuraSense_ROI_Report_${n}_drones.txt`;
+        a.download = `NEPA_Cost_Report_${n}_units.txt`;
         a.click();
         URL.revokeObjectURL(url);
     });
@@ -815,7 +770,7 @@ function initContactForm() {
 
     function fallbackMailto(payload) {
         const mailto = `mailto:support@aurasensehk.com?subject=${
-            encodeURIComponent('AuraSense Demo Request — ' + (payload.company || ''))
+            encodeURIComponent('NEPA Technical Brief Request — ' + (payload.company || ''))
         }&body=${
             encodeURIComponent(
                 `Name: ${payload.name}\n` +
