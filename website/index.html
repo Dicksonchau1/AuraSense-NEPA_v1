@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AuraSense SFSVC — Neuromorphic crack detection for infrastructure inspection. Sub-millisecond latency, 94% bandwidth savings, zero GPU required.">
-    <meta name="keywords" content="AuraSense, SFSVC, crack detection, neuromorphic, drone inspection, infrastructure, tunnel inspection, bridge inspection">
+    <meta name="description" content="NEPA — Deterministic Edge Infrastructure Runtime by AuraSense. Bounded-latency perception for safety-critical inspection and monitoring. CPU-only. Offline. Deployable.">
+    <meta name="keywords" content="NEPA, AuraSense, SFSVC, deterministic edge runtime, infrastructure inspection, CPU-only, offline, edge computing, façade inspection">
     <meta name="author" content="AuraSense HK">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="AuraSense SFSVC — Crack Detection at the Edge">
-    <meta property="og:description" content="Reduce cellular data costs by 94% while maintaining real-time crack detection. Sub-millisecond latency, zero GPU required.">
+    <meta property="og:title" content="NEPA — Deterministic Edge Infrastructure Runtime">
+    <meta property="og:description" content="A bounded-latency perception layer for safety-critical inspection and monitoring systems. CPU-only. Offline. Deployable.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.aurasensehk.com">
     <meta property="og:image" content="https://www.aurasensehk.com/assets/og-image.png">
 
-    <title>AuraSense SFSVC — Crack Detection at the Edge</title>
+    <title>NEPA — Deterministic Edge Infrastructure Runtime</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,16 +39,16 @@
     <div class="nav-container">
         <a href="#" class="nav-logo">
             <span class="logo-icon">⚡</span>
-            <span class="logo-text">AuraSense</span>
+            <span class="logo-text">NEPA</span>
         </a>
         <div class="nav-links" id="navLinks">
+            <a href="#platform">Platform</a>
             <a href="#features">Features</a>
-            <a href="#technology">Technology</a>
+            <a href="#modules">Modules</a>
             <a href="#use-cases">Use Cases</a>
-            <a href="#about">About Us</a>
-            <a href="#demo">Demo</a>
-            <a href="#roi">ROI Calculator</a>
-            <a href="#contact" class="nav-cta">Request Demo</a>
+            <a href="#about">About</a>
+            <a href="#security">Security</a>
+            <a href="#contact" class="nav-cta">Request Technical Brief</a>
         </div>
         <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
             <span></span><span></span><span></span>
@@ -61,59 +61,47 @@
      ═══════════════════════════════════════════════════════════════════════════ -->
 <section class="hero" id="hero">
     <div class="container hero-content">
-        <p class="hero-eyebrow hero-fade-up" style="--delay: 0s">NEUROMORPHIC PROCESSING FOR AUTONOMOUS INSPECTION</p>
+        <p class="hero-eyebrow hero-fade-up" style="--delay: 0s">DETERMINISTIC EDGE INFRASTRUCTURE RUNTIME</p>
         <h1 class="hero-title hero-fade-up" style="--delay: 0.15s">
-            Cloud ML fails in elevator shafts.<br>
-            <span class="hero-highlight">SFSVC doesn't.</span>
+            NEPA<br>
+            <span class="hero-highlight">Deterministic Edge Infrastructure Runtime</span>
         </h1>
         <p class="hero-subtitle hero-fade-up" style="--delay: 0.35s">
-            100% offline edge processing for building inspection drones.<br>
-            See defects in real-time — no WiFi required.
+            A bounded-latency perception layer for safety-critical inspection and monitoring systems.<br>
+            CPU-only. Offline. Deployable.
         </p>
 
-        <!-- Split comparison -->
+        <!-- Key properties grid -->
         <div class="hero-comparison hero-fade-up" style="--delay: 0.5s">
-            <div class="comparison-card comparison-cloud">
-                <div class="comparison-header comparison-header--bad">
-                    <span class="comparison-icon">❌</span>
-                    <span>CLOUD ML</span>
-                </div>
-                <ul class="comparison-list">
-                    <li>WiFi required</li>
-                    <li>50–200 ms latency</li>
-                    <li>GPU hardware ($500+)</li>
-                    <li>Post-flight analysis</li>
-                    <li>Fails in confined spaces</li>
-                </ul>
-            </div>
             <div class="comparison-card comparison-sfsvc">
                 <div class="comparison-header comparison-header--good">
-                    <span class="comparison-icon">✅</span>
-                    <span>SFSVC (AuraSense)</span>
+                    <span class="comparison-icon">⚙</span>
+                    <span>NEPA Runtime</span>
                 </div>
                 <ul class="comparison-list">
-                    <li>100% offline</li>
-                    <li>0.4 ms latency</li>
-                    <li>CPU-only ($50)</li>
-                    <li>Real-time detection</li>
-                    <li>Works anywhere</li>
+                    <li>Deterministic bounded latency</li>
+                    <li>CPU-only deployment</li>
+                    <li>100% offline operation</li>
+                    <li>SDK-ready runtime</li>
+                    <li>Infrastructure integration</li>
+                    <li>Operational predictability</li>
                 </ul>
             </div>
         </div>
 
         <div class="hero-actions hero-fade-up" style="--delay: 0.65s">
             <a href="#contact" class="btn btn-primary btn-lg btn-glow">
-                <i data-lucide="rocket"></i>
-                Request Pilot Demo
+                <i data-lucide="file-text"></i>
+                Request Technical Brief
             </a>
-            <a href="#use-cases" class="btn btn-link btn-lg">
-                View case study →
+            <a href="#modules" class="btn btn-link btn-lg">
+                Explore Modules →
             </a>
         </div>
 
         <div class="hero-proof hero-fade-up" style="--delay: 0.8s">
             <span class="proof-check">✓</span>
-            <span>Validated by RaSpect Intelligence (Meeting Feb 2026)</span>
+            <span>Evaluated by infrastructure operators — technical brief available on request</span>
         </div>
     </div>
 </section>
@@ -125,56 +113,56 @@
     <div class="container">
         <div class="section-header">
             <span class="section-badge">Features</span>
-            <h2 class="section-title">Six pillars of<br><span class="gradient-text">edge intelligence</span></h2>
-            <p class="section-subtitle">Purpose-built for autonomous drone inspection at scale — no compromises.</p>
+            <h2 class="section-title">Built for<br><span class="gradient-text">infrastructure operators</span></h2>
+            <p class="section-subtitle">Engineering-grade properties for safety-critical deployments.</p>
         </div>
         <div class="features-grid">
             <div class="feature-card" data-aos>
-                <div class="feature-icon" style="--accent: #ff6b6b">
-                    <i data-lucide="zap"></i>
+                <div class="feature-icon" style="--accent: #3b82f6">
+                    <i data-lucide="timer"></i>
                 </div>
-                <h3>Sub-Millisecond Detection</h3>
-                <p>P50 latency of <strong>0.40 ms</strong>, P95 under 0.56 ms. Cracks are flagged before the next frame arrives.</p>
-                <span class="feature-metric">&lt;1ms P95</span>
+                <h3>Bounded Control-Path Latency</h3>
+                <p>P99 control path under <strong>4 ms</strong>. Fixed-cost operations with preallocated buffers and no heap allocation in the hot path.</p>
+                <span class="feature-metric">P99 &lt; 4 ms</span>
             </div>
             <div class="feature-card" data-aos>
-                <div class="feature-icon" style="--accent: #4ecdc4">
+                <div class="feature-icon" style="--accent: #0ea5e9">
                     <i data-lucide="signal"></i>
                 </div>
-                <h3>94% Bandwidth Reduction</h3>
-                <p>Sparse events replace full video. From 5.2 Mbps to 0.32 Mbps — saving <strong>$976/month per drone</strong>.</p>
-                <span class="feature-metric">0.32 Mbps</span>
+                <h3>Minimal Network Footprint</h3>
+                <p>Sparse event encoding reduces transmission to structured detection outputs only — not raw video streams.</p>
+                <span class="feature-metric">Event-Only Output</span>
             </div>
             <div class="feature-card" data-aos>
-                <div class="feature-icon" style="--accent: #a78bfa">
+                <div class="feature-icon" style="--accent: #6366f1">
                     <i data-lucide="shield-check"></i>
                 </div>
-                <h3>Production-Ready</h3>
-                <p>SIMD AVX2 optimized, lock-free 6-lane pipeline, zero frame drops in 72-hour tests. 99.9% uptime.</p>
-                <span class="feature-metric">Zero Drops</span>
+                <h3>Operationally Predictable</h3>
+                <p>Lock-free queues, zero deadline violations in 5-hour soak tests. Deterministic, bit-for-bit reproducible output.</p>
+                <span class="feature-metric">Zero Drift</span>
             </div>
             <div class="feature-card" data-aos>
-                <div class="feature-icon" style="--accent: #f093fb">
+                <div class="feature-icon" style="--accent: #2563eb">
                     <i data-lucide="cpu"></i>
                 </div>
-                <h3>Hardware-Agnostic</h3>
-                <p>Any x86-64 CPU with AVX2. No GPU, no TPU — just plug into your existing fleet hardware.</p>
+                <h3>CPU-Only Deployment</h3>
+                <p>Any x86-64 CPU with AVX2. No GPU, no TPU, no cloud dependency — integrates with existing infrastructure hardware.</p>
                 <span class="feature-metric">CPU Only</span>
             </div>
             <div class="feature-card" data-aos>
-                <div class="feature-icon" style="--accent: #feca57">
+                <div class="feature-icon" style="--accent: #0284c7">
                     <i data-lucide="puzzle"></i>
                 </div>
-                <h3>Easy Integration</h3>
-                <p>Docker, ROS/ROS2, Python ctypes, native C++. Up and running in <strong>15 minutes</strong>.</p>
-                <span class="feature-metric">15 min setup</span>
+                <h3>SDK-Ready Integration</h3>
+                <p>Docker, ROS/ROS2, Python ctypes, native C++. Structured APIs for integration into existing operator toolchains.</p>
+                <span class="feature-metric">SDK-Ready</span>
             </div>
             <div class="feature-card" data-aos>
-                <div class="feature-icon" style="--accent: #48dbfb">
+                <div class="feature-icon" style="--accent: #1d4ed8">
                     <i data-lucide="wifi-off"></i>
                 </div>
-                <h3>Autonomous Operation</h3>
-                <p>Works offline in tunnels and subways. Zero network dependency — edge-first by design.</p>
+                <h3>Offline-First Operation</h3>
+                <p>Fully air-gapped deployment. No cloud dependency, no network requirement — operates in tunnels, vaults, and confined infrastructure environments.</p>
                 <span class="feature-metric">Offline-First</span>
             </div>
         </div>
@@ -182,120 +170,82 @@
 </section>
 
 <!-- ═══════════════════════════════════════════════════════════════════════════
-     TECHNOLOGY / HOW IT WORKS
+     PLATFORM ARCHITECTURE
      ═══════════════════════════════════════════════════════════════════════════ -->
-<section class="section section-dark" id="technology">
+<section class="section section-dark" id="platform">
     <div class="container">
         <div class="section-header">
-            <span class="section-badge">Technology</span>
-            <h2 class="section-title">How <span class="gradient-text">SFSVC</span> works</h2>
-            <p class="section-subtitle">Physics-based neuromorphic detection — deterministic, reproducible, and auditable.</p>
+            <span class="section-badge">Platform Architecture</span>
+            <h2 class="section-title">How <span class="gradient-text">NEPA</span> works</h2>
+            <p class="section-subtitle">NEPA separates perception into two non-blocking lanes for predictable, auditable operation.</p>
         </div>
 
-        <!-- Pipeline Steps -->
+        <!-- Dual Lane Architecture -->
         <div class="pipeline">
             <div class="pipeline-step" data-aos>
                 <div class="pipeline-num">01</div>
                 <div class="pipeline-content">
-                    <h3>Ingest Any Video Feed</h3>
-                    <p>H.264, H.265, VP9, or AV1 — from any camera or drone. Hardware-agnostic input layer decodes frames at up to <strong>125 fps</strong> (1080p).</p>
+                    <h3>Hard Deterministic Lane</h3>
+                    <p>Encode → Detect → Control. Fixed-cost operations, no heap allocation in hot path, preallocated buffers, lock-free queues, and non-blocking inter-lane communication.</p>
                 </div>
-                <div class="pipeline-icon"><i data-lucide="video"></i></div>
+                <div class="pipeline-icon"><i data-lucide="git-commit-horizontal"></i></div>
             </div>
             <div class="pipeline-step" data-aos>
                 <div class="pipeline-num">02</div>
                 <div class="pipeline-content">
-                    <h3>Neuromorphic Spike Encoding</h3>
-                    <p>Delta-spike encoder converts pixel changes into sparse events — only significant temporal differences survive. <strong>93.8% sparsity</strong>.</p>
+                    <h3>Async Cognitive Lane</h3>
+                    <p>Semantic inference, classification, and context enrichment run asynchronously. This lane never blocks control output — inference latency cannot impact the deterministic path.</p>
                 </div>
-                <div class="pipeline-icon"><i data-lucide="activity"></i></div>
+                <div class="pipeline-icon"><i data-lucide="git-branch"></i></div>
             </div>
             <div class="pipeline-step" data-aos>
                 <div class="pipeline-num">03</div>
                 <div class="pipeline-content">
-                    <h3>Physics-Based Crack Detection</h3>
-                    <p>Vertical band scoring with center-vs-edge ratio analysis. Deterministic — <strong>bit-for-bit identical</strong> across runs. No ML hallucinations.</p>
+                    <h3>Structured Output</h3>
+                    <p>Detection events, risk classifications, and audit logs are emitted as structured data. Results are bit-for-bit identical across runs — reproducible and traceable.</p>
                 </div>
                 <div class="pipeline-icon"><i data-lucide="scan-line"></i></div>
             </div>
             <div class="pipeline-step" data-aos>
                 <div class="pipeline-num">04</div>
                 <div class="pipeline-content">
-                    <h3>6-Lane Parallel Pipeline</h3>
-                    <p>Lock-free queues route data across RT control, signature extraction, YOLO inference, uplink, visualization, and event callbacks — all concurrent.</p>
+                    <h3>Infrastructure Integration</h3>
+                    <p>Connects to operator toolchains via structured APIs. Compatible with MBIS-aligned workflows, asset management platforms, and inspection reporting systems.</p>
                 </div>
-                <div class="pipeline-icon"><i data-lucide="git-branch"></i></div>
-            </div>
-            <div class="pipeline-step" data-aos>
-                <div class="pipeline-num">05</div>
-                <div class="pipeline-content">
-                    <h3>Sparse Event Transmission</h3>
-                    <p>Only crack events are transmitted — not full video. <strong>5.2 Mbps → 0.32 Mbps</strong>. Works even on 2G connections underground.</p>
-                </div>
-                <div class="pipeline-icon"><i data-lucide="send"></i></div>
+                <div class="pipeline-icon"><i data-lucide="plug"></i></div>
             </div>
         </div>
 
-        <!-- Tech Comparison -->
+        <!-- Performance Table -->
         <div class="comparison-table-wrapper" data-aos>
-            <h3 class="comparison-title">Why Not Cloud ML?</h3>
+            <h3 class="comparison-title">Platform Performance</h3>
             <table class="comparison-table">
                 <thead>
                     <tr>
-                        <th></th>
-                        <th class="highlight-col">AuraSense SFSVC</th>
-                        <th>Cloud ML Models</th>
-                        <th>Manual Inspection</th>
+                        <th>Metric</th>
+                        <th class="highlight-col">Result</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Latency</td>
-                        <td class="highlight-col"><strong>&lt;1 ms</strong></td>
-                        <td>100–500 ms</td>
-                        <td>Days–Weeks</td>
+                        <td>P99 Control Path</td>
+                        <td class="highlight-col"><strong>&lt; 4 ms</strong></td>
                     </tr>
                     <tr>
-                        <td>Bandwidth</td>
-                        <td class="highlight-col"><strong>0.32 Mbps</strong></td>
-                        <td>5+ Mbps</td>
-                        <td>N/A</td>
+                        <td>Deployment</td>
+                        <td class="highlight-col"><strong>CPU-only</strong></td>
                     </tr>
                     <tr>
-                        <td>Works Offline</td>
-                        <td class="highlight-col"><strong>✓ Yes</strong></td>
-                        <td>✗ No</td>
-                        <td>✓ Yes</td>
+                        <td>Cloud Dependency</td>
+                        <td class="highlight-col"><strong>None</strong></td>
                     </tr>
                     <tr>
-                        <td>GPU Required</td>
-                        <td class="highlight-col"><strong>✗ No</strong></td>
-                        <td>✓ Yes ($$$)</td>
-                        <td>✗ No</td>
+                        <td>Soak Stability</td>
+                        <td class="highlight-col"><strong>5-hour test, zero drift</strong></td>
                     </tr>
                     <tr>
-                        <td>Deterministic</td>
-                        <td class="highlight-col"><strong>✓ Bit-exact</strong></td>
-                        <td>✗ Probabilistic</td>
-                        <td>✗ Human error</td>
-                    </tr>
-                    <tr>
-                        <td>Accuracy</td>
-                        <td class="highlight-col"><strong>98.7%</strong></td>
-                        <td>85–95%</td>
-                        <td>70–90%</td>
-                    </tr>
-                    <tr>
-                        <td>Dark/Wet Tunnels</td>
-                        <td class="highlight-col"><strong>✓ Works</strong></td>
-                        <td>✗ Degrades</td>
-                        <td>⚠ Dangerous</td>
-                    </tr>
-                    <tr>
-                        <td>Cost / drone / month</td>
-                        <td class="highlight-col"><strong>$64</strong></td>
-                        <td>$1,040+</td>
-                        <td>$4,500+</td>
+                        <td>Deadline Violations</td>
+                        <td class="highlight-col"><strong>0</strong></td>
                     </tr>
                 </tbody>
             </table>
@@ -310,8 +260,8 @@
     <div class="container">
         <div class="section-header">
             <span class="section-badge">Use Cases</span>
-            <h2 class="section-title">Built for the <span class="gradient-text">hardest environments</span></h2>
-            <p class="section-subtitle">Where cloud ML fails, SFSVC thrives.</p>
+            <h2 class="section-title">Deployment environments for <span class="gradient-text">infrastructure operators</span></h2>
+            <p class="section-subtitle">NEPA operates where connectivity is absent and deterministic behavior is required.</p>
         </div>
         <div class="use-cases-grid">
             <div class="use-case-card" data-aos>
@@ -321,12 +271,12 @@
                     </div>
                 </div>
                 <div class="use-case-content">
-                    <h3>Tunnel & Subway Inspection</h3>
-                    <p>Zero 4G coverage? No problem. SFSVC runs entirely on-edge, detecting cracks in dark, wet tunnels that blind traditional cameras and ML models.</p>
+                    <h3>Tunnel & Subway Infrastructure</h3>
+                    <p>NEPA operates without network connectivity in confined underground environments. Deterministic detection in dark, wet tunnels where conventional systems degrade.</p>
                     <ul class="use-case-stats">
-                        <li><strong>$37K/year</strong> saved per 2 km section</li>
-                        <li><strong>40 hrs/year → 1 hr/week</strong> inspection time</li>
-                        <li><strong>3 extra early-stage</strong> cracks found vs. manual</li>
+                        <li><strong>Offline operation</strong> — no 4G required</li>
+                        <li><strong>Reduced inspection cycles</strong> through continuous monitoring</li>
+                        <li><strong>Traceable outputs</strong> for compliance reporting</li>
                     </ul>
                 </div>
             </div>
@@ -338,27 +288,11 @@
                 </div>
                 <div class="use-case-content">
                     <h3>Bridge & Road Infrastructure</h3>
-                    <p>Continuous monitoring of concrete surfaces on bridges, overpasses, and highways. Sub-millimeter crack detection at highway speeds.</p>
+                    <p>Continuous structural monitoring of concrete surfaces. Reproducible detection results for audit trails and maintenance scheduling.</p>
                     <ul class="use-case-stats">
-                        <li><strong>$116K/year</strong> saved per 1,000 km</li>
-                        <li><strong>98.7% accuracy</strong> vs. manual labeling</li>
-                        <li><strong>&lt;0.3%</strong> false positive rate</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="use-case-card" data-aos>
-                <div class="use-case-visual">
-                    <div class="use-case-icon-bg">
-                        <i data-lucide="plane"></i>
-                    </div>
-                </div>
-                <div class="use-case-content">
-                    <h3>Autonomous Drone Fleets</h3>
-                    <p>Deploy across your entire fleet — 94% less data means longer flights, lower battery drain, and cheaper cellular plans.</p>
-                    <ul class="use-case-stats">
-                        <li><strong>$29,280/month</strong> saved (30-drone fleet)</li>
-                        <li><strong>377 GB/month</strong> less data transmitted</li>
-                        <li><strong>6-month</strong> payback period</li>
+                        <li><strong>Bit-exact</strong> reproducible results</li>
+                        <li><strong>Structured outputs</strong> for asset management platforms</li>
+                        <li><strong>Low false-positive rate</strong> for reliable escalation</li>
                     </ul>
                 </div>
             </div>
@@ -369,12 +303,28 @@
                     </div>
                 </div>
                 <div class="use-case-content">
-                    <h3>Industrial & Building Facades</h3>
-                    <p>Runway inspection, factory floors, building exteriors. Insurance-grade reproducibility for regulatory compliance.</p>
+                    <h3>Building Façade Inspection</h3>
+                    <p>SFSVC — the NEPA Façade Inspection Module — provides MBIS-aligned risk classification and structured façade maps for regulatory compliance and public safety reporting.</p>
                     <ul class="use-case-stats">
-                        <li><strong>Bit-exact</strong> reproducible results</li>
-                        <li><strong>Zero frame drops</strong> in 72-hr tests</li>
-                        <li><strong>Insurance-auditable</strong> deterministic output</li>
+                        <li><strong>MBIS-aligned</strong> risk classification</li>
+                        <li><strong>Structured façade maps</strong> and risk bands</li>
+                        <li><strong>Traceable inspection outputs</strong></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="use-case-card" data-aos>
+                <div class="use-case-visual">
+                    <div class="use-case-icon-bg">
+                        <i data-lucide="factory"></i>
+                    </div>
+                </div>
+                <div class="use-case-content">
+                    <h3>Industrial & Asset Management</h3>
+                    <p>Air-gapped deployment for sensitive industrial environments. Integrates with existing asset management and inspection workflow systems via structured SDK APIs.</p>
+                    <ul class="use-case-stats">
+                        <li><strong>Air-gapped</strong> deployment support</li>
+                        <li><strong>SDK integration</strong> with operator toolchains</li>
+                        <li><strong>Local audit logs</strong> for compliance</li>
                     </ul>
                 </div>
             </div>
@@ -389,8 +339,8 @@
     <div class="container">
         <div class="section-header">
             <span class="section-badge">Live Demo</span>
-            <h2 class="section-title">Watch it <span class="gradient-text">detect in real time</span></h2>
-            <p class="section-subtitle">Pick a scenario. See cracks appear. Watch the data shrink.</p>
+            <h2 class="section-title">Runtime <span class="gradient-text">detection walkthrough</span></h2>
+            <p class="section-subtitle">Select an inspection environment to preview NEPA detection output.</p>
         </div>
 
         <!-- Scenario Picker -->
@@ -419,7 +369,7 @@
                     <div class="demo-dots">
                         <span></span><span></span><span></span>
                     </div>
-                    <span class="demo-title">AuraSense SFSVC — <span id="demoScenarioLabel">Tunnel Inspection</span></span>
+                    <span class="demo-title">NEPA — <span id="demoScenarioLabel">Tunnel Inspection</span></span>
                     <span class="demo-status" id="demoStatus">● READY</span>
                 </div>
                 <div class="demo-body">
@@ -430,7 +380,7 @@
                         </div>
                         <div class="demo-pane-divider">
                             <div class="demo-pane-divider-line"></div>
-                            <span class="demo-pane-divider-badge">SFSVC</span>
+                            <span class="demo-pane-divider-badge">NEPA</span>
                             <div class="demo-pane-divider-line"></div>
                         </div>
                         <div class="demo-pane">
@@ -482,27 +432,27 @@
     <div class="container">
         <div class="section-header">
             <span class="section-badge">ROI Calculator</span>
-            <h2 class="section-title">Calculate your <span class="gradient-text">savings</span></h2>
-            <p class="section-subtitle">See the financial impact of SFSVC on your inspection fleet.</p>
+            <h2 class="section-title">Estimate deployment <span class="gradient-text">cost reduction</span></h2>
+            <p class="section-subtitle">Calculate the data transmission cost reduction from deploying NEPA across your inspection fleet.</p>
         </div>
         <div class="roi-calculator" data-aos>
             <div class="roi-inputs">
                 <div class="roi-input-group">
-                    <label for="roiDrones">Fleet Size</label>
+                    <label for="roiDrones">Inspection Units</label>
                     <div class="roi-slider-wrapper">
                         <input type="range" id="roiDrones" min="1" max="200" value="30" class="roi-slider">
-                        <span class="roi-slider-value" id="roiDronesVal">30 drones</span>
+                        <span class="roi-slider-value" id="roiDronesVal">30 units</span>
                     </div>
                 </div>
                 <div class="roi-input-group">
-                    <label for="roiHours">Flight Hours / Drone / Month</label>
+                    <label for="roiHours">Operating Hours / Unit / Month</label>
                     <div class="roi-slider-wrapper">
                         <input type="range" id="roiHours" min="10" max="200" value="80" class="roi-slider">
                         <span class="roi-slider-value" id="roiHoursVal">80 hrs</span>
                     </div>
                 </div>
                 <div class="roi-input-group">
-                    <label for="roiCellRate">Cellular Cost ($/GB)</label>
+                    <label for="roiCellRate">Data Transfer Cost ($/GB)</label>
                     <div class="roi-slider-wrapper">
                         <input type="range" id="roiCellRate" min="1" max="20" value="8" step="0.5" class="roi-slider">
                         <span class="roi-slider-value" id="roiCellRateVal">$8/GB</span>
@@ -520,7 +470,7 @@
             </div>
             <div class="roi-results">
                 <div class="roi-result-card roi-before">
-                    <h4>Without SFSVC</h4>
+                    <h4>Without NEPA</h4>
                     <div class="roi-big-number" id="roiBefore">$31,200</div>
                     <span class="roi-label">per month</span>
                     <div class="roi-detail" id="roiBeforeData">402 GB/month · 5.2 Mbps</div>
@@ -529,7 +479,7 @@
                     <i data-lucide="arrow-right"></i>
                 </div>
                 <div class="roi-result-card roi-after">
-                    <h4>With SFSVC</h4>
+                    <h4>With NEPA</h4>
                     <div class="roi-big-number" id="roiAfter">$1,920</div>
                     <span class="roi-label">per month</span>
                     <div class="roi-detail" id="roiAfterData">25 GB/month · 0.32 Mbps</div>
@@ -554,7 +504,7 @@
                 </div>
             </div>
             <div class="roi-cta">
-                <a href="#contact" class="btn btn-primary">Get Custom Quote</a>
+                <a href="#contact" class="btn btn-primary">Request Technical Brief</a>
                 <button class="btn btn-outline" id="roiDownload">
                     <i data-lucide="download"></i>
                     Download Report
@@ -571,7 +521,7 @@
     <div class="container">
         <div class="section-header">
             <span class="section-badge">Performance</span>
-            <h2 class="section-title">Numbers that <span class="gradient-text">speak</span></h2>
+            <h2 class="section-title">Measured <span class="gradient-text">runtime metrics</span></h2>
         </div>
         <div class="perf-grid">
             <div class="perf-card" data-aos>
@@ -580,24 +530,24 @@
                 <div class="perf-label">Throughput @ 1080p</div>
             </div>
             <div class="perf-card" data-aos>
-                <div class="perf-value"><span data-count="0.40">0</span></div>
+                <div class="perf-value"><span data-count="4">0</span></div>
                 <div class="perf-unit">ms</div>
-                <div class="perf-label">P50 Latency</div>
+                <div class="perf-label">P99 Control Path</div>
             </div>
             <div class="perf-card" data-aos>
-                <div class="perf-value"><span data-count="681">0</span></div>
-                <div class="perf-unit">GB/day</div>
-                <div class="perf-label">Storage Saved</div>
+                <div class="perf-value"><span data-count="5">0</span></div>
+                <div class="perf-unit">hr</div>
+                <div class="perf-label">Soak Test Duration</div>
             </div>
             <div class="perf-card" data-aos>
                 <div class="perf-value"><span data-count="99.9">0</span></div>
                 <div class="perf-unit">%</div>
-                <div class="perf-label">Uptime</div>
+                <div class="perf-label">Operational Stability</div>
             </div>
             <div class="perf-card" data-aos>
                 <div class="perf-value"><span data-count="0">0</span></div>
                 <div class="perf-unit"></div>
-                <div class="perf-label">SLA Violations</div>
+                <div class="perf-label">Deadline Violations</div>
             </div>
             <div class="perf-card" data-aos>
                 <div class="perf-value"><span data-count="106">0</span></div>
@@ -615,41 +565,76 @@
     <div class="container">
         <div class="section-header">
             <span class="section-badge">Get Started</span>
-            <h2 class="section-title">From zero to <span class="gradient-text">production</span> in 2 weeks</h2>
-            <p class="section-subtitle">Our pilot program de-risks your evaluation with measurable success criteria.</p>
+            <h2 class="section-title">Structured <span class="gradient-text">evaluation process</span></h2>
+            <p class="section-subtitle">A structured deployment evaluation with defined success criteria and measurable outcomes.</p>
         </div>
         <div class="timeline">
             <div class="timeline-item" data-aos>
                 <div class="timeline-marker">1</div>
                 <div class="timeline-content">
                     <div class="timeline-days">Days 1–2</div>
-                    <h3>Setup & Validation</h3>
-                    <p>Docker deploy, basic integration, validation report generated automatically.</p>
+                    <h3>Environment Setup</h3>
+                    <p>Deploy via Docker or native binary, configure input sources, and run automated validation to confirm runtime integrity.</p>
                 </div>
             </div>
             <div class="timeline-item" data-aos>
                 <div class="timeline-marker">2</div>
                 <div class="timeline-content">
                     <div class="timeline-days">Days 3–10</div>
-                    <h3>Integration & Testing</h3>
-                    <p>Connect to your camera feeds, tune thresholds, run against your infrastructure data.</p>
+                    <h3>Integration & Threshold Tuning</h3>
+                    <p>Connect to existing sensor feeds, configure detection thresholds, and validate against operator-provided infrastructure data.</p>
                 </div>
             </div>
             <div class="timeline-item" data-aos>
                 <div class="timeline-marker">3</div>
                 <div class="timeline-content">
                     <div class="timeline-days">Days 11–14</div>
-                    <h3>Performance Monitoring</h3>
-                    <p>72-hour continuous run. Verify zero frame drops, latency SLA, and detection accuracy.</p>
+                    <h3>Soak & Stability Testing</h3>
+                    <p>Extended continuous run. Verify P99 latency SLA, zero deadline violations, and deterministic output consistency.</p>
                 </div>
             </div>
             <div class="timeline-item" data-aos>
                 <div class="timeline-marker">4</div>
                 <div class="timeline-content">
                     <div class="timeline-days">Week 3+</div>
-                    <h3>Fleet Rollout</h3>
-                    <p>5% → 20% → 100% of your fleet. Graduated deployment with monitoring at each stage.</p>
+                    <h3>Graduated Deployment</h3>
+                    <p>Staged rollout across inspection units with monitoring at each phase. Full deployment after confirmed operational stability.</p>
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     NEPA MODULES
+     ═══════════════════════════════════════════════════════════════════════════ -->
+<section class="section" id="modules">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-badge">NEPA Modules</span>
+            <h2 class="section-title">Inspection modules<br><span class="gradient-text">on the NEPA runtime</span></h2>
+            <p class="section-subtitle">Domain-specific inspection capabilities built on the NEPA deterministic edge runtime.</p>
+        </div>
+        <div class="about-grid">
+            <div class="about-card" data-aos>
+                <div class="about-icon"><i data-lucide="building-2"></i></div>
+                <h3>SFSVC — Façade Inspection Module</h3>
+                <p>Spike-based façade defect detection and MBIS-aligned risk classification built on NEPA. Generates structured façade maps, risk bands, and traceable inspection outputs for public safety compliance and asset management.</p>
+            </div>
+            <div class="about-card" data-aos>
+                <div class="about-icon"><i data-lucide="train-track"></i></div>
+                <h3>Tunnel &amp; Underground Module</h3>
+                <p>Offline structural monitoring for confined environments without network connectivity. Operates in rail tunnels, utility conduits, and subterranean infrastructure where conventional systems cannot function.</p>
+            </div>
+            <div class="about-card" data-aos>
+                <div class="about-icon"><i data-lucide="landmark"></i></div>
+                <h3>Bridge &amp; Civil Module</h3>
+                <p>Continuous monitoring for bridges, overpasses, and civil infrastructure. Deterministic detection with structured output for integration into asset management and inspection compliance workflows.</p>
+            </div>
+            <div class="about-card" data-aos>
+                <div class="about-icon"><i data-lucide="plus-circle"></i></div>
+                <h3>Custom Module Integration</h3>
+                <p>The NEPA SDK enables engineering teams to build domain-specific inspection modules on the deterministic runtime. Contact us for SDK access and integration documentation.</p>
             </div>
         </div>
     </div>
@@ -661,44 +646,107 @@
 <section class="section section-dark" id="about">
     <div class="container">
         <div class="section-header">
-            <span class="section-badge">About Us</span>
-            <h2 class="section-title">Hong Kong <span class="gradient-text">AI Hub</span></h2>
-            <p class="section-subtitle">Pioneering neuromorphic edge intelligence from Asia's innovation capital.</p>
+            <span class="section-badge">About</span>
+            <h2 class="section-title">AuraSense builds <span class="gradient-text">NEPA</span></h2>
+            <p class="section-subtitle">A deterministic edge infrastructure runtime for safety-critical inspection environments.</p>
         </div>
         <div class="about-grid">
             <div class="about-card" data-aos>
-                <div class="about-icon"><i data-lucide="brain"></i></div>
-                <h3>Neuromorphic Codec</h3>
-                <p>SFSVC is a proprietary neuromorphic video codec — not a neural network. It converts temporal pixel changes into sparse spike events, mimicking the biological spiking behaviour of retinal ganglion cells and the lateral geniculate nucleus.</p>
+                <div class="about-icon"><i data-lucide="cpu"></i></div>
+                <h3>Deterministic Edge Runtime</h3>
+                <p>NEPA isolates bounded control-path execution from asynchronous inference workloads, ensuring predictable operational behavior regardless of computational load.</p>
             </div>
             <div class="about-card" data-aos>
-                <div class="about-icon"><i data-lucide="eye"></i></div>
-                <h3>Biological Visual Processing</h3>
-                <p>Our multi-rate four-lane architecture mirrors the hierarchical timing structure of the human visual cortex — from fast subcortical reflexes to slow semantic reasoning. Each lane operates at a different temporal resolution, just like biology.</p>
+                <div class="about-icon"><i data-lucide="layers"></i></div>
+                <h3>Dual-Lane Architecture</h3>
+                <p>The hard deterministic lane handles encode, detect, and control with fixed-cost operations. The async cognitive lane handles inference and enrichment — and never blocks control output.</p>
             </div>
             <div class="about-card" data-aos>
                 <div class="about-icon"><i data-lucide="wifi-off"></i></div>
-                <h3>Offline Edge Detection</h3>
-                <p>100% on-device processing with zero cloud dependency. No pre-trained models, no GPU, no internet. SFSVC performs physics-based crack detection using deterministic spike analysis — works in elevator shafts, tunnels, and underground vaults.</p>
+                <h3>Offline-First Deployment</h3>
+                <p>We focus on deployable, offline-first, CPU-based runtime systems for infrastructure operators, engineering firms, and public-sector asset managers.</p>
             </div>
             <div class="about-card" data-aos>
                 <div class="about-icon"><i data-lucide="map-pin"></i></div>
                 <h3>Based in Hong Kong</h3>
-                <p>AuraSense Limited is headquartered in Hong Kong, positioning the city as a regional innovation hub for neuromorphic edge AI. We're building inspection-grade middleware for the Greater Bay Area and global infrastructure markets.</p>
+                <p>AuraSense Limited is headquartered in Hong Kong, building infrastructure-grade middleware for the Greater Bay Area and global public-sector asset management markets.</p>
             </div>
         </div>
     </div>
 </section>
 
 <!-- ═══════════════════════════════════════════════════════════════════════════
-     CONTACT / REQUEST DEMO
+     SECURITY & DATA HANDLING
+     ═══════════════════════════════════════════════════════════════════════════ -->
+<section class="section" id="security">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-badge">Security &amp; Data Handling</span>
+            <h2 class="section-title">Compliance-oriented <span class="gradient-text">data handling</span></h2>
+            <p class="section-subtitle">NEPA is designed for deployment in sensitive infrastructure environments with strict data governance requirements.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card" data-aos>
+                <div class="feature-icon" style="--accent: #1d4ed8">
+                    <i data-lucide="wifi-off"></i>
+                </div>
+                <h3>Offline-First Deployment</h3>
+                <p>No data leaves the deployment environment. All processing, detection, and logging occurs on-device with no external network calls required.</p>
+                <span class="feature-metric">Air-Gapped</span>
+            </div>
+            <div class="feature-card" data-aos>
+                <div class="feature-icon" style="--accent: #1d4ed8">
+                    <i data-lucide="users"></i>
+                </div>
+                <h3>Role-Based Access Control</h3>
+                <p>Granular access control separates operator, inspector, and administrator roles. Access to detection outputs, audit logs, and configuration is governed by role assignment.</p>
+                <span class="feature-metric">RBAC</span>
+            </div>
+            <div class="feature-card" data-aos>
+                <div class="feature-icon" style="--accent: #1d4ed8">
+                    <i data-lucide="lock"></i>
+                </div>
+                <h3>bcrypt Password Hashing</h3>
+                <p>All credential storage uses bcrypt with a configurable cost factor. Plaintext credentials are never stored or transmitted.</p>
+                <span class="feature-metric">bcrypt</span>
+            </div>
+            <div class="feature-card" data-aos>
+                <div class="feature-icon" style="--accent: #1d4ed8">
+                    <i data-lucide="key"></i>
+                </div>
+                <h3>Ed25519 Output Signing</h3>
+                <p>Detection outputs are cryptographically signed using Ed25519. Recipients can verify integrity and provenance of all inspection results.</p>
+                <span class="feature-metric">Ed25519</span>
+            </div>
+            <div class="feature-card" data-aos>
+                <div class="feature-icon" style="--accent: #1d4ed8">
+                    <i data-lucide="file-text"></i>
+                </div>
+                <h3>Local Audit Logs</h3>
+                <p>Tamper-evident local audit logs record all detection events, access attempts, and configuration changes for compliance and forensic review.</p>
+                <span class="feature-metric">Audit Trail</span>
+            </div>
+            <div class="feature-card" data-aos>
+                <div class="feature-icon" style="--accent: #1d4ed8">
+                    <i data-lucide="server"></i>
+                </div>
+                <h3>Machine-Bound Licensing</h3>
+                <p>License validation is bound to hardware identifiers. Runtime will not operate on unauthorized hardware, preventing unauthorized redistribution.</p>
+                <span class="feature-metric">Hardware-Bound</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     CONTACT / REQUEST TECHNICAL BRIEF
      ═══════════════════════════════════════════════════════════════════════════ -->
 <section class="section section-dark" id="contact">
     <div class="container">
         <div class="section-header">
             <span class="section-badge">Contact</span>
-            <h2 class="section-title">Ready to <span class="gradient-text">get started?</span></h2>
-            <p class="section-subtitle">Request a live demo or start your 2-week pilot program.</p>
+            <h2 class="section-title">Request a <span class="gradient-text">technical brief</span></h2>
+            <p class="section-subtitle">Reach out to discuss your infrastructure requirements or request a structured evaluation.</p>
         </div>
         <div class="contact-grid">
             <div class="contact-form-wrapper" data-aos>
@@ -715,33 +763,33 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="contactCompany">Company *</label>
-                            <input type="text" id="contactCompany" name="company" required placeholder="Company name">
+                            <label for="contactCompany">Organisation *</label>
+                            <input type="text" id="contactCompany" name="company" required placeholder="Organisation name">
                         </div>
                         <div class="form-group">
-                            <label for="contactFleet">Fleet Size</label>
+                            <label for="contactFleet">Inspection Units</label>
                             <select id="contactFleet" name="fleet">
                                 <option value="">Select range</option>
-                                <option value="1-10">1–10 drones</option>
-                                <option value="11-50">11–50 drones</option>
-                                <option value="51-200">51–200 drones</option>
-                                <option value="200+">200+ drones</option>
+                                <option value="1-10">1–10 units</option>
+                                <option value="11-50">11–50 units</option>
+                                <option value="51-200">51–200 units</option>
+                                <option value="200+">200+ units</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="contactInterest">I'm interested in…</label>
                         <select id="contactInterest" name="interest">
-                            <option value="demo">Live demo</option>
-                            <option value="pilot">2-week pilot program</option>
-                            <option value="pricing">Pricing & ROI analysis</option>
-                            <option value="technical">Technical deep-dive</option>
-                            <option value="partnership">Partnership / reseller</option>
+                            <option value="technical">Technical brief</option>
+                            <option value="demo">Evaluation walkthrough</option>
+                            <option value="pilot">Structured evaluation program</option>
+                            <option value="sdk">SDK access</option>
+                            <option value="partnership">Partnership / integration</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="contactMessage">Message</label>
-                        <textarea id="contactMessage" name="message" rows="4" placeholder="Tell us about your use case…"></textarea>
+                        <textarea id="contactMessage" name="message" rows="4" placeholder="Describe your deployment environment and requirements…"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary btn-lg btn-full">
                         Send Request
@@ -776,12 +824,12 @@
                     <p>Within 24 hours</p>
                 </div>
                 <div class="contact-quick-stats">
-                    <h4>Quick Facts</h4>
+                    <h4>Deployment Facts</h4>
                     <ul>
-                        <li>🚀 15-minute setup</li>
-                        <li>📋 2-week pilot program</li>
-                        <li>💰 6-month payback</li>
-                        <li>📊 95% Year-1 ROI</li>
+                        <li>⚙ CPU-only, no GPU required</li>
+                        <li>📡 100% offline operation</li>
+                        <li>🔒 Air-gappable deployment</li>
+                        <li>📋 SDK-ready runtime</li>
                     </ul>
                 </div>
             </div>
@@ -798,30 +846,30 @@
             <div class="footer-brand">
                 <a href="#" class="nav-logo">
                     <span class="logo-icon">⚡</span>
-                    <span class="logo-text">AuraSense</span>
+                    <span class="logo-text">NEPA</span>
                 </a>
-                <p>Crack detection at the edge.<br>Bandwidth savings at scale.</p>
+                <p>Deterministic edge infrastructure runtime.<br>By AuraSense HK.</p>
             </div>
             <div class="footer-links">
-                <h4>Product</h4>
+                <h4>Platform</h4>
+                <a href="#platform">Architecture</a>
                 <a href="#features">Features</a>
-                <a href="#technology">Technology</a>
+                <a href="#modules">Modules</a>
                 <a href="#demo">Demo</a>
-                <a href="#roi">ROI Calculator</a>
             </div>
             <div class="footer-links">
                 <h4>Company</h4>
                 <a href="#use-cases">Use Cases</a>
-                <a href="#pilot">Pilot Program</a>
+                <a href="#about">About</a>
+                <a href="#security">Security</a>
                 <a href="#contact">Contact</a>
-                <a href="https://github.com/Dicksonchau1/AuraSense-SFSVC" target="_blank">GitHub</a>
             </div>
             <div class="footer-links">
                 <h4>Resources</h4>
                 <a href="#">Documentation</a>
-                <a href="#">Datasheet (PDF)</a>
-                <a href="#">API Reference</a>
-                <a href="#">Support</a>
+                <a href="#">Technical Brief (PDF)</a>
+                <a href="#">SDK Reference</a>
+                <a href="https://github.com/Dicksonchau1/AuraSense-SFSVC" target="_blank">GitHub</a>
             </div>
         </div>
         <div class="footer-bottom">
