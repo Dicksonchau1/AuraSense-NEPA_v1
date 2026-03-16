@@ -3,493 +3,640 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AuraSense NEPA + SFSVC — Neuromorphic control middleware for infrastructure inspection. Deterministic crack detection under 6 ms safety contract.">
-    <meta name="keywords" content="AuraSense, NEPA, SFSVC, neuromorphic control, infrastructure inspection, spike encoding">
-    <meta name="author" content="AuraSense NEPA">
+    <meta name="description" content="AuraSense — Industrial Neuromorphic Inspection Platform for real-time infrastructure monitoring">
+    <meta name="keywords" content="AuraSense, neuromorphic inspection, infrastructure monitoring, industrial automation">
+    <meta name="author" content="AuraSense">
 
-    <!-- Open Graph -->
-    <meta property="og:title" content="AuraSense NEPA + SFSVC — Neuromorphic Control for Infrastructure Inspection">
-    <meta property="og:description" content="Neuromorphic control middleware converting video into sparse spike representations with deterministic crack-aware control under 6 ms safety contract.">
+    <meta property="og:title" content="AuraSense — Industrial Neuromorphic Inspection Platform">
+    <meta property="og:description" content="Real-time inspection middleware for infrastructure operators">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.aurasensehk.com">
     <meta property="og:image" content="https://www.aurasensehk.com/assets/og-image.png">
 
-    <title>AuraSense NEPA + SFSVC — Neuromorphic Control for Infrastructure Inspection</title>
+    <title>AuraSense — Industrial Neuromorphic Inspection Platform</title>
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙</text></svg>">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-tertiary: #1a1a28;
+            --text-primary: #e8e8ef;
+            --text-secondary: #a0a0b8;
+            --border-color: #2a2a38;
+            --accent-primary: #4a90e2;
+            --accent-hover: #5ba3ff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(180deg,
+                #0a0a0f 0%,
+                #12121a 50%,
+                #0a0a0f 100%);
+            opacity: 1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 15, 0.95);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 4rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 3rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-primary {
+            background: var(--accent-primary);
+            color: white;
+            border-color: var(--accent-primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            border-color: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-secondary);
+            transform: translateY(-2px);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: 4rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .why-now-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .why-now-item {
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background: var(--bg-secondary);
+        }
+
+        .why-now-item h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .why-now-item p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .metric-card {
+            padding: 2.5rem 2rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background: var(--bg-secondary);
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .metric-label {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .logo-placeholder {
+            aspect-ratio: 2 / 1;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            opacity: 0.6;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background: var(--bg-secondary);
+        }
+
+        .about-content p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .join-content {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .join-content p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-size: 1.125rem;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.875rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 1rem;
+            background: var(--accent-primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .form-submit:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        footer {
+            padding: 3rem 0;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="animated-bg"></div>
 
-<!-- Starfield background -->
-<canvas id="starfield"></canvas>
-
-<!-- ═══════════════════════════════════════════════════════════════════════════
-     NAVIGATION
-     ═══════════════════════════════════════════════════════════════════════════ -->
-<nav class="navbar" id="navbar">
-    <div class="nav-container">
-        <a href="#" class="nav-logo">
-            <span class="logo-icon">⚙</span>
-            <span class="logo-text">AuraSense NEPA</span>
-        </a>
-        <div class="nav-links" id="navLinks">
-            <a href="#nepa-architecture">Architecture</a>
-            <a href="#sfsvc-layer">SFSVC</a>
-            <a href="#control-output">Control</a>
-            <a href="#open-source">Open Source</a>
-            <a href="#demo">Demo</a>
-            <a href="#contact" class="nav-cta">Technical Overview</a>
-        </div>
-        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
-            <span></span><span></span><span></span>
-        </button>
-    </div>
-</nav>
-
-<!-- ═══════════════════════════════════════════════════════════════════════════
-     HERO SECTION
-     ═══════════════════════════════════════════════════════════════════════════ -->
-<section class="hero" id="hero">
-    <div class="container hero-content">
-        <p class="hero-eyebrow hero-fade-up" style="--delay: 0s">NEUROMORPHIC CONTROL MIDDLEWARE</p>
-        <h1 class="hero-title hero-fade-up" style="--delay: 0.15s">
-            Neuromorphic Control for<br>
-            <span class="hero-highlight">Infrastructure Inspection</span>
-        </h1>
-        <p class="hero-subtitle hero-fade-up" style="--delay: 0.35s">
-            NEPA + SFSVC converts video into sparse spike representations to deliver<br>
-            deterministic crack-aware control under a 6 ms safety contract.
-        </p>
-
-        <div class="hero-actions hero-fade-up" style="--delay: 0.65s">
-            <a href="#nepa-architecture" class="btn btn-primary btn-lg btn-glow">
-                <i data-lucide="cpu"></i>
-                View Technical Overview
+    <nav>
+        <div class="container">
+            <a href="#" class="nav-logo">
+                <span>⚙</span>
+                <span>AuraSense</span>
             </a>
-            <a href="https://github.com/Dicksonchau1/AuraSense-SFSVC" class="btn btn-link btn-lg" target="_blank">
-                Run the Python Demo →
-            </a>
-        </div>
-    </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════════════════════════
-     PROBLEM SECTION
-     ═══════════════════════════════════════════════════════════════════════════ -->
-<section class="section" id="problem">
-    <div class="container">
-        <div class="section-header">
-            <span class="section-badge">Problem</span>
-            <h2 class="section-title">Infrastructure Inspection Constraints</h2>
-            <p class="section-subtitle">Edge control systems face fundamental tradeoffs.</p>
-        </div>
-        <div class="features-grid">
-            <div class="feature-card" data-aos>
-                <div class="feature-icon" style="--accent: #ff6b6b">
-                    <i data-lucide="clock"></i>
-                </div>
-                <h3>Latency Limits</h3>
-                <p>Control decisions must complete within frame intervals. At 30 Hz, each frame arrives every 33.3 ms. Cloud round-trip latency (50-200 ms) exceeds available control budget, making real-time crack-aware navigation impossible.</p>
-            </div>
-            <div class="feature-card" data-aos>
-                <div class="feature-icon" style="--accent: #4ecdc4">
-                    <i data-lucide="hard-drive"></i>
-                </div>
-                <h3>Bandwidth and Storage Cost</h3>
-                <p>Full video transmission at 1080p 30fps consumes 5.2 Mbps. Continuous operation generates 681 GB/day. At $8/GB cellular rates, this translates to $116,000/year per 1,000 km of infrastructure inspected.</p>
-            </div>
-            <div class="feature-card" data-aos>
-                <div class="feature-icon" style="--accent: #a78bfa">
-                    <i data-lucide="battery"></i>
-                </div>
-                <h3>Battery and Compute Tradeoffs</h3>
-                <p>GPU-based inference draws 15-30W. CPU-only processing reduces power draw to 2-4W. On battery-constrained platforms, this difference determines flight duration and inspection coverage per charge cycle.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════════════════════════
-     NEPA ARCHITECTURE
-     ═══════════════════════════════════════════════════════════════════════════ -->
-<section class="section section-dark" id="nepa-architecture">
-    <div class="container">
-        <div class="section-header">
-            <span class="section-badge">NEPA Architecture</span>
-            <h2 class="section-title">Two-Lane System</h2>
-            <p class="section-subtitle">Real-time control and semantic enrichment operate independently.</p>
-        </div>
-
-        <!-- Pipeline Steps -->
-        <div class="pipeline">
-            <div class="pipeline-step" data-aos>
-                <div class="pipeline-num">Lane 1</div>
-                <div class="pipeline-content">
-                    <h3>Real-Time Control</h3>
-                    <p><strong>Implementation:</strong> C++</p>
-                    <p><strong>Latency Profile:</strong></p>
-                    <ul>
-                        <li>2.50 ms average</li>
-                        <li>2.61 ms P95</li>
-                        <li>2.81 ms P99</li>
-                    </ul>
-                    <p><strong>SLA Violations:</strong> 0%</p>
-                    <p><strong>Safety Contract:</strong> 6 ms</p>
-                    <p><strong>Control Rate:</strong> ~106 Hz</p>
-                    <p>Deterministic spike-based crack detection runs within bounded time. Decision output (FORWARD / CAUTION / SLOW) is available before next frame arrives.</p>
-                </div>
-                <div class="pipeline-icon"><i data-lucide="zap"></i></div>
-            </div>
-            <div class="pipeline-step" data-aos>
-                <div class="pipeline-num">Lane 2</div>
-                <div class="pipeline-content">
-                    <h3>Semantic Lane</h3>
-                    <p><strong>Components:</strong> YOLO inference, signature enrichment</p>
-                    <p><strong>Execution:</strong> Non-blocking, asynchronous</p>
-                    <p><strong>Interference:</strong> Does not affect real-time control</p>
-                    <p>Optional semantic analysis runs in parallel. YOLO-based object detection and metadata tagging operate without impacting Lane 1 latency guarantees. Results are logged for post-flight analysis.</p>
-                </div>
-                <div class="pipeline-icon"><i data-lucide="layers"></i></div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════════════════════════
-     SFSVC LAYER
-     ═══════════════════════════════════════════════════════════════════════════ -->
-<section class="section" id="sfsvc-layer">
-    <div class="container">
-        <div class="section-header">
-            <span class="section-badge">SFSVC Layer</span>
-            <h2 class="section-title">Sparse Frame-delta Spike Video Codec</h2>
-            <p class="section-subtitle">Neuromorphic compression for edge transmission.</p>
-        </div>
-        <div class="use-cases-grid">
-            <div class="use-case-card" data-aos>
-                <div class="use-case-visual">
-                    <div class="use-case-icon-bg">
-                        <i data-lucide="activity"></i>
-                    </div>
-                </div>
-                <div class="use-case-content">
-                    <h3>Frame Delta Encoding</h3>
-                    <p>Each pixel is compared to its previous value. Only pixels that cross a threshold generate events. Static regions produce zero output.</p>
-                </div>
-            </div>
-            <div class="use-case-card" data-aos>
-                <div class="use-case-visual">
-                    <div class="use-case-icon-bg">
-                        <i data-lucide="radio"></i>
-                    </div>
-                </div>
-                <div class="use-case-content">
-                    <h3>ON/OFF Spikes</h3>
-                    <p>Brightness increases generate ON events. Decreases generate OFF events. Binary representation reduces data volume while preserving temporal edges.</p>
-                </div>
-            </div>
-            <div class="use-case-card" data-aos>
-                <div class="use-case-visual">
-                    <div class="use-case-icon-bg">
-                        <i data-lucide="minimize-2"></i>
-                    </div>
-                </div>
-                <div class="use-case-content">
-                    <h3>Sparse Representation</h3>
-                    <p>Typical scenes produce 6-10% non-zero spikes. Infrastructure surfaces with minimal texture generate even sparser outputs.</p>
-                    <ul class="use-case-stats">
-                        <li><strong>9.97×</strong> compression ratio</li>
-                        <li><strong>89.97%</strong> bandwidth reduction</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="use-case-card" data-aos>
-                <div class="use-case-visual">
-                    <div class="use-case-icon-bg">
-                        <i data-lucide="database"></i>
-                    </div>
-                </div>
-                <div class="use-case-content">
-                    <h3>Modeled Savings</h3>
-                    <p>Continuous operation at 1080p 30fps baseline: 681 GB/day transmitted. SFSVC reduces this to 68 GB/day.</p>
-                    <ul class="use-case-stats">
-                        <li><strong>681 GB/day</strong> baseline savings</li>
-                        <li><strong>~$116,000/year</strong> per 1,000 km inspected</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="use-case-card" data-aos>
-                <div class="use-case-visual">
-                    <div class="use-case-icon-bg">
-                        <i data-lucide="code"></i>
-                    </div>
-                </div>
-                <div class="use-case-content">
-                    <h3>Implementation Note</h3>
-                    <p>Public repository contains Python demo implementation (~8 ms/frame processing time). Production C++ SDK operates at sub-millisecond latencies and is not publicly released.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════════════════════════
-     CONTROL OUTPUT
-     ═══════════════════════════════════════════════════════════════════════════ -->
-<section class="section section-dark" id="control-output">
-    <div class="container">
-        <div class="section-header">
-            <span class="section-badge">Control Output</span>
-            <h2 class="section-title">Per-Frame Decision System</h2>
-            <p class="section-subtitle">Each frame produces actionable control signals.</p>
-        </div>
-        <div class="features-grid">
-            <div class="feature-card" data-aos>
-                <div class="feature-icon" style="--accent: #ff6b6b">
-                    <i data-lucide="ruler"></i>
-                </div>
-                <h3>Crack Width</h3>
-                <p>Estimated width in pixels based on spike band geometry. Mapped to physical dimensions using camera calibration parameters.</p>
-            </div>
-            <div class="feature-card" data-aos>
-                <div class="feature-icon" style="--accent: #4ecdc4">
-                    <i data-lucide="alert-triangle"></i>
-                </div>
-                <h3>Severity Classification</h3>
-                <p>Thresholds applied to crack width and spike density. Three levels: minor (monitoring), moderate (repair), severe (immediate action).</p>
-            </div>
-            <div class="feature-card" data-aos>
-                <div class="feature-icon" style="--accent: #a78bfa">
-                    <i data-lucide="check-circle"></i>
-                </div>
-                <h3>Confidence Score</h3>
-                <p>Derived from spike consistency across adjacent frames. Low-confidence detections are flagged for human review.</p>
-            </div>
-            <div class="feature-card" data-aos>
-                <div class="feature-icon" style="--accent: #f093fb">
-                    <i data-lucide="navigation"></i>
-                </div>
-                <h3>Navigation Decision</h3>
-                <p>Three states per frame:</p>
-                <ul>
-                    <li><strong>FORWARD:</strong> No cracks detected, maintain speed</li>
-                    <li><strong>CAUTION:</strong> Minor crack, reduce speed for higher-resolution capture</li>
-                    <li><strong>SLOW:</strong> Severe crack, stop and perform detailed scan</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════════════════════════
-     OPEN SOURCE VS COMMERCIAL
-     ═══════════════════════════════════════════════════════════════════════════ -->
-<section class="section" id="open-source">
-    <div class="container">
-        <div class="section-header">
-            <span class="section-badge">Licensing</span>
-            <h2 class="section-title">Open Source vs Commercial</h2>
-            <p class="section-subtitle">Clear separation between public demo and production SDK.</p>
-        </div>
-        <div class="comparison-table-wrapper" data-aos>
-            <table class="comparison-table">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th class="highlight-col">Public Repository</th>
-                        <th>Commercial SDK</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Language</td>
-                        <td class="highlight-col">Python</td>
-                        <td>C++</td>
-                    </tr>
-                    <tr>
-                        <td>Latency</td>
-                        <td class="highlight-col">~8 ms/frame</td>
-                        <td>2.50 ms avg, 2.81 ms P99</td>
-                    </tr>
-                    <tr>
-                        <td>Purpose</td>
-                        <td class="highlight-col">Educational, prototyping</td>
-                        <td>Production deployment</td>
-                    </tr>
-                    <tr>
-                        <td>License</td>
-                        <td class="highlight-col">Open Source</td>
-                        <td>Commercial (contact for terms)</td>
-                    </tr>
-                    <tr>
-                        <td>Optimization</td>
-                        <td class="highlight-col">Standard NumPy</td>
-                        <td>SIMD AVX2, lock-free queues</td>
-                    </tr>
-                    <tr>
-                        <td>Support</td>
-                        <td class="highlight-col">Community</td>
-                        <td>Engineering support, SLA</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════════════════════════
-     LIVE DEMO
-     ═══════════════════════════════════════════════════════════════════════════ -->
-<section class="section section-dark" id="demo">
-    <div class="container">
-        <div class="section-header">
-            <span class="section-badge">Demo</span>
-            <h2 class="section-title">Python Demo Repository</h2>
-            <p class="section-subtitle">Open-source implementation for testing and evaluation.</p>
-        </div>
-
-        <div class="about-grid">
-            <div class="about-card" data-aos>
-                <div class="about-icon"><i data-lucide="github"></i></div>
-                <h3>Public Repository</h3>
-                <p>Python-based SFSVC implementation available on GitHub. Processes video at ~8 ms/frame on standard CPU hardware. Suitable for prototyping and evaluation.</p>
-                <p><a href="https://github.com/Dicksonchau1/AuraSense-SFSVC" target="_blank">github.com/Dicksonchau1/AuraSense-SFSVC</a></p>
-            </div>
-            <div class="about-card" data-aos>
-                <div class="about-icon"><i data-lucide="terminal"></i></div>
-                <h3>Quick Start</h3>
-                <p>Clone repository, install dependencies, run on test video. Output shows spike encoding, crack detection bands, and per-frame decisions.</p>
-            </div>
-            <div class="about-card" data-aos>
-                <div class="about-icon"><i data-lucide="info"></i></div>
-                <h3>Performance Note</h3>
-                <p>Demo implementation prioritizes readability over performance. Production C++ SDK achieves 2.50 ms average latency with SIMD optimization and lock-free data structures.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════════════════════════
-     CONTACT
-     ═══════════════════════════════════════════════════════════════════════════ -->
-<section class="section section-dark" id="contact">
-    <div class="container">
-        <div class="section-header">
-            <span class="section-badge">Contact</span>
-            <h2 class="section-title">Technical Inquiries</h2>
-            <p class="section-subtitle">Commercial SDK licensing and integration support.</p>
-        </div>
-        <div class="contact-grid">
-            <div class="contact-form-wrapper" data-aos>
-                <form class="contact-form" id="contactForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="contactName">Name *</label>
-                            <input type="text" id="contactName" name="name" required placeholder="Your name">
-                        </div>
-                        <div class="form-group">
-                            <label for="contactEmail">Work Email *</label>
-                            <input type="email" id="contactEmail" name="email" required placeholder="you@company.com">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="contactCompany">Company *</label>
-                            <input type="text" id="contactCompany" name="company" required placeholder="Company name">
-                        </div>
-                        <div class="form-group">
-                            <label for="contactFleet">Fleet Size</label>
-                            <select id="contactFleet" name="fleet">
-                                <option value="">Select range</option>
-                                <option value="1-10">1–10 drones</option>
-                                <option value="11-50">11–50 drones</option>
-                                <option value="51-200">51–200 drones</option>
-                                <option value="200+">200+ drones</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="contactInterest">Subject</label>
-                        <select id="contactInterest" name="interest">
-                            <option value="technical">Technical evaluation</option>
-                            <option value="licensing">Commercial licensing</option>
-                            <option value="integration">Integration support</option>
-                            <option value="partnership">Partnership inquiry</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="contactMessage">Message</label>
-                        <textarea id="contactMessage" name="message" rows="4" placeholder="Tell us about your use case…"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-lg btn-full">
-                        Send Inquiry
-                        <i data-lucide="send"></i>
-                    </button>
-                </form>
-                <div class="form-success" id="formSuccess" style="display:none">
-                    <div class="success-icon">✓</div>
-                    <h3>Message Sent</h3>
-                    <p>Response within 48 hours.</p>
-                </div>
-            </div>
-            <div class="contact-info" data-aos>
-                <div class="contact-info-card">
-                    <i data-lucide="mail"></i>
-                    <h4>Email</h4>
-                    <a href="mailto:support@aurasensehk.com">support@aurasensehk.com</a>
-                </div>
-                <div class="contact-info-card">
-                    <i data-lucide="github"></i>
-                    <h4>GitHub</h4>
-                    <a href="https://github.com/Dicksonchau1/AuraSense-SFSVC" target="_blank">AuraSense-SFSVC</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════════════════════════
-     FOOTER
-     ═══════════════════════════════════════════════════════════════════════════ -->
-<footer class="footer">
-    <div class="container">
-        <div class="footer-grid">
-            <div class="footer-brand">
-                <a href="#" class="nav-logo">
-                    <span class="logo-icon">⚙</span>
-                    <span class="logo-text">AuraSense-NEPA_v1</span>
-                </a>
-                <p>Neuromorphic Control Middleware<br>Hong Kong</p>
-            </div>
-            <div class="footer-links">
-                <h4>Technical</h4>
-                <a href="#nepa-architecture">Architecture</a>
-                <a href="#sfsvc-layer">SFSVC</a>
-                <a href="#control-output">Control</a>
-                <a href="#open-source">Licensing</a>
-            </div>
-            <div class="footer-links">
-                <h4>Resources</h4>
-                <a href="#demo">Demo</a>
-                <a href="https://github.com/Dicksonchau1/AuraSense-SFSVC" target="_blank">GitHub</a>
+            <div class="nav-links">
+                <a href="#why-now">Why Now</a>
+                <a href="#performance">Performance</a>
+                <a href="#partnerships">Partnerships</a>
+                <a href="#about">About</a>
                 <a href="#contact">Contact</a>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>AuraSense NEPA + SFSVC</p>
-        </div>
-    </div>
-</footer>
+    </nav>
 
-<script src="main.js"></script>
+    <section class="hero">
+        <div class="container">
+            <h1>Industrial Neuromorphic Inspection Platform</h1>
+            <div class="hero-buttons">
+                <a href="#why-now" class="btn btn-primary">Explore More</a>
+                <a href="#contact" class="btn btn-secondary">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="why-now">
+        <div class="container">
+            <h2 class="section-title fade-in">Why Now</h2>
+            <p class="section-subtitle fade-in">Market conditions and regulatory requirements are creating new demands for edge-based inspection systems.</p>
+
+            <div class="why-now-grid">
+                <div class="why-now-item fade-in">
+                    <h3>Increasing Inspection Frequency</h3>
+                    <p>Infrastructure operators are expanding monitoring coverage to reduce downtime and extend asset life. Traditional manual inspection cycles are being supplemented with continuous automated surveillance.</p>
+                </div>
+
+                <div class="why-now-item fade-in">
+                    <h3>Rising Regulatory Documentation</h3>
+                    <p>Compliance frameworks now require detailed records of inspection findings, timestamps, and sensor metadata. Documentation burdens are increasing across energy, transportation, and utilities sectors.</p>
+                </div>
+
+                <div class="why-now-item fade-in">
+                    <h3>Escalating Data Volumes</h3>
+                    <p>High-resolution video capture generates terabytes of inspection data annually. Storage and transmission costs are becoming significant operational expenses, particularly in remote environments.</p>
+                </div>
+
+                <div class="why-now-item fade-in">
+                    <h3>Maturing Edge Compute Hardware</h3>
+                    <p>Low-power processors with dedicated acceleration are now available at price points suitable for embedded deployment. Real-time processing at the edge is technically and economically feasible.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="performance">
+        <div class="container">
+            <h2 class="section-title fade-in">Operational Performance</h2>
+            <p class="section-subtitle fade-in">Measured system characteristics under production deployment conditions.</p>
+
+            <div class="metrics-grid">
+                <div class="metric-card fade-in">
+                    <div class="metric-value" data-target="2.50" data-suffix=" ms">0 ms</div>
+                    <div class="metric-label">Average Latency</div>
+                </div>
+
+                <div class="metric-card fade-in">
+                    <div class="metric-value" data-target="106" data-suffix=" Hz">0 Hz</div>
+                    <div class="metric-label">Control Rate</div>
+                </div>
+
+                <div class="metric-card fade-in">
+                    <div class="metric-value" data-target="89.97" data-suffix="%">0%</div>
+                    <div class="metric-label">Bandwidth Reduction</div>
+                </div>
+
+                <div class="metric-card fade-in">
+                    <div class="metric-value" data-target="116" data-suffix="k USD">0k USD</div>
+                    <div class="metric-label">Annual Savings Per 1,000 KM</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="partnerships">
+        <div class="container">
+            <h2 class="section-title fade-in">Partnerships</h2>
+            <p class="section-subtitle fade-in">Collaborating with infrastructure operators and industrial automation providers.</p>
+
+            <div class="logo-grid">
+                <div class="logo-placeholder fade-in">Partner Logo</div>
+                <div class="logo-placeholder fade-in">Partner Logo</div>
+                <div class="logo-placeholder fade-in">Partner Logo</div>
+                <div class="logo-placeholder fade-in">Partner Logo</div>
+                <div class="logo-placeholder fade-in">Partner Logo</div>
+                <div class="logo-placeholder fade-in">Partner Logo</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="about">
+        <div class="container">
+            <h2 class="section-title fade-in">About AuraSense</h2>
+
+            <div class="about-content fade-in">
+                <p>AuraSense develops real-time inspection middleware for infrastructure operators. The platform integrates with existing drone hardware and analytics stacks to provide edge-based anomaly detection and control.</p>
+
+                <p>The system processes video streams on embedded processors, reducing bandwidth requirements and enabling immediate response to detected anomalies. Compressed event representations are transmitted to cloud storage and analytics systems for further processing.</p>
+
+                <p>Deployments are designed to fit within existing operational workflows, requiring minimal changes to flight planning, sensor configurations, or downstream analytics infrastructure.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="join">
+        <div class="container">
+            <h2 class="section-title fade-in">Join Us</h2>
+
+            <div class="join-content fade-in">
+                <p>We are looking for systems engineers, embedded software developers, and industrial deployment partners with experience in infrastructure monitoring, robotics control systems, or edge computing architectures.</p>
+
+                <p>Opportunities are limited and selection is based on technical background and deployment readiness.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="contact">
+        <div class="container">
+            <h2 class="section-title fade-in">Contact Us</h2>
+            <p class="section-subtitle fade-in">Reach out for technical inquiries, partnership opportunities, or deployment support.</p>
+
+            <form class="contact-form fade-in" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+
+                <button type="submit" class="form-submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 AuraSense. Industrial Neuromorphic Inspection Platform.</p>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+
+                        if (entry.target.querySelector('.metric-value')) {
+                            const metricValues = entry.target.querySelectorAll('.metric-value');
+                            metricValues.forEach(function(metric) {
+                                animateMetric(metric);
+                            });
+                            observer.unobserve(entry.target);
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in').forEach(function(element) {
+                observer.observe(element);
+            });
+
+            function animateMetric(element) {
+                const target = parseFloat(element.getAttribute('data-target'));
+                const suffix = element.getAttribute('data-suffix') || '';
+                const duration = 2000;
+                const steps = 60;
+                const stepDuration = duration / steps;
+                let current = 0;
+
+                const increment = target / steps;
+
+                const timer = setInterval(function() {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+
+                    let displayValue;
+                    if (suffix.includes('ms') || suffix.includes('%')) {
+                        displayValue = current.toFixed(2);
+                    } else if (suffix.includes('Hz')) {
+                        displayValue = Math.round(current);
+                    } else {
+                        displayValue = Math.round(current);
+                    }
+
+                    element.textContent = displayValue + suffix;
+                }, stepDuration);
+            }
+
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your message. We will respond within 48 hours.');
+                this.reset();
+            });
+
+            const animateBg = function() {
+                const bg = document.querySelector('.animated-bg');
+                let opacity = 1;
+                let direction = -1;
+
+                setInterval(function() {
+                    opacity += direction * 0.001;
+                    if (opacity <= 0.95 || opacity >= 1) {
+                        direction *= -1;
+                    }
+                    bg.style.opacity = opacity;
+                }, 50);
+            };
+
+            animateBg();
+        })();
+    </script>
 </body>
 </html>
