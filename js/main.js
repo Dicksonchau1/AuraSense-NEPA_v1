@@ -57,7 +57,8 @@ function initScrollAnimations() {
         });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-    document.querySelectorAll('[data-aos]').forEach(el => observer.observe(el));
+    // Support both [data-aos] and .reveal/.stagger elements
+    document.querySelectorAll('[data-aos], .reveal, .stagger').forEach(el => observer.observe(el));
 
     // Tilt effect on feature/use-case/perf cards
     document.querySelectorAll('.feature-card, .use-case-card, .perf-card').forEach(card => {
