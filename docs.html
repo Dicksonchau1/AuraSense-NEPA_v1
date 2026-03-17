@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Docs — AuraSense SFSVC Neuromorphic Codec SDK</title>
-  <meta name="description" content="SFSVC quickstart: Docker image, API endpoints, and integration guide for neuromorphic drone inspection. Spike-based perception, no GPU required.">
+  <title>Documentation — AuraSense SFSVC</title>
+  <meta name="description" content="SFSVC system architecture, quick start guide, and integration notes.">
   <meta name="keywords" content="SFSVC docs, neuromorphic video codec SDK, drone inspection API, spike-based perception, edge AI Docker">
   <meta name="theme-color" content="#06060A">
   <link rel="stylesheet" href="./css/design.css">
@@ -143,9 +143,7 @@
 <!-- ─── PAGE HERO ─────────────────────────────────────────────── -->
 <section class="page-hero">
   <div class="container">
-    <span class="badge" style="margin-bottom:32px"><span class="badge-dot"></span> SDK v2.0</span>
     <h1>Documentation</h1>
-    <p>Get SFSVC running in minutes with Docker, then integrate via the REST API.</p>
   </div>
 </section>
 
@@ -158,247 +156,81 @@
       <aside class="docs-sidebar">
         <h4>Contents</h4>
         <ul>
-          <li><a href="#quickstart" class="active">Quickstart</a></li>
-          <li><a href="#requirements">Requirements</a></li>
-          <li><a href="#configuration">Configuration</a></li>
-          <li><a href="#api">API Reference</a></li>
-          <li><a href="#api-v1-facade">Facade Mode API v1</a></li>
-          <li><a href="#api-frames">POST /v1/frames (Legacy)</a></li>
-          <li><a href="#api-events">GET /v1/events (Legacy)</a></li>
-          <li><a href="#risk-responsibility">Risk &amp; Responsibility</a></li>
-          <li><a href="#roadmap">Roadmap</a></li>
-          <li><a href="#licensing">Licensing</a></li>
-          <li><a href="#support">Support</a></li>
+          <li><a href="#overview" class="active">Overview</a></li>
+          <li><a href="#quickstart">Quick Start</a></li>
+          <li><a href="#architecture">Architecture Notes</a></li>
+          <li><a href="#production">Production Engine</a></li>
         </ul>
       </aside>
 
       <!-- Main content -->
       <div class="docs-content">
 
+        <section id="overview">
+          <h2>Overview</h2>
+          <p>
+            System architecture and integration model.
+          </p>
+          <p>
+            SFSVC provides a neuromorphic codec layer that converts video streams into sparse spike representations for deterministic real-time control.
+          </p>
+        </section>
+
         <section id="quickstart">
-          <h2>Quickstart</h2>
+          <h2>Quick Start (Python Demo)</h2>
           <p>
-            The fastest way to run SFSVC is via the official Docker image.
-            Once you have a valid license key from your
-            <a href="https://www.aurasensehk.com/dashboard.html" style="color:var(--accent-cyan)">license dashboard</a>,
-            you can be processing video in under 2 minutes.
+            The public repository contains a simplified Python reference implementation demonstrating the core neuromorphic codec concept.
           </p>
 
-          <h3>Pull and run</h3>
+          <h3>Run the demo</h3>
           <div class="code-block">
             <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-            <span class="comment"># Pull the latest image</span><br>
-            <span class="cmd-prompt">$</span> docker pull aurasense/sfsvc:latest<br><br>
-            <span class="comment"># Run with your license key (replace YOUR_KEY)</span><br>
-            <span class="cmd-prompt">$</span> docker run --rm -it \<br>
-            &nbsp;&nbsp;-e SFSVC_LICENSE_KEY=YOUR_KEY \<br>
-            &nbsp;&nbsp;-p 8000:8000 \<br>
-            &nbsp;&nbsp;aurasense/sfsvc:latest
-          </div>
-
-          <div class="code-block">
-            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-            <span class="comment"># Show all options</span><br>
-            <span class="cmd-prompt">$</span> docker run --rm -it aurasense/sfsvc:latest --help
+            <span class="cmd-prompt">$</span> python examples/simple_neurocodec_python.py --input your_video.mp4
           </div>
 
           <div class="callout">
-            Your license key is available on the
-            <a href="https://www.aurasensehk.com/dashboard.html" style="color:var(--accent-cyan)">license dashboard</a>
-            after subscribing. The key is tied to your account; do not commit it to version control.
+            This is a reference implementation for educational purposes. Performance is approximately 8 ms/frame.
           </div>
         </section>
 
-        <section id="requirements">
-          <h2>Requirements</h2>
-          <p>SFSVC has minimal hardware requirements by design.</p>
-          <table class="param-table">
-            <thead>
-              <tr><th>Component</th><th>Minimum</th><th>Recommended</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>CPU</td><td>x86_64, 4 cores, SSE4.2</td><td>Intel N100 or better</td></tr>
-              <tr><td>RAM</td><td>512 MB</td><td>2 GB</td></tr>
-              <tr><td>GPU</td><td colspan="2">Not required</td></tr>
-              <tr><td>OS</td><td>Linux (kernel ≥ 5.4)</td><td>Ubuntu 22.04 LTS</td></tr>
-              <tr><td>Docker</td><td>20.10+</td><td>Latest stable</td></tr>
-              <tr><td>Camera input</td><td>USB or MIPI CSI, 1080p@30fps</td><td>1280×720@60fps</td></tr>
-            </tbody>
-          </table>
-        </section>
-
-        <section id="configuration">
-          <h2>Configuration</h2>
-          <p>SFSVC is configured via environment variables. All parameters have safe defaults.</p>
-          <table class="param-table">
-            <thead>
-              <tr><th>Variable</th><th>Default</th><th>Description</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>SFSVC_LICENSE_KEY</td><td>—</td><td>Required. Your Ed25519 license key.</td></tr>
-              <tr><td>SFSVC_MISSION_PROFILE</td><td>Facade</td><td>CriticalBridge | PipelineGas | Facade | Demo</td></tr>
-              <tr><td>SFSVC_PORT</td><td>8000</td><td>Port for the REST API server.</td></tr>
-              <tr><td>SFSVC_ENABLE_THERMAL</td><td>false</td><td>Enable thermal lane (Pro/Enterprise only).</td></tr>
-              <tr><td>SFSVC_STDP_ENABLED</td><td>false</td><td>Enable on-device STDP learning (Pro/Enterprise).</td></tr>
-              <tr><td>SFSVC_LOG_LEVEL</td><td>info</td><td>debug | info | warn | error</td></tr>
-            </tbody>
-          </table>
-        </section>
-
-        <section id="api">
-          <h2 id="api-reference">API Reference</h2>
+        <section id="architecture">
+          <h2>Architecture Notes</h2>
           <p>
-            The SFSVC container exposes a REST API on <code style="font-family:var(--font-mono);color:var(--accent-cyan)">http://localhost:8000</code>.
-            All endpoints accept and return <code style="font-family:var(--font-mono);color:var(--accent-cyan)">application/json</code>.
+            The SFSVC system implements three core processing stages:
           </p>
-          <div class="callout warn">
-            The API is designed for on-device loopback calls from your application.
-            Do not expose port 8000 directly to the internet without a reverse proxy and authentication.
-          </div>
-        </section>
 
-        <section id="api-v1-facade">
-          <h2>Facade Mode API v1</h2>
+          <h3>Frame differencing</h3>
           <p>
-            New integrations should use the canonical Facade Mode API v1 contract.
-            This contract includes vertical crack summary outputs and Golden Frame memory fields
-            (<code style="font-family:var(--font-mono);color:var(--accent-cyan)">has_baseline</code>,
-            <code style="font-family:var(--font-mono);color:var(--accent-cyan)">area_growth_rate</code>,
-            <code style="font-family:var(--font-mono);color:var(--accent-cyan)">risk_acceleration</code>, and
-            <code style="font-family:var(--font-mono);color:var(--accent-cyan)">new_degradation_tiles</code>).
+            Temporal contrast detection between consecutive frames to identify changes.
           </p>
-          <div class="callout">
-            Canonical contract:
-            <a href="https://github.com/Dicksonchau1/AuraSense-SFSVC-Engine/blob/main/docs/API_V1_FACADE.md" style="color:var(--accent-cyan)">
-              Facade Mode API v1
-            </a>
-          </div>
-        </section>
 
-        <section id="api-frames">
-          <h2>POST /v1/frames (Legacy)</h2>
-          <div class="endpoint-card">
-            <span class="endpoint-method method-post">POST</span>
-            <span class="endpoint-path">/v1/frames</span>
-            <div class="endpoint-desc">
-              Legacy endpoint. Submit a raw frame (or pre-encoded spike event list) for neuromorphic processing.
-              Returns immediately; results are available via <code style="font-family:var(--font-mono)">/v1/events</code>.
-              New integrations should use Facade Mode API v1.
-            </div>
-          </div>
-
-          <h3>Request body</h3>
-          <div class="code-block">
-            <pre>{
-  "frame_id":   "f_1234",          <span class="comment">// caller-assigned identifier</span>
-  "timestamp":  1741183200000,     <span class="comment">// Unix ms</span>
-  "encoding":   "raw_bgr",         <span class="comment">// "raw_bgr" | "spike_events"</span>
-  "width":      1280,
-  "height":     720,
-  "data_b64":   "..."              <span class="comment">// base64-encoded frame bytes</span>
-}</pre>
-          </div>
-
-          <h3>Response</h3>
-          <div class="code-block">
-            <pre>{
-  "accepted": true,
-  "frame_id": "f_1234",
-  "queue_depth": 0
-}</pre>
-          </div>
-        </section>
-
-        <section id="api-events">
-          <h2>GET /v1/events (Legacy)</h2>
-          <div class="endpoint-card">
-            <span class="endpoint-method method-get">GET</span>
-            <span class="endpoint-path">/v1/events</span>
-            <div class="endpoint-desc">
-              Legacy endpoint. Poll for detection events. Returns crack events emitted since the last poll
-              (or since <code style="font-family:var(--font-mono)">since</code> timestamp if provided).
-              New integrations should use Facade Mode API v1.
-            </div>
-          </div>
-
-          <h3>Query parameters</h3>
-          <table class="param-table">
-            <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
-            <tbody>
-              <tr><td>since</td><td>integer</td><td>Unix ms. Return events after this timestamp.</td></tr>
-              <tr><td>min_confidence</td><td>float [0,1]</td><td>Filter events below this confidence score.</td></tr>
-              <tr><td>limit</td><td>integer</td><td>Max events per response. Default 100.</td></tr>
-            </tbody>
-          </table>
-
-          <h3>Response</h3>
-          <div class="code-block">
-            <pre>{
-  "events": [
-    {
-      "event_id":    "ev_9af3",
-      "frame_id":    "f_1234",
-      "timestamp":   1741183200043,
-      "type":        "crack",
-      "confidence":  0.943,
-      "tile_x":      82,           <span class="comment">// tile column [0, 159]</span>
-      "tile_y":      44,           <span class="comment">// tile row    [0, 89]</span>
-      "lane_mask":   6,            <span class="comment">// bitmask of firing lanes</span>
-      "bbox_px":     [656, 352, 672, 360]
-    }
-  ],
-  "count": 1,
-  "next_since": 1741183200044
-}</pre>
-          </div>
-        </section>
-
-        <section id="risk-responsibility">
-          <h2>Risk &amp; Responsibility</h2>
+          <h3>Spike encoding</h3>
           <p>
-            SFSVC is decision-support software for inspection teams. It helps prioritize review,
-            trend facade degradation, and surface risk indicators.
+            Conversion of frame deltas into sparse ON/OFF spike events representing pixel intensity changes.
           </p>
-          <div class="callout warn">
-            SFSVC output is not a structural certification and is not a substitute for legal/compliance review.
-            Final structural and safety decisions must be made by qualified engineers under local codes and standards.
-          </div>
-          <p><strong>Q:</strong> Can I use SFSVC output as the sole basis for safety decisions?</p>
-          <p><strong>A:</strong> No. SFSVC is designed to assist qualified professionals, not replace them.</p>
+
+          <h3>Control state mapping</h3>
+          <p>
+            Translation of spike patterns into control-relevant information for real-time decision making.
+          </p>
         </section>
 
-        <section id="roadmap">
-          <h2>Roadmap</h2>
+        <section id="production">
+          <h2>Production Engine</h2>
+          <p>
+            Detailed documentation available under commercial agreement.
+          </p>
+          <p>
+            The production C++ engine delivers:
+          </p>
           <ul>
-            <li>Shear-angle risk channel (Sobel/atan2/sin(2theta)-based), to be exposed as <code style="font-family:var(--font-mono);color:var(--accent-cyan)">max_shear_risk</code> and per-tile shear factors in a future API revision.</li>
-            <li>Additional facade trend signals for long-horizon maintenance planning.</li>
+            <li>2.50 ms average latency</li>
+            <li>2.81 ms P99</li>
+            <li>0% violations of 6 ms contract</li>
+            <li>~90% bandwidth reduction</li>
           </ul>
-          <p>Shear-specific metrics are experimental and not yet part of the public API.</p>
-        </section>
-
-        <section id="licensing">
-          <h2>Licensing</h2>
           <p>
-            SFSVC uses Ed25519 offline license keys. The license is validated locally on startup
-            and via a periodic heartbeat call to <code style="font-family:var(--font-mono);color:var(--accent-cyan)">https://www.aurasensehk.com/license/validate</code>.
-            The drone does <strong>not</strong> send video or spike data off-device during validation.
-          </p>
-          <p>
-            Your license key, active plan details, and Docker image download link are always
-            available on your <a href="https://www.aurasensehk.com/dashboard.html" style="color:var(--accent-cyan)">license dashboard</a>.
-          </p>
-        </section>
-
-        <section id="support">
-          <h2>Support</h2>
-          <p>
-            <strong>Email:</strong> <a href="mailto:support@aurasensehk.com" style="color:var(--accent-cyan)">support@aurasensehk.com</a><br>
-            Typical response time: within 2 business days.<br>
-            Priority support is included with Pro and Enterprise plans.
-          </p>
-          <p>
-            <strong>Support &amp; Response Times</strong><br>
-            We strive for &gt;99% service uptime, but do not provide a formal uptime guarantee at this stage.
+            For commercial inquiries: <a href="mailto:licensing@aurasensehk.com" style="color:var(--accent-cyan)">licensing@aurasensehk.com</a>
           </p>
         </section>
 
