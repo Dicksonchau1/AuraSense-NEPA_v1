@@ -67,10 +67,14 @@
 </section>
 
 <!-- ─── PARALLEL LANE PROCESSING ──────────────────────────────── -->
-<section class="section" style="background:var(--bg-surface)">
+<section class="section" style="background:var(--bg-surface);position:relative;">
   <div class="container">
     <span class="section-label reveal">2. Parallel Lane Processing</span>
     <h2 class="h2 reveal reveal-delay-1">Independent SIMD-accelerated lanes handle:</h2>
+
+    <div style="margin:32px 0;background:var(--bg-raised);border:1px solid var(--border-dim);border-radius:var(--radius-lg);padding:24px;position:relative;overflow:hidden;">
+      <canvas id="arch-viz-canvas" style="width:100%;height:400px;display:block;"></canvas>
+    </div>
 
     <div class="feature-grid stagger" style="margin-top:32px;">
       <div class="feature-card">
@@ -198,5 +202,6 @@
 </div>
 
 <script src="./js/main.js"></script>
+<script src="./js/neuro-viz.js"></script>
 </body>
 </html>
