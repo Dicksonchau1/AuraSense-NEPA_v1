@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The SFSVC Architecture — AuraSense</title>
-  <meta name="description" content="SFSVC is a neuromorphic perception engine designed for deterministic CPU execution at the edge.">
+  <title>Technology — AuraSense SFSVC</title>
+  <meta name="description" content="SFSVC inspection pipeline and neuromorphic codec layer. Deterministic control with neuromorphic compression.">
   <meta name="theme-color" content="#06060A">
   <link rel="stylesheet" href="./css/design.css">
   <link rel="stylesheet" href="./css/animate.css">
@@ -50,27 +50,29 @@
 <!-- ─── HERO ──────────────────────────────────────────────────── -->
 <section class="page-hero">
   <div class="container">
-    <h1>The SFSVC Architecture</h1>
-    <p>SFSVC is a neuromorphic perception engine designed for deterministic CPU execution at the edge.</p>
+    <h1>Technology</h1>
+    <p>Inspection pipeline and neuromorphic codec layer.</p>
   </div>
 </section>
 
-<!-- ─── SPIKE ENCODING ────────────────────────────────────────── -->
+<!-- ─── PIPELINE - TRADITIONAL ───────────────────────────────── -->
 <section class="section">
   <div class="container">
-    <span class="section-label reveal">1. Spike Encoding</span>
-    <h2 class="h2 reveal reveal-delay-1">Frames are converted into sparse temporal events before inference.</h2>
+    <span class="section-label reveal">Inspection Pipeline</span>
+    <h2 class="h2 reveal reveal-delay-1">Traditional Architecture</h2>
     <p class="reveal reveal-delay-2" style="margin-top:24px;font-size:18px;line-height:1.7;max-width:900px;">
-      This reduces redundant computation and improves signal-to-noise efficiency.
+      Camera → Edge Model → Cloud → Decision
+    </p>
+    <p class="reveal" style="margin-top:16px;font-size:16px;line-height:1.7;max-width:900px;color:var(--text-muted);">
+      Latency variability accumulates across the stack.
     </p>
   </div>
 </section>
 
-<!-- ─── PARALLEL LANE PROCESSING ──────────────────────────────── -->
+<!-- ─── PIPELINE - SFSVC ──────────────────────────────────────── -->
 <section class="section" style="background:var(--bg-surface);position:relative;">
   <div class="container">
-    <span class="section-label reveal">2. Parallel Lane Processing</span>
-    <h2 class="h2 reveal reveal-delay-1">Independent SIMD-accelerated lanes handle:</h2>
+    <span class="section-label reveal">SFSVC Architecture</span>
 
     <div class="reveal reveal-delay-2" style="margin:32px 0;max-width:900px;">
       <video
@@ -87,75 +89,76 @@
       <canvas id="arch-viz-canvas" style="height:400px;"></canvas>
     </div>
 
-    <div class="feature-grid stagger" style="margin-top:32px;">
-      <div class="feature-card">
-        <h3>Feature extraction</h3>
-      </div>
-      <div class="feature-card">
-        <h3>Structural detection</h3>
-      </div>
-      <div class="feature-card">
-        <h3>Optional STDP learning</h3>
-        <p style="font-size:14px;color:var(--text-muted);margin-top:8px;">(Pro/Enterprise)</p>
-      </div>
-      <div class="feature-card">
-        <h3>Optional thermal fusion</h3>
-      </div>
+    <div class="endpoint-card reveal" style="margin-top:32px;max-width:700px;">
+      <p style="margin:0;font-size:16px;line-height:1.9;">
+        Camera<br>
+        ↓<br>
+        Neuromorphic Codec Layer (SFSVC)<br>
+        ↓<br>
+        Deterministic Control Loop (&lt;3 ms)<br>
+        ↓<br>
+        Background Semantic Lanes<br>
+        ↓<br>
+        Cloud Analytics &amp; Storage
+      </p>
     </div>
 
     <p class="reveal" style="margin-top:32px;font-size:16px;line-height:1.7;max-width:900px;">
-      Designed for bounded execution and predictable latency.
+      The safety loop is isolated from non‑deterministic workloads.
+      No heavy inference is allowed to block control.
     </p>
   </div>
 </section>
 
-<!-- ─── DETERMINISTIC EXECUTION ───────────────────────────────── -->
+<!-- ─── NEUROMORPHIC CODEC ────────────────────────────────────── -->
 <section class="section">
   <div class="container">
-    <span class="section-label reveal">3. Deterministic Execution Model</span>
-    <h2 class="h2 reveal reveal-delay-1">SFSVC is built for operational environments, not lab conditions.</h2>
+    <span class="section-label reveal">Neuromorphic Codec Layer</span>
+    <h2 class="h2 reveal reveal-delay-1">SFSVC converts frame‑to‑frame changes into sparse ON/OFF spike representations.</h2>
+    <p class="reveal reveal-delay-2" style="margin-top:24px;font-size:18px;line-height:1.7;max-width:900px;">
+      Instead of transmitting full frames, the system transmits:
+    </p>
 
-    <div class="grid-2 stagger" style="margin-top:32px;">
-      <div class="info-card">
-        <h3>CPU pinning supported</h3>
+    <div class="feature-grid stagger" style="margin-top:32px;">
+      <div class="feature-card">
+        <h3>Control‑relevant deltas</h3>
       </div>
-      <div class="info-card">
-        <h3>No GPU dependency</h3>
+      <div class="feature-card">
+        <h3>Crack severity metrics</h3>
       </div>
-      <div class="info-card">
-        <h3>No unbounded memory growth in hot path</h3>
-      </div>
-      <div class="info-card">
-        <h3>Offline-first deployment model</h3>
+      <div class="feature-card">
+        <h3>Audit metadata</h3>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ─── HARDWARE TARGETS ───────────────────────────────────────── -->
+<!-- ─── MEASURED PERFORMANCE ──────────────────────────────────── -->
 <section class="section" style="background:var(--bg-surface)">
   <div class="container">
-    <span class="section-label reveal">4. Hardware Targets</span>
-    <h2 class="h2 reveal reveal-delay-1">Supported platforms:</h2>
+    <span class="section-label reveal">Measured Performance (C++ Engine)</span>
 
-    <div class="endpoint-card reveal reveal-delay-2" style="margin-top:32px;max-width:700px;">
-      <ul style="margin:0;padding-left:24px;color:var(--text-primary);line-height:1.9;">
-        <li>Ubuntu 22.04</li>
-        <li>x86_64 (AVX2)</li>
-        <li>ARM64 (NEON)</li>
-      </ul>
-    </div>
-
-    <div class="grid-2 stagger" style="margin-top:40px;">
+    <div class="grid-2 stagger" style="margin-top:32px;">
       <div class="info-card">
-        <h3>Minimum</h3>
-        <p>2 cores, 2GB RAM</p>
+        <h3>Latency</h3>
+        <p style="margin-top:16px;line-height:1.9;">
+          2.50 ms average<br>
+          2.81 ms P99<br>
+          0% violations of 6 ms contract
+        </p>
       </div>
       <div class="info-card">
-        <h3>Recommended</h3>
-        <p>Intel N100 or equivalent</p>
+        <h3>Compression</h3>
+        <p style="margin-top:16px;line-height:1.9;">
+          ~10× effective compression<br>
+          ~90% bandwidth reduction
+        </p>
       </div>
     </div>
+
+    <p class="reveal" style="margin-top:32px;font-size:14px;color:var(--text-muted);max-width:900px;">
+      Measured on 720p inspection video.
+    </p>
   </div>
 </section>
 

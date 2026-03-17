@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SFSVC - Neuromorphic Edge Perception SDK</title>
-  <meta name="description" content="SFSVC processes video as sparse neural events — enabling reliable perception pipelines on x86 and ARM devices without GPUs or cloud dependency.">
+  <title>AuraSense SFSVC - Neuromorphic Control Codec for Infrastructure Inspection</title>
+  <meta name="description" content="Sub-3 ms deterministic edge control. ~90% bandwidth reduction. Neuromorphic middleware for drone-based infrastructure inspection.">
   <meta name="theme-color" content="#06060A">
   <link rel="stylesheet" href="./css/design.css">
   <link rel="stylesheet" href="./css/animate.css">
@@ -51,11 +51,11 @@
 <section class="page-hero" style="position:relative;overflow:hidden;">
   <canvas id="hero-spike-canvas" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;opacity:0.6;"></canvas>
   <div class="container" style="position:relative;z-index:1;">
-    <h1>SFSVC<br>Neuromorphic Edge Perception SDK</h1>
-    <p class="hero-subtitle">Deterministic. CPU‑native. Offline‑first.</p>
-    <p>SFSVC processes video as sparse neural events — not dense pixel tensors — enabling reliable perception pipelines on x86 and ARM devices without GPUs or cloud dependency.</p>
+    <h1>AuraSense SFSVC</h1>
+    <p class="hero-subtitle">Neuromorphic Control Codec for Infrastructure Inspection</p>
+    <p>Sub‑3 ms deterministic edge control. ~90% bandwidth reduction. Runs on standard hardware.</p>
     <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:32px;">
-      <a href="./pricing.html" class="btn btn-primary">Start Free Trial</a>
+      <a href="./technology.html" class="btn btn-primary">Technical Overview</a>
       <a href="./benchmark.html" class="btn btn-outline">View Benchmarks</a>
     </div>
   </div>
@@ -64,25 +64,22 @@
 <!-- ─── WHY IT EXISTS ─────────────────────────────────────────── -->
 <section class="section">
   <div class="container">
-    <span class="section-label reveal">Why It Exists</span>
-    <h2 class="h2 reveal reveal-delay-1">Edge autonomy fails when perception depends on:</h2>
+    <span class="section-label reveal">The Constraint</span>
+    <h2 class="h2 reveal reveal-delay-1">Inspection drones operating near critical infrastructure face three hard limits:</h2>
     <div class="grid-2 stagger" style="margin-top:32px;">
       <div class="info-card">
-        <p>High GPU power draw</p>
+        <p>Control latency</p>
       </div>
       <div class="info-card">
-        <p>Cloud round-trips</p>
+        <p>Bandwidth cost</p>
       </div>
       <div class="info-card">
-        <p>Pixel-dense pipelines</p>
-      </div>
-      <div class="info-card">
-        <p>Unbounded latency under load</p>
+        <p>Edge power budget</p>
       </div>
     </div>
     <p class="reveal" style="margin-top:32px;font-size:18px;line-height:1.7;max-width:900px;">
-      SFSVC replaces dense frame processing with spike-based encoding that reduces data volume before detection begins.
-      Built for drones, robotics, and real-world edge deployments.
+      Most systems optimize models.
+      We optimize the control layer.
     </p>
   </div>
 </section>
@@ -90,81 +87,108 @@
 <!-- ─── CORE CAPABILITIES ─────────────────────────────────────── -->
 <section class="section" style="background:var(--bg-surface)">
   <div class="container">
-    <span class="section-label reveal">Core Capabilities</span>
-    <div class="feature-grid stagger">
+    <span class="section-label reveal">What SFSVC Is</span>
+    <h2 class="h2 reveal reveal-delay-1">SFSVC is a neuromorphic middleware layer that:</h2>
+    <div class="feature-grid stagger" style="margin-top:32px;">
       <div class="feature-card">
-        <h3>Spike-Based Encoding</h3>
-        <p>Temporal contrast encoding reduces redundant pixel processing at the earliest stage.</p>
+        <h3>Converts video into sparse spike representations</h3>
       </div>
       <div class="feature-card">
-        <h3>Deterministic CPU Execution</h3>
-        <p>SIMD acceleration (AVX2 / NEON) with bounded hot paths and predictable scheduling.</p>
+        <h3>Executes a deterministic real‑time control loop</h3>
       </div>
       <div class="feature-card">
-        <h3>Single-Digit Millisecond Latency</h3>
-        <p>Full 720p pipeline operating at artifact-backed single-digit millisecond P95 latency.</p>
-      </div>
-      <div class="feature-card">
-        <h3>Offline Operation</h3>
-        <p>Ed25519 cryptographic license validation. No in-flight connectivity required.</p>
-      </div>
-      <div class="feature-card">
-        <h3>Low Power Deployment</h3>
-        <p>Runs on small Linux nodes, including Intel N100-class systems at ~4W.</p>
+        <h3>Transmits only control‑relevant information</h3>
       </div>
     </div>
+    <p class="reveal" style="margin-top:32px;font-size:18px;line-height:1.7;max-width:900px;">
+      Integrates into existing camera → edge → cloud stacks.
+      No hardware lock‑in.
+      No sensor replacement.
+    </p>
   </div>
 </section>
 
 <!-- ─── VERTICAL DEPLOYMENTS ──────────────────────────────────── -->
 <section class="section">
   <div class="container">
-    <span class="section-label reveal">Vertical Deployments</span>
-    <h2 class="h2 reveal reveal-delay-1">SFSVC is a perception platform.<br>Vertical solutions package the SDK for specific industries.</h2>
+    <span class="section-label reveal">Measured Performance</span>
 
-    <div class="endpoint-card reveal reveal-delay-2" style="margin-top:40px;">
-      <h3>Façade Risk Engine — Hong Kong MBIS</h3>
-      <p>AI + LiDAR façade inspection with structured, regulator-aligned reporting.</p>
+    <div class="grid-2 stagger" style="margin-top:32px;">
+      <div class="info-card">
+        <h3>Real‑Time Control (C++ Engine)</h3>
+        <p style="margin-top:16px;line-height:1.9;">
+          2.50 ms average<br>
+          2.81 ms P99<br>
+          0% violations of 6 ms contract
+        </p>
+      </div>
+      <div class="info-card">
+        <h3>Neuromorphic Compression</h3>
+        <p style="margin-top:16px;line-height:1.9;">
+          ~10× effective reduction<br>
+          ~90% bandwidth savings
+        </p>
+      </div>
     </div>
 
-    <p class="reveal" style="margin-top:32px;color:var(--text-muted);">
-      Additional vertical deployments in development:
+    <p class="reveal" style="margin-top:32px;font-size:14px;color:var(--text-muted);max-width:900px;">
+      Measured on 720p inspection video using production engine.
     </p>
-    <ul class="reveal" style="margin-top:12px;padding-left:24px;color:var(--text-muted);line-height:1.8;">
-      <li>Bridge &amp; tunnel inspection</li>
-      <li>Pipeline integrity monitoring</li>
-      <li>Industrial robotics perception</li>
-    </ul>
+  </div>
+</section>
 
-    <div style="margin-top:40px;" class="reveal">
-      <a href="./solutions.html" class="btn btn-primary">Explore Solutions</a>
+<!-- ─── ARCHITECTURE ──────────────────────────────────────────── -->
+<section class="section" style="background:var(--bg-surface)">
+  <div class="container">
+    <span class="section-label reveal">Architecture</span>
+    <h2 class="h2 reveal reveal-delay-1">The safety loop is isolated from non‑deterministic workloads.</h2>
+
+    <div class="feature-grid stagger" style="margin-top:32px;">
+      <div class="feature-card">
+        <h3>Hard real‑time lane (&lt;3 ms)</h3>
+      </div>
+      <div class="feature-card">
+        <h3>Background semantic lanes</h3>
+      </div>
+      <div class="feature-card">
+        <h3>Cloud analytics layer</h3>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ─── DEVELOPER ACCESS ──────────────────────────────────────── -->
-<section class="section" style="background:var(--bg-surface)">
+<!-- ─── APPLICATIONS ──────────────────────────────────────────── -->
+<section class="section">
   <div class="container">
-    <span class="section-label reveal">Developer Access</span>
-    <h2 class="h2 reveal reveal-delay-1">Deploy in minutes. Integrate in hours.</h2>
-
+    <span class="section-label reveal">Applications</span>
     <div class="grid-2 stagger" style="margin-top:32px;">
-      <div class="feature-card">
-        <h3>Official Docker image</h3>
+      <div class="info-card">
+        <p>Runway inspection</p>
       </div>
-      <div class="feature-card">
-        <h3>REST API</h3>
+      <div class="info-card">
+        <p>Bridge and highway monitoring</p>
       </div>
-      <div class="feature-card">
-        <h3>C++ SDK</h3>
+      <div class="info-card">
+        <p>Utility corridor inspection</p>
       </div>
-      <div class="feature-card">
-        <h3>Artifact-backed benchmark reports</h3>
+      <div class="info-card">
+        <p>Industrial facility assessment</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ─── REPOSITORY ────────────────────────────────────────────── -->
+<section class="section" style="background:var(--bg-surface)">
+  <div class="container">
+    <span class="section-label reveal">Repository</span>
+    <p class="reveal" style="margin-top:24px;font-size:18px;line-height:1.7;max-width:900px;">
+      The public repository contains a simplified Python reference implementation (~8 ms/frame).
+      The production C++ engine is deployed in pilot environments.
+    </p>
 
     <div style="margin-top:40px;" class="reveal">
-      <a href="./docs.html" class="btn btn-outline">Read Documentation</a>
+      <a href="./research.html" class="btn btn-outline">View Repository</a>
     </div>
   </div>
 </section>
