@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Live Benchmark Data — AuraSense SFSVC</title>
-  <meta name="description" content="SFSVC publishes artifact-backed benchmark results. Sub-2ms processing latency under reference workload.">
+  <title>Security &amp; Data Architecture — AuraSense SFSVC</title>
+  <meta name="description" content="SFSVC is designed for secure, offline-first deployment. Video remains on-device.">
   <meta name="theme-color" content="#06060A">
   <link rel="stylesheet" href="./css/design.css">
   <link rel="stylesheet" href="./css/animate.css">
@@ -23,10 +23,10 @@
       <li><a href="./index.html">Home</a></li>
       <li><a href="./technology.html">Technology</a></li>
       <li><a href="./solutions.html">Solutions</a></li>
-      <li><a href="./benchmark.html" class="active">Benchmarks</a></li>
+      <li><a href="./benchmark.html">Benchmarks</a></li>
       <li><a href="./pricing.html">Pricing</a></li>
       <li><a href="./about.html">About</a></li>
-      <li><a href="./security.html">Security</a></li>
+      <li><a href="./security.html" class="active">Security</a></li>
     </ul>
     <a href="./pricing.html" class="btn btn-primary">Start Free Trial</a>
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
@@ -48,38 +48,53 @@
 <!-- ─── HERO ──────────────────────────────────────────────────── -->
 <section class="page-hero">
   <div class="container">
-    <h1>Live Benchmark Data</h1>
-    <p>SFSVC publishes artifact-backed benchmark results.</p>
+    <h1>Security &amp; Data Architecture</h1>
+    <p>SFSVC is designed for secure, offline-first deployment.</p>
   </div>
 </section>
 
-<!-- ─── CORE SPIKE LANE ───────────────────────────────────────── -->
+<!-- ─── DATA HANDLING ─────────────────────────────────────────── -->
 <section class="section">
   <div class="container">
-    <span class="section-label reveal">Core Spike Lane</span>
-    <h2 class="h2 reveal reveal-delay-1">Sub‑2ms processing latency under reference workload.</h2>
+    <span class="section-label reveal">Data Handling</span>
+
+    <div class="endpoint-card reveal reveal-delay-1" style="margin-top:32px;max-width:700px;">
+      <ul style="margin:0;padding-left:24px;color:var(--text-primary);line-height:1.9;">
+        <li>Video remains on-device</li>
+        <li>No raw imagery transmitted during license validation</li>
+        <li>Spike events are processed locally</li>
+      </ul>
+    </div>
   </div>
 </section>
 
-<!-- ─── FULL 720P PIPELINE ─────────────────────────────────────── -->
+<!-- ─── LICENSING ─────────────────────────────────────────────── -->
 <section class="section" style="background:var(--bg-surface)">
   <div class="container">
-    <span class="section-label reveal">Full 720p Pipeline</span>
-    <h2 class="h2 reveal reveal-delay-1">Latest artifact (v2):</h2>
+    <span class="section-label reveal">Licensing</span>
 
-    <div class="endpoint-card reveal reveal-delay-2" style="margin-top:32px;max-width:700px;">
-      <ul style="margin:0;padding-left:24px;color:var(--text-primary);line-height:1.9;font-size:18px;">
-        <li><strong>P50:</strong> 1.52ms</li>
-        <li><strong>P95:</strong> 7.87ms</li>
-        <li><strong>P99:</strong> 13.04ms</li>
-        <li><strong>Resolution:</strong> 1280×720 @ 30fps</li>
-        <li><strong>Platform:</strong> Linux x86_64 reference hardware</li>
+    <div class="endpoint-card reveal reveal-delay-1" style="margin-top:32px;max-width:700px;">
+      <ul style="margin:0;padding-left:24px;color:var(--text-primary);line-height:1.9;">
+        <li>Ed25519 cryptographically signed license keys</li>
+        <li>SHA-256 hardware fingerprint binding</li>
+        <li>Periodic HTTPS heartbeat for validation only</li>
       </ul>
     </div>
+  </div>
+</section>
 
-    <p class="reveal" style="margin-top:32px;font-size:16px;line-height:1.7;max-width:900px;color:var(--text-muted);">
-      All benchmark data sourced directly from repository artifacts.
-    </p>
+<!-- ─── WEBSITE POLICY ────────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <span class="section-label reveal">Website Policy</span>
+
+    <div class="endpoint-card reveal reveal-delay-1" style="margin-top:32px;max-width:700px;">
+      <ul style="margin:0;padding-left:24px;color:var(--text-primary);line-height:1.9;">
+        <li>Essential cookies only</li>
+        <li>No tracking or third-party analytics</li>
+        <li>Enterprise security documentation available upon request</li>
+      </ul>
+    </div>
   </div>
 </section>
 
