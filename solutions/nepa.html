@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEPA — Neuromorphic Event Processing Architecture — AuraSense SFSVC</title>
+  <meta name="description" content="Built on SFSVC Neuromorphic Core — Deterministic crack-aware control for infrastructure inspection under a 6 ms safety contract.">
+  <meta name="theme-color" content="#06060A">
+  <link rel="stylesheet" href="../css/design.css">
+  <link rel="stylesheet" href="../css/animate.css">
+  <link rel="stylesheet" href="../css/layout.css">
+</head>
+<body>
+
+<!-- ─── NAV ──────────────────────────────────────────────────── -->
+<nav class="nav" id="main-nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-brand">
+      <span class="brand-name">AURASENSE</span>
+      <span class="brand-badge">SFSVC</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../technology.html">Technology</a></li>
+      <li><a href="../solutions.html" class="active">Solutions</a></li>
+      <li><a href="../benchmark.html">Benchmarks</a></li>
+      <li><a href="../pricing.html">Pricing</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../security.html">Security</a></li>
+    </ul>
+    <a href="../pricing.html" class="btn btn-primary">Start Free Trial</a>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<nav class="nav-drawer" id="nav-drawer">
+  <a href="../index.html">Home</a>
+  <a href="../technology.html">Technology</a>
+  <a href="../solutions.html">Solutions</a>
+  <a href="../benchmark.html">Benchmarks</a>
+  <a href="../pricing.html">Pricing</a>
+  <a href="../about.html">About</a>
+  <a href="../security.html">Security</a>
+  <a href="../pricing.html" class="text-cyan">Start Free Trial →</a>
+</nav>
+
+<!-- ─── HERO ──────────────────────────────────────────────────── -->
+<section class="page-hero">
+  <div class="container">
+    <h1>NEPA</h1>
+    <p class="hero-subtitle">Neuromorphic Event Processing Architecture</p>
+  </div>
+</section>
+
+<!-- ─── THE CHALLENGE ─────────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <span class="section-label reveal">The Challenge</span>
+    <p class="reveal reveal-delay-1" style="margin-top:24px;font-size:18px;line-height:1.7;max-width:900px;">
+      Infrastructure inspection requires real-time crack detection and control decisions.
+      Cloud latency, GPU power draw, and bandwidth costs make traditional video processing unsuitable for edge autonomy.
+    </p>
+  </div>
+</section>
+
+<!-- ─── THE ARCHITECTURE ──────────────────────────────────────── -->
+<section class="section" style="background:var(--bg-surface)">
+  <div class="container">
+    <span class="section-label reveal">The Architecture</span>
+    <h2 class="h2 reveal reveal-delay-1">Two-Lane Neuromorphic Control System:</h2>
+
+    <div class="feature-grid stagger" style="margin-top:32px;">
+      <div class="feature-card">
+        <h3>Lane 1: Real-Time Control</h3>
+        <p>Deterministic spike-based crack detection with 2.50 ms avg latency, 2.81 ms P99. Control decisions complete within 6 ms safety contract at ~106 Hz.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Lane 2: Semantic Analysis</h3>
+        <p>Non-blocking YOLO inference and signature enrichment runs asynchronously without impacting Lane 1 latency guarantees.</p>
+      </div>
+    </div>
+
+    <div class="endpoint-card reveal" style="margin-top:32px;max-width:900px;">
+      <ul style="margin:0;padding-left:24px;color:var(--text-primary);line-height:1.9;">
+        <li>Converts video into sparse spike representations via SFSVC encoding</li>
+        <li>Detects temporal edges through frame-delta encoding</li>
+        <li>Achieves 9.97× compression ratio with 89.97% bandwidth reduction</li>
+        <li>Delivers crack-aware control decisions under strict timing bounds</li>
+        <li>CPU-only processing: 2-4W vs 15-30W GPU power draw</li>
+      </ul>
+    </div>
+
+    <div class="endpoint-card reveal" style="margin-top:24px;max-width:700px;">
+      <p style="margin:0;font-weight:600;color:var(--text-primary);">
+        Implementation: Private C++ SDK with SIMD AVX2 optimization and lock-free queues.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CONTROL OUTPUT ────────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <span class="section-label reveal">Control Output</span>
+    <h2 class="h2 reveal reveal-delay-1">Per-frame decision system</h2>
+
+    <div class="feature-grid stagger" style="margin-top:32px;">
+      <div class="feature-card">
+        <h3>Crack Width Estimation</h3>
+        <p>Pixel-based width calculated from spike band geometry</p>
+      </div>
+      <div class="feature-card">
+        <h3>Severity Classification</h3>
+        <p>Minor, moderate, or severe categorization</p>
+      </div>
+      <div class="feature-card">
+        <h3>Confidence Score</h3>
+        <p>Derived from spike consistency across adjacent frames</p>
+      </div>
+      <div class="feature-card">
+        <h3>Navigation Decisions</h3>
+        <p>FORWARD / CAUTION / SLOW commands based on crack severity</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── COST SAVINGS ──────────────────────────────────────────── -->
+<section class="section" style="background:var(--bg-surface)">
+  <div class="container">
+    <span class="section-label reveal">Infrastructure Economics</span>
+
+    <div class="grid-2 stagger" style="margin-top:32px;">
+      <div class="info-card">
+        <h3>681 GB/day modeled savings</h3>
+        <p>At 1080p 30fps continuous operation</p>
+      </div>
+      <div class="info-card">
+        <h3>~$116,000/year per 1,000 km</h3>
+        <p>Bandwidth cost reduction at $8/GB cellular rates</p>
+      </div>
+      <div class="info-card">
+        <h3>2-4W CPU processing</h3>
+        <p>Extended battery life vs 15-30W GPU inference</p>
+      </div>
+      <div class="info-card">
+        <h3>0% SLA violations</h3>
+        <p>Deterministic execution within 6 ms safety contract</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── DEPLOYMENT ────────────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <span class="section-label reveal">Deployment</span>
+
+    <div class="endpoint-card reveal reveal-delay-1" style="margin-top:32px;max-width:700px;">
+      <ul style="margin:0;padding-left:24px;color:var(--text-primary);line-height:1.9;">
+        <li>Edge-native execution on x86 and ARM devices</li>
+        <li>No GPU or cloud dependency</li>
+        <li>Offline-first architecture</li>
+        <li>Commercial C++ SDK with engineering support and SLA</li>
+      </ul>
+    </div>
+
+    <p class="reveal" style="margin-top:32px;font-size:16px;line-height:1.7;max-width:900px;color:var(--text-muted);">
+      NEPA is a vertical configuration built on the SFSVC SDK for infrastructure inspection use cases requiring deterministic real-time control.
+    </p>
+
+    <div style="margin-top:32px;" class="reveal">
+      <a href="https://github.com/Dicksonchau1/AuraSense-SFSVC" class="btn btn-outline" target="_blank" rel="noopener">View Open Source Demo →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ────────────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="nav-brand" style="margin-bottom:16px">
+          <span class="brand-name">AURASENSE</span>
+          <span class="brand-badge">SFSVC</span>
+        </div>
+        <p class="footer-tagline">SFSVC — Neuromorphic perception infrastructure for edge autonomy.<br>Built in Hong Kong. Designed for global deployment.</p>
+        <p class="footer-copy">© 2026 AuraSense Limited. All rights reserved.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="../technology.html">Technology</a></li>
+          <li><a href="../solutions.html">Solutions</a></li>
+          <li><a href="../benchmark.html">Benchmarks</a></li>
+          <li><a href="../pricing.html">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../security.html">Security</a></li>
+          <li><a href="mailto:support@aurasensehk.com">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="../privacy.html">Privacy</a></li>
+          <li><a href="../terms.html">Terms</a></li>
+          <li><a href="../refund.html">Refund</a></li>
+          <li><a href="../cookies.html">Cookies</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">SFSVC SDK v2.0 — Ed25519 Licensed — Built in Hong Kong 🇭🇰</div>
+  </div>
+</footer>
+
+<!-- ─── COOKIE BANNER ─────────────────────────────────────────── -->
+<div class="cookie-banner" id="cookie-banner" role="region" aria-label="Cookie notice">
+  <p>We use essential cookies only. No tracking.</p>
+  <div class="cookie-actions">
+    <button class="btn btn-primary btn-sm" id="cookie-accept">Accept</button>
+    <a href="../cookies.html" class="cookie-learn">Learn more →</a>
+  </div>
+</div>
+
+<script src="../js/main.js"></script>
+</body>
+</html>
