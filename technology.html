@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Live Benchmark Data — AuraSense SFSVC</title>
-  <meta name="description" content="SFSVC publishes artifact-backed benchmark results. Sub-2ms processing latency under reference workload.">
+  <title>The SFSVC Architecture — AuraSense</title>
+  <meta name="description" content="SFSVC is a neuromorphic perception engine designed for deterministic CPU execution at the edge.">
   <meta name="theme-color" content="#06060A">
   <link rel="stylesheet" href="./css/design.css">
   <link rel="stylesheet" href="./css/animate.css">
@@ -21,9 +21,9 @@
     </a>
     <ul class="nav-links">
       <li><a href="./index.html">Home</a></li>
-      <li><a href="./technology.html">Technology</a></li>
+      <li><a href="./technology.html" class="active">Technology</a></li>
       <li><a href="./solutions.html">Solutions</a></li>
-      <li><a href="./benchmark.html" class="active">Benchmarks</a></li>
+      <li><a href="./benchmark.html">Benchmarks</a></li>
       <li><a href="./pricing.html">Pricing</a></li>
       <li><a href="./about.html">About</a></li>
       <li><a href="./security.html">Security</a></li>
@@ -48,38 +48,97 @@
 <!-- ─── HERO ──────────────────────────────────────────────────── -->
 <section class="page-hero">
   <div class="container">
-    <h1>Live Benchmark Data</h1>
-    <p>SFSVC publishes artifact-backed benchmark results.</p>
+    <h1>The SFSVC Architecture</h1>
+    <p>SFSVC is a neuromorphic perception engine designed for deterministic CPU execution at the edge.</p>
   </div>
 </section>
 
-<!-- ─── CORE SPIKE LANE ───────────────────────────────────────── -->
+<!-- ─── SPIKE ENCODING ────────────────────────────────────────── -->
 <section class="section">
   <div class="container">
-    <span class="section-label reveal">Core Spike Lane</span>
-    <h2 class="h2 reveal reveal-delay-1">Sub‑2ms processing latency under reference workload.</h2>
+    <span class="section-label reveal">1. Spike Encoding</span>
+    <h2 class="h2 reveal reveal-delay-1">Frames are converted into sparse temporal events before inference.</h2>
+    <p class="reveal reveal-delay-2" style="margin-top:24px;font-size:18px;line-height:1.7;max-width:900px;">
+      This reduces redundant computation and improves signal-to-noise efficiency.
+    </p>
   </div>
 </section>
 
-<!-- ─── FULL 720P PIPELINE ─────────────────────────────────────── -->
+<!-- ─── PARALLEL LANE PROCESSING ──────────────────────────────── -->
 <section class="section" style="background:var(--bg-surface)">
   <div class="container">
-    <span class="section-label reveal">Full 720p Pipeline</span>
-    <h2 class="h2 reveal reveal-delay-1">Latest artifact (v2):</h2>
+    <span class="section-label reveal">2. Parallel Lane Processing</span>
+    <h2 class="h2 reveal reveal-delay-1">Independent SIMD-accelerated lanes handle:</h2>
+
+    <div class="feature-grid stagger" style="margin-top:32px;">
+      <div class="feature-card">
+        <h3>Feature extraction</h3>
+      </div>
+      <div class="feature-card">
+        <h3>Structural detection</h3>
+      </div>
+      <div class="feature-card">
+        <h3>Optional STDP learning</h3>
+        <p style="font-size:14px;color:var(--text-muted);margin-top:8px;">(Pro/Enterprise)</p>
+      </div>
+      <div class="feature-card">
+        <h3>Optional thermal fusion</h3>
+      </div>
+    </div>
+
+    <p class="reveal" style="margin-top:32px;font-size:16px;line-height:1.7;max-width:900px;">
+      Designed for bounded execution and predictable latency.
+    </p>
+  </div>
+</section>
+
+<!-- ─── DETERMINISTIC EXECUTION ───────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <span class="section-label reveal">3. Deterministic Execution Model</span>
+    <h2 class="h2 reveal reveal-delay-1">SFSVC is built for operational environments, not lab conditions.</h2>
+
+    <div class="grid-2 stagger" style="margin-top:32px;">
+      <div class="info-card">
+        <h3>CPU pinning supported</h3>
+      </div>
+      <div class="info-card">
+        <h3>No GPU dependency</h3>
+      </div>
+      <div class="info-card">
+        <h3>No unbounded memory growth in hot path</h3>
+      </div>
+      <div class="info-card">
+        <h3>Offline-first deployment model</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── HARDWARE TARGETS ───────────────────────────────────────── -->
+<section class="section" style="background:var(--bg-surface)">
+  <div class="container">
+    <span class="section-label reveal">4. Hardware Targets</span>
+    <h2 class="h2 reveal reveal-delay-1">Supported platforms:</h2>
 
     <div class="endpoint-card reveal reveal-delay-2" style="margin-top:32px;max-width:700px;">
-      <ul style="margin:0;padding-left:24px;color:var(--text-primary);line-height:1.9;font-size:18px;">
-        <li><strong>P50:</strong> 1.52ms</li>
-        <li><strong>P95:</strong> 7.87ms</li>
-        <li><strong>P99:</strong> 13.04ms</li>
-        <li><strong>Resolution:</strong> 1280×720 @ 30fps</li>
-        <li><strong>Platform:</strong> Linux x86_64 reference hardware</li>
+      <ul style="margin:0;padding-left:24px;color:var(--text-primary);line-height:1.9;">
+        <li>Ubuntu 22.04</li>
+        <li>x86_64 (AVX2)</li>
+        <li>ARM64 (NEON)</li>
       </ul>
     </div>
 
-    <p class="reveal" style="margin-top:32px;font-size:16px;line-height:1.7;max-width:900px;color:var(--text-muted);">
-      All benchmark data sourced directly from repository artifacts.
-    </p>
+    <div class="grid-2 stagger" style="margin-top:40px;">
+      <div class="info-card">
+        <h3>Minimum</h3>
+        <p>2 cores, 2GB RAM</p>
+      </div>
+      <div class="info-card">
+        <h3>Recommended</h3>
+        <p>Intel N100 or equivalent</p>
+      </div>
+    </div>
   </div>
 </section>
 

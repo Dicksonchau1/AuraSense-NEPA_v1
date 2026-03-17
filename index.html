@@ -3,567 +3,221 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AuraSense SFSVC - AI + LiDAR facade risk engine for Hong Kong</title>
-  <meta name="description" content="AuraSense turns drone data into MBIS-ready facade risk maps and reports for Registered Inspectors in Hong Kong.">
-  <meta name="theme-color" content="#0f172a">
+  <title>SFSVC - Neuromorphic Edge Perception SDK</title>
+  <meta name="description" content="SFSVC processes video as sparse neural events — enabling reliable perception pipelines on x86 and ARM devices without GPUs or cloud dependency.">
+  <meta name="theme-color" content="#06060A">
   <link rel="stylesheet" href="./css/design.css">
   <link rel="stylesheet" href="./css/animate.css">
   <link rel="stylesheet" href="./css/layout.css">
-  <style>
-    :root {
-      --hero-ink: #ecfeff;
-      --hero-accent: #38bdf8;
-      --hero-accent-2: #f59e0b;
-      --paper: #f8fafc;
-      --slate-900: #0f172a;
-      --slate-700: #334155;
-      --card: #ffffff;
-      --line: #dbe2ea;
-      --danger: #b91c1c;
-      --warn: #b45309;
-      --ok: #0f766e;
-      --font-main: "Avenir Next", "Segoe UI", sans-serif;
-      --font-mono: "IBM Plex Mono", monospace;
-    }
-
-    body {
-      font-family: var(--font-main);
-      background:
-        radial-gradient(1200px 480px at 100% -10%, rgba(56, 189, 248, 0.15), transparent 55%),
-        radial-gradient(900px 420px at 0% 0%, rgba(245, 158, 11, 0.12), transparent 48%),
-        var(--paper);
-      color: var(--slate-900);
-    }
-
-    .home-nav {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(8px);
-      background: rgba(15, 23, 42, 0.85);
-      border-bottom: 1px solid rgba(148, 163, 184, 0.35);
-    }
-
-    .home-nav .nav-inner {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 14px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-
-    .brand-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: #fff;
-      text-decoration: none;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-    }
-
-    .brand-tag {
-      font-size: 11px;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      border-radius: 999px;
-      padding: 3px 8px;
-      color: #cbd5e1;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 18px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .nav-links a {
-      color: #cbd5e1;
-      text-decoration: none;
-      font-size: 14px;
-    }
-
-    .hero {
-      position: relative;
-      overflow: hidden;
-      padding: 96px 20px 70px;
-      background:
-        linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(3, 7, 18, 0.94)),
-        url("./assets/images/Gemini_Generated_Image_pmfvttpmfvttpmfv.png") center/cover no-repeat;
-      border-bottom: 2px solid rgba(56, 189, 248, 0.4);
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        repeating-linear-gradient(90deg, rgba(56, 189, 248, 0.06) 0, rgba(56, 189, 248, 0.06) 1px, transparent 1px, transparent 64px);
-      pointer-events: none;
-    }
-
-    .hero-wrap {
-      max-width: 1180px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-      color: var(--hero-ink);
-      animation: rise-in 0.8s ease-out both;
-    }
-
-    @keyframes rise-in {
-      from { opacity: 0; transform: translateY(22px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .hero h1 {
-      max-width: 820px;
-      font-size: clamp(30px, 5vw, 54px);
-      line-height: 1.08;
-      margin: 10px 0 14px;
-      letter-spacing: -0.02em;
-    }
-
-    .hero p {
-      max-width: 760px;
-      font-size: clamp(16px, 2vw, 21px);
-      color: #cfe8f3;
-      line-height: 1.6;
-      margin-bottom: 28px;
-    }
-
-    .hero-ctas {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .btn-main,
-    .btn-alt {
-      display: inline-block;
-      padding: 12px 18px;
-      border-radius: 10px;
-      font-weight: 700;
-      text-decoration: none;
-      font-size: 14px;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .btn-main {
-      background: linear-gradient(135deg, var(--hero-accent), #0891b2);
-      color: #062538;
-      box-shadow: 0 10px 30px rgba(56, 189, 248, 0.25);
-    }
-
-    .btn-alt {
-      border: 1px solid rgba(203, 213, 225, 0.6);
-      color: #e2e8f0;
-      background: rgba(15, 23, 42, 0.35);
-    }
-
-    .btn-main:hover,
-    .btn-alt:hover {
-      transform: translateY(-1px);
-    }
-
-    .section {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 62px 20px 10px;
-    }
-
-    .section h2 {
-      font-size: clamp(24px, 3.8vw, 34px);
-      margin-bottom: 14px;
-      letter-spacing: -0.01em;
-      color: #0b1220;
-    }
-
-    .section-sub {
-      max-width: 900px;
-      color: var(--slate-700);
-      line-height: 1.75;
-      margin-bottom: 24px;
-      font-size: 16px;
-    }
-
-    .grid-3,
-    .grid-4 {
-      display: grid;
-      gap: 16px;
-      margin-top: 12px;
-    }
-
-    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 18px 18px 16px;
-      box-shadow: 0 8px 30px rgba(15, 23, 42, 0.05);
-      animation: fade-up 0.7s ease both;
-    }
-
-    .card:nth-child(2) { animation-delay: 0.08s; }
-    .card:nth-child(3) { animation-delay: 0.16s; }
-    .card:nth-child(4) { animation-delay: 0.24s; }
-
-    @keyframes fade-up {
-      from { opacity: 0; transform: translateY(14px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .card h3 {
-      margin-bottom: 8px;
-      font-size: 18px;
-      color: #0b1220;
-    }
-
-    .card p {
-      margin: 0;
-      color: var(--slate-700);
-      line-height: 1.65;
-      font-size: 15px;
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 14px;
-    }
-
-    .step {
-      border: 1px solid #cdd6e1;
-      border-radius: 12px;
-      padding: 14px;
-      background: #fff;
-    }
-
-    .step h3 {
-      margin: 0 0 8px;
-      font-size: 16px;
-      color: #0b1220;
-    }
-
-    .step p {
-      margin: 0;
-      color: var(--slate-700);
-      line-height: 1.6;
-      font-size: 14px;
-    }
-
-    .support-list {
-      margin: 8px 0 14px;
-      padding-left: 22px;
-      color: var(--slate-700);
-      line-height: 1.8;
-    }
-
-    .support-list li {
-      margin-bottom: 8px;
-    }
-
-    .highlight-line {
-      border-left: 4px solid #0891b2;
-      background: #ecfeff;
-      border-radius: 8px;
-      padding: 12px 14px;
-      color: #0f172a;
-      font-weight: 600;
-    }
-
-    .step-code {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: #0369a1;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-
-    .tech-list {
-      margin: 10px 0 0;
-      padding-left: 18px;
-      color: var(--slate-700);
-      line-height: 1.8;
-    }
-
-    .impact {
-      border-left: 4px solid #0891b2;
-      background: #ecfeff;
-      border-radius: 8px;
-      padding: 14px 16px;
-      color: #0f172a;
-      line-height: 1.75;
-    }
-
-    .about-contact {
-      display: grid;
-      grid-template-columns: 1.1fr 1fr;
-      gap: 16px;
-      margin-bottom: 50px;
-    }
-
-    .role-title {
-      margin: 0 0 8px;
-      font-size: 22px;
-      color: #0b1220;
-    }
-
-    .role-subtitle {
-      margin: 0 0 10px;
-      color: #0369a1;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      font-size: 12px;
-    }
-
-    .flat-list {
-      margin: 8px 0 14px;
-      padding-left: 20px;
-      color: var(--slate-700);
-      line-height: 1.7;
-    }
-
-    .contact-form {
-      display: grid;
-      gap: 10px;
-      margin-top: 12px;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-      width: 100%;
-      border: 1px solid #c7d2df;
-      border-radius: 10px;
-      padding: 10px 12px;
-      font-family: inherit;
-      font-size: 14px;
-      background: #fff;
-    }
-
-    .contact-form button {
-      border: none;
-      border-radius: 10px;
-      background: #0f766e;
-      color: #fff;
-      padding: 11px 14px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .footer {
-      border-top: 1px solid #dce3ea;
-      padding: 18px 20px 30px;
-      color: #475569;
-      font-size: 13px;
-      text-align: center;
-    }
-
-    @media (max-width: 980px) {
-      .grid-3 { grid-template-columns: 1fr; }
-      .grid-4 { grid-template-columns: 1fr 1fr; }
-      .steps { grid-template-columns: 1fr 1fr; }
-      .about-contact { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 620px) {
-      .home-nav .nav-inner { flex-direction: column; align-items: flex-start; }
-      .grid-4 { grid-template-columns: 1fr; }
-      .steps { grid-template-columns: 1fr; }
-      .hero { padding-top: 84px; }
-    }
-  </style>
 </head>
 <body>
-  <nav class="home-nav">
-    <div class="nav-inner">
-      <a class="brand-row" href="https://www.aurasensehk.com/index.html">
-        <span>AURASENSE</span>
-        <span class="brand-tag">SFSVC</span>
-      </a>
-      <div class="nav-links">
-        <a href="#problem">Problem</a>
-        <a href="#serve">Who It's For</a>
-        <a href="#workflow">How It Works</a>
-        <a href="#outputs">What You Get</a>
-        <a href="#technology">Technology</a>
-        <a href="#integration">Integration</a>
+
+<!-- ─── NAV ──────────────────────────────────────────────────── -->
+<nav class="nav" id="main-nav">
+  <div class="nav-inner">
+    <a href="./index.html" class="nav-brand">
+      <span class="brand-name">AURASENSE</span>
+      <span class="brand-badge">SFSVC</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="./index.html" class="active">Home</a></li>
+      <li><a href="./technology.html">Technology</a></li>
+      <li><a href="./solutions.html">Solutions</a></li>
+      <li><a href="./benchmark.html">Benchmarks</a></li>
+      <li><a href="./pricing.html">Pricing</a></li>
+      <li><a href="./about.html">About</a></li>
+      <li><a href="./security.html">Security</a></li>
+    </ul>
+    <a href="./pricing.html" class="btn btn-primary">Start Free Trial</a>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<nav class="nav-drawer" id="nav-drawer">
+  <a href="./index.html">Home</a>
+  <a href="./technology.html">Technology</a>
+  <a href="./solutions.html">Solutions</a>
+  <a href="./benchmark.html">Benchmarks</a>
+  <a href="./pricing.html">Pricing</a>
+  <a href="./about.html">About</a>
+  <a href="./security.html">Security</a>
+  <a href="./pricing.html" class="text-cyan">Start Free Trial →</a>
+</nav>
+
+<!-- ─── HERO ──────────────────────────────────────────────────── -->
+<section class="page-hero">
+  <div class="container">
+    <h1>SFSVC<br>Neuromorphic Edge Perception SDK</h1>
+    <p class="hero-subtitle">Deterministic. CPU‑native. Offline‑first.</p>
+    <p>SFSVC processes video as sparse neural events — not dense pixel tensors — enabling reliable perception pipelines on x86 and ARM devices without GPUs or cloud dependency.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:32px;">
+      <a href="./pricing.html" class="btn btn-primary">Start Free Trial</a>
+      <a href="./benchmark.html" class="btn btn-outline">View Benchmarks</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── WHY IT EXISTS ─────────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <span class="section-label reveal">Why It Exists</span>
+    <h2 class="h2 reveal reveal-delay-1">Edge autonomy fails when perception depends on:</h2>
+    <div class="grid-2 stagger" style="margin-top:32px;">
+      <div class="info-card">
+        <p>High GPU power draw</p>
+      </div>
+      <div class="info-card">
+        <p>Cloud round-trips</p>
+      </div>
+      <div class="info-card">
+        <p>Pixel-dense pipelines</p>
+      </div>
+      <div class="info-card">
+        <p>Unbounded latency under load</p>
       </div>
     </div>
-  </nav>
-
-  <header class="hero" id="home">
-    <div class="hero-wrap">
-      <div class="step-code">AuraSense SFSVC</div>
-      <h1>Neuromorphic façade analysis for UAV inspections</h1>
-      <p>
-        SFSVC ingests UAV imagery and depth, detects and tracks cracks, and outputs MBIS-ready risk maps and reports for Hong Kong inspectors.
-      </p>
-      <div class="hero-ctas">
-        <a class="btn-main" href="https://www.aurasensehk.com/contact.html">Book demo</a>
-        <a class="btn-alt" href="https://www.aurasensehk.com/facade_audit.md">Download sample report</a>
-      </div>
-    </div>
-  </header>
-
-  <section class="section" id="problem">
-    <h2>Problem</h2>
-    <p class="section-sub">
-      Façade inspections in Hong Kong are under pressure from MBIS timelines, safety concerns, and rising building complexity. Rope access and binocular checks are slow, risky, and hard to repeat from cycle to cycle.
+    <p class="reveal" style="margin-top:32px;font-size:18px;line-height:1.7;max-width:900px;">
+      SFSVC replaces dense frame processing with spike-based encoding that reduces data volume before detection begins.
+      Built for drones, robotics, and real-world edge deployments.
     </p>
-    <p class="section-sub">
-      Drone missions generate thousands of façade images and point clouds, but inspectors still have to manually scan them for defects and judge which ones are truly "Imminently Dangerous" or "Require Repair". The result is noise, inconsistent decisions, and limited time left for engineering judgement on the areas that matter most.
-    </p>
-    <div class="impact">
-      SFSVC turns UAV data into structured, MBIS-aligned findings so Registered Inspectors, engineers, and asset owners can see façade risk clearly and act faster.
-    </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section" id="workflow">
-    <h2>How it works</h2>
-    <div class="steps">
-      <article class="step">
-        <h3>Step 1 - UAV capture</h3>
-        <p>Your team flies a planned façade mission with a DJI Enterprise or compatible UAV, capturing high-resolution images and, where available, depth or LiDAR data for each elevation.</p>
-      </article>
-      <article class="step">
-        <h3>Step 2 - On-site ingest</h3>
-        <p>After the flight, data is transferred to an AuraSense edge node - a compact Linux appliance deployed in the site office, control room, or plant room. No cloud upload is required.</p>
-      </article>
-      <article class="step">
-        <h3>Step 3 - Neuromorphic analysis</h3>
-        <p>SFSVC converts video and images into spike-based representations and processes them in parallel, sub-millisecond lanes. Cracks and related façade features are detected and tracked across tiles and frames, preserving continuity along the building surface.</p>
-      </article>
-      <article class="step">
-        <h3>Step 4 - LiDAR geometry</h3>
-        <p>When depth or LiDAR is present, SFSVC fuses geometric data with visual features to highlight bulging, delamination, and panel drift. This gives inspectors additional context beyond surface-visible cracks.</p>
-      </article>
-      <article class="step">
-        <h3>Step 5 - MBIS-ready outputs</h3>
-        <p>The system produces colour-coded façade risk maps and structured, MBIS-style reports. Each finding is tagged with façade location, severity band, and wording aligned with Hong Kong inspection practice, ready for review, annotation, and filing by inspectors.</p>
-      </article>
-    </div>
-  </section>
-
-  <section class="section" id="serve">
-    <h2>Who it's for</h2>
-    <div class="grid-3">
-      <article class="card">
-        <h3>Registered Inspectors &amp; engineers</h3>
-        <p>Start from AI-ranked, MBIS-worded findings instead of raw photos. Focus your site time on façades and areas that have been pre-flagged as "Imminently Dangerous" or "Require Repair", with visual maps and supporting imagery to back up your judgement.</p>
-      </article>
-      <article class="card">
-        <h3>UAV &amp; inspection providers</h3>
-        <p>Offer Hong Kong-specific façade risk analysis on top of your existing drone missions, without building and maintaining your own AI models. Use SFSVC as a behind-the-scenes engine that turns your flight data into reports your RI clients can immediately use.</p>
-      </article>
-      <article class="card">
-        <h3>Asset &amp; property managers</h3>
-        <p>Understand façade risk at the portfolio level and prepare for MBIS cycles with fewer surprises. Move from ad-hoc image folders to consistent risk maps, trendable over time, that you can share with your inspectors and internal teams.</p>
-      </article>
-    </div>
-  </section>
-
-  <section class="section" id="outputs">
-    <h2>What you get</h2>
-    <div class="grid-3">
-      <article class="card">
-        <h3>Façade risk maps</h3>
-        <p>Interactive or static façade views with zones coloured by risk band, so you can immediately see where to send teams, set up access, or plan further investigation.</p>
-      </article>
-      <article class="card">
-        <h3>MBIS-style reports</h3>
-        <p>Machine-generated reports that follow the structure and language of typical MBIS submissions, including summary tables, annotated images, and clear separation of "Imminently Dangerous", "Require Repair", and lower-priority findings.</p>
-      </article>
-      <article class="card">
-        <h3>Data room-ready outputs</h3>
-        <p>Exportable artefacts that can be shared with building owners, management companies, and authorities: image sets, defect lists, façade zone statistics, and change-over-time views for repeat inspections.</p>
-      </article>
-    </div>
-  </section>
-
-  <section class="section" id="technology">
-    <h2>Technology</h2>
-    <div class="grid-3">
-      <article class="card">
-        <h3>Neuromorphic spike encoding</h3>
-        <p>SFSVC applies spike-based encoding to video and images, emphasising temporal contrast and changes instead of every raw pixel. This reduces data volume early in the pipeline and focuses computation on meaningful façade events.</p>
-      </article>
-      <article class="card">
-        <h3>On-device, low-latency processing</h3>
-        <p>The engine runs on a small Linux node using SIMD-parallel lanes to keep per-frame processing in the sub-millisecond range. It is designed for mini PCs and embedded devices, avoiding dependency on GPUs or external cloud infrastructure.</p>
-      </article>
-      <article class="card">
-        <h3>LiDAR and depth fusion</h3>
-        <p>Where depth or LiDAR is available, SFSVC fuses geometric features with visual information to detect bulging, surface roughness, and panel drift that may not be obvious from RGB imagery alone.</p>
-      </article>
-      <article class="card">
-        <h3>HK-calibrated risk bands</h3>
-        <p>Risk bands, terminology, and outputs are calibrated for Hong Kong façades and MBIS workflows. The engine is tuned on local building typologies - from older tenements to podiums and marine-exposed structures - to produce findings in a form inspectors can immediately interpret.</p>
-      </article>
-      <article class="card">
-        <h3>Offline-first deployment</h3>
-        <p>SFSVC is deployed as an offline-first engine, suitable for constrained or secure environments. Data stays at the site office or control room, under your control, with integration options to push only selected results into your existing systems.</p>
-      </article>
-    </div>
-  </section>
-
-  <section class="section" id="integration">
-    <h2>Integration</h2>
-    <div class="grid-3">
-      <article class="card">
-        <h3>Existing UAV workflows</h3>
-        <p>SFSVC sits behind your current flight workflows. You keep your drones, your mission planning tools, and your pilots; the engine only changes what happens to the data after landing.</p>
-      </article>
-      <article class="card">
-        <h3>Reporting and documentation</h3>
-        <p>Outputs can be exported into common formats or integrated with your existing document management and reporting tools, so inspectors and asset owners can maintain their usual processes while gaining additional structure and automation.</p>
-      </article>
-    </div>
-  </section>
-
-  <section class="section" id="cta">
-    <h2>Call to action</h2>
-    <div class="impact">
-      <p style="margin:0 0 12px;">See how SFSVC fits your façade workflow.</p>
-      <div class="hero-ctas">
-        <a class="btn-main" href="https://www.aurasensehk.com/contact.html">Book a demo</a>
-        <a class="btn-alt" href="https://www.aurasensehk.com/facade_audit.md">Download a sample façade risk report</a>
+<!-- ─── CORE CAPABILITIES ─────────────────────────────────────── -->
+<section class="section" style="background:var(--bg-surface)">
+  <div class="container">
+    <span class="section-label reveal">Core Capabilities</span>
+    <div class="feature-grid stagger">
+      <div class="feature-card">
+        <h3>Spike-Based Encoding</h3>
+        <p>Temporal contrast encoding reduces redundant pixel processing at the earliest stage.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Deterministic CPU Execution</h3>
+        <p>SIMD acceleration (AVX2 / NEON) with bounded hot paths and predictable scheduling.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Single-Digit Millisecond Latency</h3>
+        <p>Full 720p pipeline operating at artifact-backed single-digit millisecond P95 latency.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Offline Operation</h3>
+        <p>Ed25519 cryptographic license validation. No in-flight connectivity required.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Low Power Deployment</h3>
+        <p>Runs on small Linux nodes, including Intel N100-class systems at ~4W.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section about-contact" id="contact">
-    <article class="card">
-      <h2 style="font-size:28px;margin-bottom:10px;">Contact</h2>
-      <p>
-        For partnership, pilots, and product enquiries, contact the team through the domain at <a href="https://www.aurasensehk.com">www.aurasensehk.com</a>.
-      </p>
-    </article>
-    <article class="card">
-      <h2 style="font-size:28px;margin-bottom:10px;">Send enquiry</h2>
-      <form class="contact-form" action="mailto:support@aurasensehk.com" method="post" enctype="text/plain">
-        <input name="name" type="text" placeholder="Name" required>
-        <input name="email" type="email" placeholder="Email" required>
-        <input name="organisation" type="text" placeholder="Organisation" required>
-        <input name="role" type="text" placeholder="Role" required>
-        <input name="city" type="text" placeholder="City" required>
-        <textarea name="description" rows="4" placeholder="Short description" required></textarea>
-        <button type="submit">Send enquiry</button>
-      </form>
-    </article>
-  </section>
+<!-- ─── VERTICAL DEPLOYMENTS ──────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <span class="section-label reveal">Vertical Deployments</span>
+    <h2 class="h2 reveal reveal-delay-1">SFSVC is a perception platform.<br>Vertical solutions package the SDK for specific industries.</h2>
 
-  <footer class="footer">
-    © 2026 AuraSense Limited. All rights reserved. | www.aurasensehk.com
-  </footer>
+    <div class="endpoint-card reveal reveal-delay-2" style="margin-top:40px;">
+      <h3>Façade Risk Engine — Hong Kong MBIS</h3>
+      <p>AI + LiDAR façade inspection with structured, regulator-aligned reporting.</p>
+    </div>
 
-  <script src="./js/main.js"></script>
+    <p class="reveal" style="margin-top:32px;color:var(--text-muted);">
+      Additional vertical deployments in development:
+    </p>
+    <ul class="reveal" style="margin-top:12px;padding-left:24px;color:var(--text-muted);line-height:1.8;">
+      <li>Bridge &amp; tunnel inspection</li>
+      <li>Pipeline integrity monitoring</li>
+      <li>Industrial robotics perception</li>
+    </ul>
+
+    <div style="margin-top:40px;" class="reveal">
+      <a href="./solutions.html" class="btn btn-primary">Explore Solutions</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── DEVELOPER ACCESS ──────────────────────────────────────── -->
+<section class="section" style="background:var(--bg-surface)">
+  <div class="container">
+    <span class="section-label reveal">Developer Access</span>
+    <h2 class="h2 reveal reveal-delay-1">Deploy in minutes. Integrate in hours.</h2>
+
+    <div class="grid-2 stagger" style="margin-top:32px;">
+      <div class="feature-card">
+        <h3>Official Docker image</h3>
+      </div>
+      <div class="feature-card">
+        <h3>REST API</h3>
+      </div>
+      <div class="feature-card">
+        <h3>C++ SDK</h3>
+      </div>
+      <div class="feature-card">
+        <h3>Artifact-backed benchmark reports</h3>
+      </div>
+    </div>
+
+    <div style="margin-top:40px;" class="reveal">
+      <a href="./docs.html" class="btn btn-outline">Read Documentation</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ────────────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="nav-brand" style="margin-bottom:16px">
+          <span class="brand-name">AURASENSE</span>
+          <span class="brand-badge">SFSVC</span>
+        </div>
+        <p class="footer-tagline">SFSVC — Neuromorphic perception infrastructure for edge autonomy.<br>Built in Hong Kong. Designed for global deployment.</p>
+        <p class="footer-copy">© 2026 AuraSense Limited. All rights reserved.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="./technology.html">Technology</a></li>
+          <li><a href="./solutions.html">Solutions</a></li>
+          <li><a href="./benchmark.html">Benchmarks</a></li>
+          <li><a href="./pricing.html">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="./about.html">About</a></li>
+          <li><a href="./security.html">Security</a></li>
+          <li><a href="mailto:support@aurasensehk.com">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="./privacy.html">Privacy</a></li>
+          <li><a href="./terms.html">Terms</a></li>
+          <li><a href="./refund.html">Refund</a></li>
+          <li><a href="./cookies.html">Cookies</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">SFSVC SDK v2.0 — Ed25519 Licensed — Built in Hong Kong 🇭🇰</div>
+  </div>
+</footer>
+
+<!-- ─── COOKIE BANNER ─────────────────────────────────────────── -->
+<div class="cookie-banner" id="cookie-banner" role="region" aria-label="Cookie notice">
+  <p>We use essential cookies only. No tracking.</p>
+  <div class="cookie-actions">
+    <button class="btn btn-primary btn-sm" id="cookie-accept">Accept</button>
+    <a href="./cookies.html" class="cookie-learn">Learn more →</a>
+  </div>
+</div>
+
+<script src="./js/main.js"></script>
 </body>
 </html>
