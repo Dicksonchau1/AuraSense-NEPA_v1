@@ -5,22 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Governance — NEPA by AURASENSE</title>
   <meta name="description" content="NEPA governance framework: inspection run version control, configuration immutability, audit logging, evidence retention, and change management.">
-  <link rel="stylesheet" href="css/nepa.css">
+  <link rel="stylesheet" href="./css/nepa.css">
 </head>
 <body>
 
-<nav class="nav">
-  <div class="nav-inner">
-    <a href="index.html" class="nav-brand">NEPA <span>by AURASENSE</span></a>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="platform.html">Platform</a></li>
-      <li><a href="technology.html">Technology</a></li>
-      <li><a href="governance.html" class="active">Governance</a></li>
-      <li><a href="contact.html">Contact</a></li>
+<!-- ═══ NAV ═══════════════════════════════════════════════════ -->
+<header class="site-nav" id="site-nav">
+  <div class="site-nav__inner">
+    <a href="./index.html" class="site-nav__logo">AURASENSE <span>/ NEPA</span></a>
+    <ul class="site-nav__links">
+      <li><a href="./platform.html">Platform</a></li>
+      <li><a href="./technology.html">Technology</a></li>
+      <li><a href="./governance.html" class="active">Governance</a></li>
+      <li class="company-dropdown" id="company-dd">
+        <button aria-haspopup="true" aria-expanded="false" id="company-btn">
+          Company <span class="site-nav__chevron"></span>
+        </button>
+        <div class="site-nav__dropdown" role="menu">
+          <a href="./about.html" role="menuitem">About</a>
+          <a href="./careers.html" role="menuitem">Careers</a>
+          <a href="./contact.html" role="menuitem">Contact</a>
+        </div>
+      </li>
     </ul>
-    <a href="contact.html" class="nav-cta">Request Briefing</a>
+    <a href="./contact.html" class="site-nav__cta">Request Briefing</a>
+    <button class="site-nav__hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
+</header>
+<nav class="site-nav__drawer" id="mobile-drawer">
+  <a href="./platform.html">Platform</a>
+  <a href="./technology.html">Technology</a>
+  <a href="./governance.html">Governance</a>
+  <a href="./about.html">About</a>
+  <a href="./careers.html">Careers</a>
+  <a href="./contact.html">Contact</a>
+  <a href="./contact.html" style="color:#FFB020">Request Briefing →</a>
 </nav>
 
 <div class="page-hero">
@@ -141,20 +162,30 @@
   <h2>Governance Documentation Available</h2>
   <p>Full governance documentation packages are available for regulatory reviewers and enterprise procurement teams upon formal request.</p>
   <div class="hero-actions" style="justify-content:center;">
-    <a href="contact.html" class="btn-primary">Request Documentation</a>
-    <a href="technology.html" class="btn-secondary">Technical Architecture</a>
+    <a href="./contact.html" class="btn-primary">Request Documentation</a>
+    <a href="./technology.html" class="btn-secondary">Technical Architecture</a>
   </div>
 </div>
 
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-left">
-      <div class="footer-brand-text">AURASENSE</div>
-      <div class="footer-tagline">Deterministic Inspection Infrastructure</div>
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div>
+      <div class="site-footer__brand">AURASENSE</div>
+      <div class="site-footer__tagline">Deterministic Inspection Infrastructure</div>
     </div>
-    <div class="footer-copy">&#169; 2026 AURASENSE. All rights reserved.</div>
+    <div class="site-footer__copy">© 2026 AURASENSE. All rights reserved.</div>
   </div>
 </footer>
+
+<!-- ═══ NAV DROPDOWN + MOBILE ══════════════════════════════════ -->
+<script>
+(function(){
+  var dd=document.getElementById('company-dd'),btn=document.getElementById('company-btn');
+  if(dd&&btn){btn.addEventListener('click',function(e){e.stopPropagation();var o=dd.classList.toggle('open');btn.setAttribute('aria-expanded',o);});document.addEventListener('click',function(){dd.classList.remove('open');btn.setAttribute('aria-expanded','false');});}
+  var ham=document.getElementById('hamburger'),drawer=document.getElementById('mobile-drawer');
+  if(ham&&drawer){ham.addEventListener('click',function(){drawer.classList.toggle('open');});}
+})();
+</script>
 
 </body>
 </html>
