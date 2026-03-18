@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SFSVC — Sparse-Frame Sensing &amp; Verification Core — AuraSense</title>
+  <meta name="description" content="SFSVC is the neuromorphic perception core powering AuraSense NEPA. Air-gapped edge processing, cryptographic audit trails, and deterministic facade inspection.">
+  <meta name="theme-color" content="#0B0F14">
+  <link rel="stylesheet" href="./css/nepa.css">
+  <style>
+    /* ─── PAGE-SPECIFIC: SFSVC PRODUCT HUB ─────────────────────── */
+
+    /* Tab bar */
+    .sfsvc-tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 0;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .sfsvc-tab {
+      padding: 1rem 1.8rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--faint);
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+      font-family: var(--font);
+    }
+    .sfsvc-tab:hover { color: var(--text); }
+    .sfsvc-tab.active {
+      color: var(--white);
+      border-bottom-color: var(--amber);
+    }
+
+    /* Tab panes */
+    .sfsvc-pane { display: none; }
+    .sfsvc-pane.active { display: block; }
+
+    /* Feature tags */
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.8rem;
+    }
+    .tag {
+      display: inline-block;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.22rem 0.65rem;
+      border: 1px solid var(--border-2);
+      color: var(--faint);
+      font-family: var(--mono);
+    }
+    .tag-blue  { border-color: #1e3a5f; color: #7dd3fc; }
+    .tag-green { border-color: #166534; color: #22c55e; }
+    .tag-amber { border-color: #78350f; color: var(--amber); }
+
+    /* Spec list */
+    .spec-list { border: 1px solid var(--border); margin-top: 2rem; }
+    .spec-item {
+      display: flex;
+      gap: 2rem;
+      padding: 1rem 1.6rem;
+      border-bottom: 1px solid var(--border);
+      align-items: baseline;
+    }
+    .spec-item:last-child { border-bottom: none; }
+    .spec-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--faint);
+      font-family: var(--mono);
+      min-width: 180px;
+      flex-shrink: 0;
+    }
+    .spec-value {
+      font-size: 0.85rem;
+      color: var(--text);
+      line-height: 1.65;
+    }
+    .spec-value code {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: #7dd3fc;
+      background: var(--surface-2);
+      padding: 0.1rem 0.35rem;
+    }
+
+    /* Pricing grid */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .pricing-card {
+      border: 1px solid var(--border);
+      padding: 2.2rem;
+      background: var(--surface);
+      position: relative;
+      transition: border-color 0.25s;
+    }
+    .pricing-card:hover { border-color: var(--border-2); }
+    .pricing-card.popular {
+      border-color: var(--amber);
+    }
+    .pricing-popular-label {
+      display: none;
+      position: absolute;
+      top: -1px;
+      right: 1.8rem;
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #0B0F14;
+      background: var(--amber);
+      padding: 0.2rem 0.65rem;
+      font-family: var(--mono);
+    }
+    .pricing-card.popular .pricing-popular-label { display: block; }
+    .pricing-name {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--faint);
+      font-family: var(--mono);
+      margin-bottom: 1.2rem;
+    }
+    .pricing-price {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.25rem;
+    }
+    .pricing-term {
+      font-size: 0.75rem;
+      color: var(--faint);
+      font-family: var(--mono);
+      margin-bottom: 1.8rem;
+    }
+    .pricing-features {
+      border-top: 1px solid var(--border);
+      padding-top: 1.4rem;
+      list-style: none;
+    }
+    .pricing-features li {
+      font-size: 0.83rem;
+      color: var(--muted);
+      padding: 0.4rem 0;
+      padding-left: 1.1rem;
+      position: relative;
+      line-height: 1.5;
+    }
+    .pricing-features li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--amber);
+      font-weight: 700;
+    }
+    .pricing-cta {
+      margin-top: 2rem;
+    }
+
+    /* FAQ */
+    .faq-search-wrap {
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    .faq-search {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 0.88rem;
+      padding: 0.9rem 1rem 0.9rem 2.8rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .faq-search:focus { border-color: var(--border-2); }
+    .faq-search::placeholder { color: var(--faint); }
+    .faq-search-icon {
+      position: absolute;
+      left: 0.9rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--faint);
+      font-size: 0.9rem;
+      pointer-events: none;
+    }
+    .faq-list { border: 1px solid var(--border); }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q {
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      padding: 1.2rem 1.6rem;
+      color: var(--text);
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      font-family: var(--font);
+      transition: background 0.18s;
+    }
+    .faq-q:hover { background: var(--surface-2); }
+    .faq-q.open { background: var(--surface-2); color: var(--white); }
+    .faq-chevron {
+      flex-shrink: 0;
+      width: 16px; height: 16px;
+      border-right: 2px solid currentColor;
+      border-bottom: 2px solid currentColor;
+      transform: rotate(45deg);
+      transition: transform 0.22s;
+      margin-top: -4px;
+    }
+    .faq-q.open .faq-chevron { transform: rotate(-135deg); margin-top: 4px; }
+    .faq-a {
+      display: none;
+      padding: 0 1.6rem 1.2rem;
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.8;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .faq-item.open .faq-a { display: block; }
+    .faq-empty {
+      padding: 2rem 1.6rem;
+      font-size: 0.85rem;
+      color: var(--faint);
+      border: 1px solid var(--border);
+    }
+
+    /* Section inner constraint */
+    .section-inner { max-width: 1400px; margin: 0 auto; padding: 0 2.5rem; }
+
+    /* Divider */
+    .divider { height: 1px; background: var(--border); }
+
+    @media (max-width: 900px) {
+      .pricing-grid { grid-template-columns: 1fr; }
+      .spec-label { min-width: 130px; }
+    }
+    @media (max-width: 768px) {
+      .section-inner { padding: 0 1.5rem; }
+      .sfsvc-tab { padding: 0.9rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ════════════════════════════════════════════════════ -->
+<header class="site-nav" id="site-nav">
+  <div class="site-nav__inner">
+    <a href="./index.html" class="site-nav__logo">AURASENSE <span>/ NEPA</span></a>
+    <ul class="site-nav__links">
+      <li><a href="./platform.html">Platform</a></li>
+      <li><a href="./technology.html">Technology</a></li>
+      <li><a href="./solutions.html">Solutions</a></li>
+      <li><a href="./sfsvc.html" class="active">SFSVC</a></li>
+      <li class="company-dropdown" id="company-dd">
+        <button aria-haspopup="true" aria-expanded="false" id="company-btn">
+          Company <span class="site-nav__chevron"></span>
+        </button>
+        <div class="site-nav__dropdown" role="menu">
+          <a href="./about.html" role="menuitem">About</a>
+          <a href="./careers.html" role="menuitem">Careers</a>
+          <a href="./contact.html" role="menuitem">Contact</a>
+        </div>
+      </li>
+    </ul>
+    <a href="./contact.html" class="site-nav__cta">Request SFSVC Demo</a>
+    <button class="site-nav__hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<nav class="site-nav__drawer" id="mobile-drawer">
+  <a href="./platform.html">Platform</a>
+  <a href="./technology.html">Technology</a>
+  <a href="./solutions.html">Solutions</a>
+  <a href="./sfsvc.html">SFSVC</a>
+  <a href="./about.html">About</a>
+  <a href="./careers.html">Careers</a>
+  <a href="./contact.html">Contact</a>
+  <a href="./contact.html" style="color:var(--amber)">Request SFSVC Demo →</a>
+</nav>
+
+<!-- ═══ PAGE HERO ════════════════════════════════════════════════ -->
+<div class="page-hero">
+  <div class="page-hero__inner">
+    <div class="tag-row" style="margin-top:0;margin-bottom:1.2rem">
+      <span class="tag tag-amber">NEPA Platform</span>
+      <span class="tag tag-blue">Facade Inspection</span>
+      <span class="tag">v2.0</span>
+    </div>
+    <h1>SFSVC — Facade Inspection Hub</h1>
+    <p>
+      Sparse-Frame Sensing &amp; Verification Core for UAV-based facade inspection.
+      Air-gapped edge processing, deterministic spike encoding, and cryptographic
+      audit trails aligned with Hong Kong MBIS requirements.
+    </p>
+    <div class="btn-actions" style="margin-top:2rem">
+      <a href="./contact.html" class="btn-primary">Request SFSVC Demo</a>
+      <button class="btn-outline" onclick="document.querySelector('[data-tab=pricing]').click();document.getElementById('sfsvc-tabs').scrollIntoView({behavior:'smooth'})">View Pricing</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ TAB BAR ══════════════════════════════════════════════════ -->
+<div class="divider"></div>
+<div class="sfsvc-tabs" id="sfsvc-tabs" role="tablist">
+  <button class="sfsvc-tab active" role="tab" aria-selected="true" data-tab="overview">Overview</button>
+  <button class="sfsvc-tab" role="tab" aria-selected="false" data-tab="technical">Technical</button>
+  <button class="sfsvc-tab" role="tab" aria-selected="false" data-tab="pricing">Pricing</button>
+  <button class="sfsvc-tab" role="tab" aria-selected="false" data-tab="faq">FAQ</button>
+</div>
+<div class="divider"></div>
+
+<!-- ═══ OVERVIEW PANE ════════════════════════════════════════════ -->
+<div class="sfsvc-pane active" id="pane-overview" role="tabpanel">
+
+  <div class="section">
+    <div class="section-inner">
+      <div class="section-tag">Platform Overview</div>
+      <h2 class="section-title">SFSVC under NEPA — Facade Vertical</h2>
+      <p class="section-lead">
+        SFSVC is the neuromorphic perception core that powers AuraSense's facade inspection
+        vertical. It converts UAV video into sparse spike representations, detects cracks and
+        surface anomalies deterministically on the edge, and emits tamper-evident
+        <code style="font-family:var(--mono);font-size:0.85em;color:#7dd3fc;background:var(--surface-2);padding:0.1rem 0.35rem">.cpse</code>
+        audit logs for every inspection session.
+      </p>
+
+      <div class="tag-row">
+        <span class="tag tag-green">Air-Gapped</span>
+        <span class="tag tag-blue">AVX2 Optimised</span>
+        <span class="tag tag-amber">Cryptographic Audit</span>
+        <span class="tag tag-green">MBIS-Aligned</span>
+        <span class="tag">CPU-Only</span>
+        <span class="tag">Ed25519 Signed</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <div class="section-inner">
+      <div class="section-tag">Core Capabilities</div>
+      <div class="card-grid-3" style="margin-top:2rem">
+        <div class="data-card">
+          <div class="data-card__icon">&#9632;</div>
+          <h3>Air-Gapped Operation</h3>
+          <p>Runs fully offline. No internet required during flights. All spike encoding, detection logic, and cpse audit logging execute locally on the edge controller.</p>
+        </div>
+        <div class="data-card">
+          <div class="data-card__icon">&#9632;</div>
+          <h3>Neuromorphic Encoding</h3>
+          <p>Converts video frames into sparse spike representations, achieving up to 9.97× compression while preserving crack-relevant temporal edge signals.</p>
+        </div>
+        <div class="data-card">
+          <div class="data-card__icon">&#9632;</div>
+          <h3>Cryptographic Audit Trail</h3>
+          <p>Every session emits a hash-chained, Ed25519-signed <code style="font-family:var(--mono);font-size:0.78em;color:#7dd3fc">.cpse</code> log. Tamper detection is deterministic via <code style="font-family:var(--mono);font-size:0.78em;color:#7dd3fc">cpse_replay</code>.</p>
+        </div>
+        <div class="data-card">
+          <div class="data-card__icon">&#9632;</div>
+          <h3>Deterministic Detection</h3>
+          <p>Crack detection runs under SFSVC's deterministic control loop. P99 latency ≤ 2.81 ms. Zero SLA violations across benchmark runs.</p>
+        </div>
+        <div class="data-card">
+          <div class="data-card__icon">&#9632;</div>
+          <h3>MBIS-Aligned Output</h3>
+          <p>Structured defect tables, severity bands, and colour-coded risk maps generated in formats compatible with Hong Kong MBIS reporting workflows.</p>
+        </div>
+        <div class="data-card">
+          <div class="data-card__icon">&#9632;</div>
+          <h3>CPU-Only Inference</h3>
+          <p>AVX2-optimised codec path requires no dedicated GPU. Typical draw: 2–4 W vs. 15–30 W for GPU-based pipelines. Suitable for battery-operated edge nodes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <div class="section-inner">
+      <div class="section-tag">Inspection Outputs</div>
+      <div class="card-grid-2" style="margin-top:2rem">
+        <div class="data-card">
+          <h3>Colour-Coded Facade Risk Maps</h3>
+          <p>Per-panel and per-tile heatmaps showing crack density, severity classification, and inspection coverage.</p>
+        </div>
+        <div class="data-card">
+          <h3>Structured Defect Tables</h3>
+          <p>Machine-readable records of each detected defect with location, width estimate, severity band, and frame reference.</p>
+        </div>
+        <div class="data-card">
+          <h3>Time-Series Comparison</h3>
+          <p>Cross-inspection trending to identify newly formed cracks and track progression across MBIS inspection cycles.</p>
+        </div>
+        <div class="data-card">
+          <h3>cpse Forensic Export</h3>
+          <p>Tamper-evident session archive suitable for evidentiary workflows, RSE review, and statutory submission support.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- end overview pane -->
+
+<!-- ═══ TECHNICAL PANE ═══════════════════════════════════════════ -->
+<div class="sfsvc-pane" id="pane-technical" role="tabpanel">
+
+  <div class="section">
+    <div class="section-inner">
+      <div class="section-tag">Technical Specification</div>
+      <h2 class="section-title">SFSVC Codec &amp; NEPA Control Stack</h2>
+      <p class="section-lead">
+        Minimum hardware requirements, software dependencies, and runtime characteristics
+        for SFSVC under the NEPA edge stack.
+      </p>
+
+      <div class="spec-list">
+        <div class="spec-item">
+          <span class="spec-label">CPU Architecture</span>
+          <span class="spec-value">x86_64 with <code>AVX2</code> support (standard on Intel Haswell+ / AMD Ryzen). ARM64 supported with NEON fallback.</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Operating System</span>
+          <span class="spec-value">Ubuntu 22.04 LTS (primary). Ubuntu 20.04 LTS supported. Other Linux distros on request.</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Storage</span>
+          <span class="spec-value">SATA or NVMe SSD with sustained ≥ 50 MB/s sequential write throughput. Minimum 64 GB free for cpse log retention.</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">GPU Requirement</span>
+          <span class="spec-value">None. SFSVC codec path is entirely CPU-based. AVX2 SIMD paths provide sufficient throughput for 1080p 30 fps UAV feeds.</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Network (Runtime)</span>
+          <span class="spec-value">Not required during inspection flights. Internet needed only for: (1) initial license activation, (2) signed Rule Bundle updates.</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Encoding Latency</span>
+          <span class="spec-value">Avg 2.50 ms, P99 ≤ 2.81 ms per frame at 1080p 30 fps on reference hardware (Intel Core i7-12700, 32 GB DDR5).</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Compression Ratio</span>
+          <span class="spec-value">9.97× vs raw H.264 stream. 89.97% bandwidth reduction at 1080p 30 fps continuous operation.</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Audit Log Format</span>
+          <span class="spec-value"><code>.cpse</code> — hash-chained, Ed25519-signed binary log. Verified offline via <code>cpse_replay</code> CLI utility.</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Detection Control Loop</span>
+          <span class="spec-value">NEPA Lane 1 deterministic control at ~106 Hz. 6 ms safety contract. 0% SLA violations on benchmark dataset.</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Rule Bundle Signing</span>
+          <span class="spec-value">Ed25519 keypair. Public keys shipped in the device licence. Custom Rule Authoring available on Enterprise tier.</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">SDK Language</span>
+          <span class="spec-value">C++ (private). SIMD AVX2 optimised with lock-free queues for Lane 1/2 separation. Python bindings available on Professional+.</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Deployment Model</span>
+          <span class="spec-value">Edge-native Linux process. Integrates with DJI / ArduPilot telemetry buses. Optional REST status endpoint for fleet dashboards.</span>
+        </div>
+      </div>
+
+      <div class="callout" style="margin-top:3rem">
+        <p>
+          <strong>Note on RSE sign-off:</strong> SFSVC under NEPA automates defect finding and
+          recording with deterministic edge logic and cryptographic audit trails. A qualified
+          Registered Structural Engineer (RSE) or equivalent professional must still review
+          outputs and sign off on any statutory submission.
+        </p>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- end technical pane -->
+
+<!-- ═══ PRICING PANE ══════════════════════════════════════════════ -->
+<div class="sfsvc-pane" id="pane-pricing" role="tabpanel">
+
+  <div class="section">
+    <div class="section-inner">
+      <div class="section-tag">Licensing &amp; Pricing</div>
+      <h2 class="section-title">SFSVC Deployment Licences</h2>
+      <p class="section-lead">
+        Per-device licensing for edge-native SFSVC deployment. All tiers include the
+        NEPA control stack, cpse audit logging, and Ed25519-signed Rule Bundles.
+      </p>
+
+      <div class="pricing-grid">
+
+        <!-- Pilot -->
+        <div class="pricing-card">
+          <div class="pricing-name">Pilot Licence</div>
+          <div class="pricing-price">HKD 15,000</div>
+          <div class="pricing-term">3 Months</div>
+          <ul class="pricing-features">
+            <li>1 Edge Device</li>
+            <li>Balanced Rule Bundle</li>
+            <li>Remote Onboarding</li>
+            <li>Email Support</li>
+          </ul>
+          <div class="pricing-cta">
+            <a href="./contact.html" class="btn-outline" style="display:inline-block">Contact Sales</a>
+          </div>
+        </div>
+
+        <!-- Professional -->
+        <div class="pricing-card popular">
+          <div class="pricing-popular-label">Most Popular</div>
+          <div class="pricing-name">Professional</div>
+          <div class="pricing-price">HKD 45,000</div>
+          <div class="pricing-term">Annual / Device</div>
+          <ul class="pricing-features">
+            <li>Up to 5 Devices</li>
+            <li>All Detection Configurations</li>
+            <li>cpse Forensic Export</li>
+            <li>Python Bindings</li>
+            <li>Priority Support</li>
+          </ul>
+          <div class="pricing-cta">
+            <a href="./contact.html" class="btn-primary" style="display:inline-block">Contact Sales</a>
+          </div>
+        </div>
+
+        <!-- Enterprise -->
+        <div class="pricing-card">
+          <div class="pricing-name">Enterprise</div>
+          <div class="pricing-price">Custom Quote</div>
+          <div class="pricing-term">Multi-year</div>
+          <ul class="pricing-features">
+            <li>Unlimited Devices (per-site)</li>
+            <li>Custom Rule Authoring</li>
+            <li>Dedicated Account Manager</li>
+            <li>Sandbox / UAT Environment</li>
+            <li>SLA with Named Contacts</li>
+          </ul>
+          <div class="pricing-cta">
+            <a href="./contact.html" class="btn-outline" style="display:inline-block">Contact Sales</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="callout" style="margin-top:3rem">
+        <p>
+          All prices in HKD. Government, infrastructure authority, and multi-site fleet
+          rates available on request. Contact
+          <a href="mailto:licensing@aurasensehk.com" style="color:var(--amber)">licensing@aurasensehk.com</a>
+          for a formal quote.
+        </p>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- end pricing pane -->
+
+<!-- ═══ FAQ PANE ═════════════════════════════════════════════════ -->
+<div class="sfsvc-pane" id="pane-faq" role="tabpanel">
+
+  <div class="section">
+    <div class="section-inner">
+      <div class="section-tag">Frequently Asked Questions</div>
+      <h2 class="section-title">SFSVC &amp; NEPA FAQ</h2>
+
+      <div class="faq-search-wrap" style="max-width:560px;margin-top:2rem">
+        <span class="faq-search-icon">&#9906;</span>
+        <input
+          class="faq-search"
+          id="faq-search"
+          type="search"
+          placeholder="Search FAQs…"
+          aria-label="Search FAQs"
+        >
+      </div>
+
+      <div class="faq-list" id="faq-list">
+
+        <div class="faq-item" data-q="Does SFSVC require internet connectivity during flights?">
+          <button class="faq-q" aria-expanded="false">
+            Does SFSVC require internet connectivity during flights?
+            <span class="faq-chevron" aria-hidden="true"></span>
+          </button>
+          <div class="faq-a">
+            No. SFSVC and the NEPA edge stack are designed to run fully air-gapped. All spike
+            encoding, detection logic, and cpse audit logging run locally on the edge controller.
+            Internet is only required for initial licence activation and signed Rule Bundle updates.
+          </div>
+        </div>
+
+        <div class="faq-item" data-q="Can SFSVC or NEPA replace a Registered Structural Engineer?">
+          <button class="faq-q" aria-expanded="false">
+            Can SFSVC or NEPA replace a Registered Structural Engineer (RSE)?
+            <span class="faq-chevron" aria-hidden="true"></span>
+          </button>
+          <div class="faq-a">
+            No. SFSVC under NEPA automates finding and recording facade defects with deterministic
+            edge logic and cryptographic audit trails. A qualified RSE or equivalent professional
+            must still review the outputs and sign off on any statutory submission.
+          </div>
+        </div>
+
+        <div class="faq-item" data-q="What happens if the audit log is tampered with?">
+          <button class="faq-q" aria-expanded="false">
+            What happens if the audit log is tampered with?
+            <span class="faq-chevron" aria-hidden="true"></span>
+          </button>
+          <div class="faq-a">
+            NEPA emits a <code style="font-family:var(--mono);font-size:0.85em;color:#7dd3fc">.cpse</code>
+            audit log that is hash-chained and Ed25519-signed. If any byte is modified, the
+            <code style="font-family:var(--mono);font-size:0.85em;color:#7dd3fc">cpse_replay</code>
+            verification tool will detect the mismatch and flag the session as
+            <strong style="color:#ef4444">CORRUPTED/UNTRUSTED</strong>. This is designed for
+            evidentiary workflows and dispute resolution.
+          </div>
+        </div>
+
+        <div class="faq-item" data-q="What are the minimum hardware requirements for SFSVC?">
+          <button class="faq-q" aria-expanded="false">
+            What are the minimum hardware requirements for SFSVC?
+            <span class="faq-chevron" aria-hidden="true"></span>
+          </button>
+          <div class="faq-a">
+            An x86_64 CPU with AVX2 support (standard on recent Intel/AMD), Ubuntu 22.04 LTS,
+            and a SATA or NVMe SSD capable of sustained ≥ 50 MB/s writes. A dedicated GPU is not
+            required — the SFSVC codec path is AVX2-optimised for CPU-only inference.
+          </div>
+        </div>
+
+        <div class="faq-item" data-q="How does Rule Bundle signing work?">
+          <button class="faq-q" aria-expanded="false">
+            How does Rule Bundle signing work?
+            <span class="faq-chevron" aria-hidden="true"></span>
+          </button>
+          <div class="faq-a">
+            Each Rule Bundle is signed with an Ed25519 keypair. The device licence ships with the
+            corresponding public key. On startup, SFSVC verifies the bundle signature before
+            loading any detection rules. Unsigned or modified bundles are rejected. On Enterprise,
+            customers can author and sign their own bundles using a key issued to their
+            organisation.
+          </div>
+        </div>
+
+        <div class="faq-item" data-q="Is SFSVC compatible with DJI drones?">
+          <button class="faq-q" aria-expanded="false">
+            Is SFSVC compatible with DJI or ArduPilot-based drones?
+            <span class="faq-chevron" aria-hidden="true"></span>
+          </button>
+          <div class="faq-a">
+            Yes. SFSVC integrates with standard MAVLink-compatible telemetry buses used by DJI
+            Enterprise and ArduPilot platforms. The edge controller runs as a companion computer
+            connected via USB or UART. Camera feeds are ingested over USB-C or HDMI capture.
+            Custom interface adapters are available for Professional and Enterprise tiers.
+          </div>
+        </div>
+
+        <div class="faq-item" data-q="How do I get started with the Pilot Licence?">
+          <button class="faq-q" aria-expanded="false">
+            How do I get started with the Pilot Licence?
+            <span class="faq-chevron" aria-hidden="true"></span>
+          </button>
+          <div class="faq-a">
+            Contact our sales team at
+            <a href="mailto:licensing@aurasensehk.com" style="color:var(--amber)">licensing@aurasensehk.com</a>
+            or use the "Request SFSVC Demo" button above. We will schedule a remote onboarding
+            session, issue your device licence key, and deliver the signed Rule Bundle for your
+            target inspection workflow.
+          </div>
+        </div>
+
+      </div><!-- /.faq-list -->
+
+      <div class="faq-empty" id="faq-empty" style="display:none">
+        No FAQs match your search. Try a different keyword or
+        <a href="./contact.html" style="color:var(--amber)">contact us directly</a>.
+      </div>
+
+    </div>
+  </div>
+
+</div>
+<!-- end faq pane -->
+
+<!-- ═══ CTA BAND ═══════════════════════════════════════════════════ -->
+<div class="divider"></div>
+<div class="section" style="background:var(--surface)">
+  <div class="section-inner" style="text-align:center">
+    <div class="section-tag" style="justify-content:center;margin:0 auto 1.5rem">Ready to Deploy SFSVC?</div>
+    <h2 class="section-title" style="max-width:560px;margin:0 auto 1.2rem">
+      Deterministic. Traceable. Accountable.
+    </h2>
+    <p style="color:var(--muted);font-size:0.95rem;max-width:480px;margin:0 auto 2rem;line-height:1.75">
+      Request a formal briefing for procurement review, regulatory evaluation,
+      or technical due diligence on SFSVC under the NEPA platform.
+    </p>
+    <div class="btn-actions" style="justify-content:center">
+      <a href="./contact.html" class="btn-primary">Request SFSVC Demo</a>
+      <a href="./solutions/facade.html" class="btn-outline">Facade Solution Detail</a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ════════════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div>
+      <div class="site-footer__brand">AURASENSE</div>
+      <div class="site-footer__tagline">Deterministic Inspection Infrastructure</div>
+    </div>
+    <div class="site-footer__copy">© 2026 AURASENSE. All rights reserved.</div>
+  </div>
+</footer>
+
+<!-- ═══ SCRIPTS ═══════════════════════════════════════════════════ -->
+<script>
+(function () {
+  'use strict';
+
+  /* ── Mobile nav drawer ─────────────────────────────────────── */
+  var hamburger = document.getElementById('hamburger');
+  var drawer    = document.getElementById('mobile-drawer');
+  if (hamburger && drawer) {
+    hamburger.addEventListener('click', function () {
+      var open = drawer.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    drawer.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        drawer.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  /* ── Company dropdown ──────────────────────────────────────── */
+  var companyDd  = document.getElementById('company-dd');
+  var companyBtn = document.getElementById('company-btn');
+  if (companyBtn && companyDd) {
+    companyBtn.addEventListener('click', function () {
+      var open = companyDd.classList.toggle('open');
+      companyBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    document.addEventListener('click', function (e) {
+      if (!companyDd.contains(e.target)) {
+        companyDd.classList.remove('open');
+        companyBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  /* ── Nav scroll effect ─────────────────────────────────────── */
+  var siteNav = document.getElementById('site-nav');
+  if (siteNav) {
+    window.addEventListener('scroll', function () {
+      siteNav.style.borderBottomColor = window.scrollY > 40
+        ? 'var(--border-2)'
+        : 'var(--border)';
+    }, { passive: true });
+  }
+
+  /* ── Tab switching ─────────────────────────────────────────── */
+  var tabBar = document.getElementById('sfsvc-tabs');
+  if (tabBar) {
+    tabBar.addEventListener('click', function (e) {
+      var btn = e.target.closest('.sfsvc-tab');
+      if (!btn) return;
+      var tab = btn.getAttribute('data-tab');
+
+      /* update tab buttons */
+      tabBar.querySelectorAll('.sfsvc-tab').forEach(function (t) {
+        var active = t === btn;
+        t.classList.toggle('active', active);
+        t.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
+
+      /* show/hide panes */
+      document.querySelectorAll('.sfsvc-pane').forEach(function (p) {
+        p.classList.toggle('active', p.id === 'pane-' + tab);
+      });
+    });
+  }
+
+  /* ── FAQ accordion ─────────────────────────────────────────── */
+  var faqList = document.getElementById('faq-list');
+  if (faqList) {
+    faqList.addEventListener('click', function (e) {
+      var btn = e.target.closest('.faq-q');
+      if (!btn) return;
+      var item = btn.closest('.faq-item');
+      var isOpen = item.classList.contains('open');
+
+      /* close all */
+      faqList.querySelectorAll('.faq-item').forEach(function (fi) {
+        fi.classList.remove('open');
+        fi.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+        fi.querySelector('.faq-q').classList.remove('open');
+      });
+
+      /* open clicked unless it was already open */
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  }
+
+  /* ── FAQ search ────────────────────────────────────────────── */
+  var faqSearch = document.getElementById('faq-search');
+  var faqEmpty  = document.getElementById('faq-empty');
+  if (faqSearch && faqList && faqEmpty) {
+    faqSearch.addEventListener('input', function () {
+      var q = faqSearch.value.trim().toLowerCase();
+      var visible = 0;
+
+      faqList.querySelectorAll('.faq-item').forEach(function (item) {
+        var text = (item.getAttribute('data-q') || '') + ' ' +
+                   (item.querySelector('.faq-a') ? item.querySelector('.faq-a').textContent : '');
+        var match = !q || text.toLowerCase().indexOf(q) !== -1;
+        item.style.display = match ? '' : 'none';
+        if (match) visible++;
+      });
+
+      faqEmpty.style.display = visible === 0 ? '' : 'none';
+      faqList.style.display  = visible === 0 ? 'none' : '';
+    });
+  }
+
+}());
+</script>
+</body>
+</html>
