@@ -1,0 +1,21 @@
+# CODEOWNERS — NEPA / AuraSense-NEPA_v1
+# Changes to any path listed here require explicit review from @Dicksonchau1
+# before any PR (including agent-generated PRs) can be merged.
+# Activate enforcement: Settings → Branches → main → Edit
+#   ✓ Require a pull request before merging
+#   ✓ Require review from Code Owners
+
+# Critical engine types and schema — require owner review
+/engine/src/types.h                        @Dicksonchau1
+/engine/shadow_model/                      @Dicksonchau1
+
+# ADR log — no agent should modify decisions without human sign-off
+/docs/adr/                                 @Dicksonchau1
+
+# Agent instruction file — self-referential protection
+/.github/copilot-instructions.md           @Dicksonchau1
+
+# Bundle schema and CPSE rules — governance artifacts
+/engine/cpse/include/cpse_rules.hpp        @Dicksonchau1
+/engine/cpse/src/cpse_rules.cpp            @Dicksonchau1
+/engine/cpse/tests/golden/                 @Dicksonchau1
