@@ -14,7 +14,15 @@
   <div class="site-nav__inner">
     <a href="./index.html" class="site-nav__logo">AURASENSE <span>/ NEPA</span></a>
     <ul class="site-nav__links">
-      <li><a href="./platform.html">Platform</a></li>
+      <li class="company-dropdown" id="platform-dd">
+        <button aria-haspopup="true" aria-expanded="false" id="platform-btn">
+          Platform <span class="site-nav__chevron"></span>
+        </button>
+        <div class="site-nav__dropdown" role="menu">
+          <a href="./platform.html" role="menuitem">Platform Overview</a>
+          <a href="./sfsvc.html" role="menuitem">SFSVC Product Hub</a>
+        </div>
+      </li>
       <li><a href="./technology.html" class="active">Technology</a></li>
       <li><a href="./governance.html">Governance</a></li>
       <li class="company-dropdown" id="company-dd">
@@ -35,7 +43,8 @@
   </div>
 </header>
 <nav class="site-nav__drawer" id="mobile-drawer">
-  <a href="./platform.html">Platform</a>
+  <a href="./platform.html">Platform Overview</a>
+  <a href="./sfsvc.html">SFSVC Product Hub</a>
   <a href="./technology.html">Technology</a>
   <a href="./governance.html">Governance</a>
   <a href="./about.html">About</a>
@@ -162,8 +171,27 @@
 <!-- ═══ NAV DROPDOWN + MOBILE ══════════════════════════════════ -->
 <script>
 (function(){
-  var dd=document.getElementById('company-dd'),btn=document.getElementById('company-btn');
-  if(dd&&btn){btn.addEventListener('click',function(e){e.stopPropagation();var o=dd.classList.toggle('open');btn.setAttribute('aria-expanded',o);});document.addEventListener('click',function(){dd.classList.remove('open');btn.setAttribute('aria-expanded','false');});}
+  var dropdowns=[{dd:'platform-dd',btn:'platform-btn'},{dd:'company-dd',btn:'company-btn'}];
+  dropdowns.forEach(function(item){
+    var dd=document.getElementById(item.dd),btn=document.getElementById(item.btn);
+    if(!dd||!btn)return;
+    btn.addEventListener('click',function(e){
+      e.stopPropagation();
+      var open=dd.classList.toggle('open');
+      btn.setAttribute('aria-expanded',open);
+      dropdowns.forEach(function(other){
+        if(other.dd===item.dd)return;
+        var odd=document.getElementById(other.dd),obtn=document.getElementById(other.btn);
+        if(odd&&obtn){odd.classList.remove('open');obtn.setAttribute('aria-expanded','false');}
+      });
+    });
+  });
+  document.addEventListener('click',function(){
+    dropdowns.forEach(function(item){
+      var dd=document.getElementById(item.dd),btn=document.getElementById(item.btn);
+      if(dd&&btn){dd.classList.remove('open');btn.setAttribute('aria-expanded','false');}
+    });
+  });
   var ham=document.getElementById('hamburger'),drawer=document.getElementById('mobile-drawer');
   if(ham&&drawer){ham.addEventListener('click',function(){drawer.classList.toggle('open');});}
 })();
