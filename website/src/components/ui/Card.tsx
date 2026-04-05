@@ -36,7 +36,7 @@ export function Card({
     </>
   );
 
-  const base = `border border-border-subtle rounded-lg p-6 bg-surface-raised transition-colors duration-150 hover:border-accent/40 ${className}`.trim();
+  const base = `border border-border-subtle rounded-lg p-6 bg-surface-raised transition-all duration-200 hover:border-accent/40 hover:-translate-y-1 hover:shadow-lg hover:shadow-accent/5 ${className}`.trim();
 
   if (href) {
     return (

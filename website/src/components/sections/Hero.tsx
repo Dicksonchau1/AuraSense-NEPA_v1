@@ -10,17 +10,17 @@ export function Hero({ content, large = false }: HeroProps) {
   return (
     <section
       className={`flex items-center justify-center text-center ${
-        large ? 'min-h-[80vh]' : 'py-20 lg:py-28'
+        large ? 'min-h-[80vh]' : 'py-16 lg:py-24'
       }`}
     >
-      <div className="max-w-4xl mx-auto px-6">
+      <div className="max-w-4xl mx-auto px-6 hero-animate">
         {content.subheadline && (
-          <p className="text-accent text-sm font-medium tracking-wide uppercase mb-4">
+          <p className="text-accent text-xs font-semibold tracking-[0.2em] uppercase mb-5">
             {content.subheadline}
           </p>
         )}
         <h1
-          className={`text-text-primary font-bold leading-tight ${
+          className={`text-text-primary font-bold leading-[1.1] tracking-tight ${
             large
               ? 'text-4xl md:text-5xl lg:text-6xl'
               : 'text-3xl md:text-4xl lg:text-5xl'
@@ -28,7 +28,7 @@ export function Hero({ content, large = false }: HeroProps) {
         >
           {content.headline}
         </h1>
-        <p className="text-text-secondary text-lg max-w-2xl mx-auto mt-6 leading-relaxed">
+        <p className="text-text-secondary text-base md:text-lg max-w-2xl mx-auto mt-5 leading-relaxed">
           {content.description}
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">

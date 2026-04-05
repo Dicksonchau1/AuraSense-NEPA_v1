@@ -5,7 +5,7 @@ export const sfsvcContent: ProductPageContent = {
     headline: 'SFSVC — Neuromorphic Compression and Perception SDK',
     subheadline: 'Spike-based Facade Surface Vision Codec',
     description:
-      'SFSVC is a neuromorphic compression and perception SDK for edge infrastructure inspection. It encodes temporal frame differences as spike trains, runs classification entirely on CPU with SIMD acceleration, and produces structured defect telemetry with full evidence retention and replay verification. No GPU required. No cloud dependency. Offline activation with Ed25519 license verification.',
+      'Neuromorphic compression and perception SDK for edge inspection. Spike-train encoding, CPU-only classification with SIMD, structured defect telemetry. No GPU. Offline-capable.',
     primaryCta: { label: 'Request SFSVC Evaluation', href: '/contact' },
     secondaryCta: { label: 'View All Products', href: '/products' },
   },
@@ -15,27 +15,27 @@ export const sfsvcContent: ProductPageContent = {
       eyebrow: 'Overview',
       title: 'Why SFSVC',
       description:
-        'Infrastructure inspection at scale requires perception that is deterministic, auditable, and deployable on constrained edge hardware without GPU dependencies or cloud connectivity. SFSVC achieves this through spike-based temporal encoding — a neuromorphic compression approach that represents scene changes as sparse spike events rather than dense frame reconstructions. This produces structured defect telemetry at sub-millisecond classification latency on commodity CPUs, with full evidence retention for regulatory and engineering review.',
+        'Spike-based temporal encoding produces structured defect telemetry at sub-millisecond latency on commodity CPUs. Deterministic, auditable, no GPU dependency.',
       items: [
         {
           title: 'CPU-First Architecture',
           description:
-            'SFSVC runs entirely on CPU. No GPU allocation, no CUDA dependency, no driver compatibility matrix. The processing pipeline uses AVX2 (x86_64) or NEON (ARM64) SIMD instructions for vectorized frame differencing and spike encoding. This eliminates GPU scheduling jitter and enables deployment on compute-constrained edge platforms — inspection drones, embedded gateways, and ruggedized field units.',
+            'Runs entirely on CPU with AVX2/NEON SIMD. No GPU, no CUDA, no driver matrix. Deploys on drones, gateways, and ruggedized field units.',
         },
         {
           title: 'Spike-Based Temporal Encoding',
           description:
-            'Rather than processing full frames, SFSVC computes temporal differences between consecutive frames and encodes significant changes as spike events. This produces a sparse, event-driven representation that captures structural changes — cracks, spalling, delamination, surface anomalies — while discarding static background. Compression ratios of 10–50× over raw frame storage are typical depending on scene dynamics.',
+            'Encodes temporal frame differences as sparse spike events capturing structural changes. 10–50× compression over raw frames while discarding static background.',
         },
         {
           title: 'Deterministic Classification',
           description:
-            'The classification pipeline produces identical outputs for identical inputs regardless of execution timing, thread scheduling, or hardware platform. No floating-point non-determinism from GPU parallel reduction. No order-dependent aggregation. Every classification is replay-verifiable from the sealed session log.',
+            'Identical outputs for identical inputs regardless of timing or platform. No GPU non-determinism. Every classification is replay-verifiable.',
         },
         {
           title: 'Offline Operation',
           description:
-            'SFSVC operates without network connectivity. License activation uses Ed25519 offline verification — no license server callback required after initial activation. Model bundles, configuration, and runtime binaries are self-contained. Evidence retention and telemetry storage are local. Post-mission data retrieval occurs via physical media or selective uplink.',
+            'No network required. Ed25519 offline license verification. Self-contained binaries, models, and local evidence storage. Post-mission retrieval via physical media.',
         },
       ],
     },
@@ -44,27 +44,27 @@ export const sfsvcContent: ProductPageContent = {
       eyebrow: 'Architecture',
       title: 'Compression Pipeline',
       description:
-        'The SFSVC processing pipeline transforms raw camera frames into structured defect telemetry through a sequence of deterministic stages: temporal differencing, spike encoding, feature extraction, anomaly scoring, and classification. Each stage operates within bounded latency and produces intermediate artifacts that are retained for replay verification.',
+        'Deterministic stages: temporal differencing, spike encoding, feature extraction, anomaly scoring, classification. Each stage bounded-latency with artifacts retained for replay.',
       items: [
         {
           title: 'Temporal Differencing',
           description:
-            'Consecutive frames are subtracted using SIMD-accelerated pixel-wise operations. The resulting difference map highlights regions of structural change — new cracks, crack propagation, surface deformation, environmental deposits. Static background is suppressed at the input stage, reducing downstream processing load by 80–95% in typical inspection scenarios.',
+            'SIMD-accelerated pixel-wise subtraction highlights structural changes. Static background suppressed, reducing downstream processing 80–95%.',
         },
         {
           title: 'Spike Encoding',
           description:
-            'Significant temporal differences are encoded as spike events — discrete, timestamped activation signals associated with spatial coordinates. The spike encoding threshold is configurable per deployment context. Spike trains form a sparse, event-driven representation of scene dynamics that is naturally compressed and temporally precise.',
+            'Temporal differences encoded as discrete, timestamped spike events. Configurable threshold per deployment. Naturally compressed, temporally precise.',
         },
         {
           title: 'Feature Extraction and Anomaly Scoring',
           description:
-            'Spike patterns are matched against learned prototypes using cosine similarity with L2-normalized embeddings (D=256). Anomaly scores are computed as 1 minus the cosine similarity to the best-matching prototype. Scores above the advisory threshold (0.35) trigger telemetry emission. Scores above the high-severity threshold (0.55) trigger elevated alerts.',
+            'Cosine similarity matching against D=256 prototypes. Advisory threshold at 0.35, high-severity at 0.55. Anomaly scores drive telemetry emission.',
         },
         {
           title: 'Structured Telemetry Output',
           description:
-            'Classification results are emitted as structured telemetry records containing defect type, severity grade, zone identifier, anomaly score, model version, frame reference, and timestamp. Records are chain-sealed into the evidence log and retained for post-mission engineering review, regulatory submission, and replay verification.',
+            'Structured records with defect type, severity, zone, anomaly score, and model version. Chain-sealed into evidence log for review and replay.',
         },
       ],
     },
@@ -73,27 +73,27 @@ export const sfsvcContent: ProductPageContent = {
       eyebrow: 'Deployment',
       title: 'Deployment Profile',
       description:
-        'SFSVC is packaged as a native shared library with C headers and language bindings for Python and C++. It targets Linux on x86_64 and ARM64 architectures with SIMD acceleration. Deployment is offline-capable with Ed25519 license verification and self-contained model bundles.',
+        'Native shared library with C headers and Python bindings. Linux x86_64 and ARM64 with SIMD. Offline-capable with Ed25519 activation.',
       items: [
         {
           title: 'Platform Targets',
           description:
-            'Linux x86_64 with AVX2 (primary target). Linux ARM64 with NEON (embedded and drone platforms). Minimum 2GB RAM, 1GB storage for runtime plus model bundles. No GPU, no specialized accelerator, no kernel module dependencies beyond standard Linux.',
+            'Linux x86_64 with AVX2 (primary). ARM64 with NEON (embedded). Minimum 2GB RAM. No GPU or specialized accelerator required.',
         },
         {
           title: 'SIMD Acceleration',
           description:
-            'Frame differencing and spike encoding inner loops use 256-bit SIMD operations — _mm256_fmadd_ps on AVX2, equivalent intrinsics on NEON. Minimum 4-way unrolling with 32-byte aligned buffers. Compile-time target selection with scalar fallback for non-SIMD targets.',
+            '256-bit SIMD with _mm256_fmadd_ps, 4-way unrolling, 32-byte aligned buffers. Compile-time target selection with scalar fallback.',
         },
         {
           title: 'Offline Activation',
           description:
-            'License activation uses Ed25519 public-key verification. The activation token is generated offline and verified locally — no license server callback, no network dependency, no periodic re-validation. Activation state persists across reboots and power cycles.',
+            'Ed25519 public-key verification. Offline token, no server callback, no network dependency. Persists across reboots.',
         },
         {
           title: 'Model Bundle Management',
           description:
-            'Model prototypes and adaptation deltas are packaged as versioned bundles with SHA-256 integrity hashes. Bundle promotion follows the governance pipeline — development → staging → production — with human approval gates at each transition. No autonomous bundle promotion.',
+            'Versioned bundles with SHA-256 integrity. Governed promotion pipeline with human approval gates. No autonomous bundle promotion.',
         },
       ],
     },
@@ -102,27 +102,27 @@ export const sfsvcContent: ProductPageContent = {
       eyebrow: 'Compatibility',
       title: 'Supported Environments',
       description:
-        'SFSVC is validated against a defined set of target environments. Deployment outside these targets may work but is not covered by support or performance guarantees.',
+        'Validated target environments. Deployment outside these targets may work but is not covered by support guarantees.',
       items: [
         {
           title: 'Linux x86_64 (Primary)',
           description:
-            'Ubuntu 20.04+, Debian 11+, RHEL 8+. GCC 9+ or Clang 11+. AVX2-capable CPU (Intel Haswell/2013+ or AMD Excavator/2015+). Recommended: 4+ cores, 4GB+ RAM for production workloads.',
+            'Ubuntu 20.04+, Debian 11+, RHEL 8+. AVX2-capable CPU (Haswell+/Excavator+). Recommended 4+ cores, 4GB+ RAM.',
         },
         {
           title: 'Linux ARM64 (Embedded)',
           description:
-            'Ubuntu 20.04+ (aarch64), Yocto/Buildroot with glibc 2.31+. NEON-capable SoC (Cortex-A53+). Validated on NVIDIA Jetson (CPU-only mode), Raspberry Pi 4/5, and Qualcomm RB5 platforms.',
+            'Ubuntu 20.04+ aarch64, Yocto/Buildroot. NEON-capable Cortex-A53+. Validated on Jetson, Raspberry Pi 4/5, and Qualcomm RB5.',
         },
         {
           title: 'Containerized Deployment',
           description:
-            'Docker multi-stage build with minimal runtime image. Compatible with Kubernetes, Docker Compose, and standalone container runtimes. Resource limits and CPU pinning recommended for latency-sensitive deployments.',
+            'Docker multi-stage build. Compatible with Kubernetes, Docker Compose, and standalone runtimes. CPU pinning recommended for latency-sensitive use.',
         },
         {
           title: 'Cross-Compilation',
           description:
-            'CMake-based build system supports cross-compilation for ARM64 targets from x86_64 build hosts. Toolchain files provided for common embedded Linux configurations.',
+            'CMake cross-compilation for ARM64 from x86_64 hosts. Toolchain files for common embedded Linux configurations.',
         },
       ],
     },
@@ -131,22 +131,22 @@ export const sfsvcContent: ProductPageContent = {
       eyebrow: 'Licensing',
       title: 'Licensing',
       description:
-        'SFSVC is distributed under a commercial license with offline activation. Evaluation access is available for qualified infrastructure operators, system integrators, and enterprise engineering teams.',
+        'Commercial license with offline activation. Evaluation access for qualified operators, integrators, and enterprise teams.',
       items: [
         {
           title: 'Activation Model',
           description:
-            'Licenses are activated offline using Ed25519-signed activation tokens. Tokens are bound to a hardware fingerprint and do not require network connectivity for verification or renewal. License terms, entitlements, and expiration are encoded in the activation token.',
+            'Ed25519-signed tokens bound to hardware fingerprint. No network required. Terms and expiration encoded in-token.',
         },
         {
           title: 'Evaluation Access',
           description:
-            'Time-limited evaluation licenses are available for qualified organizations. Evaluation includes the full SDK, sample model bundles, documentation, and engineering support during the evaluation period. Contact engineering to discuss evaluation scope and requirements.',
+            'Time-limited evaluation with full SDK, sample bundles, documentation, and engineering support. Contact engineering to discuss scope.',
         },
         {
           title: 'Deployment Licensing',
           description:
-            'Production deployment licenses are scoped by device count, deployment site, and contract term. Volume licensing and enterprise agreements are available for multi-site deployments. Refer to the licensing FAQ for detailed terms.',
+            'Production licenses scoped by device count, site, and term. Volume and enterprise licensing available for multi-site deployments.',
           cta: { label: 'Read Licensing FAQ', href: '/faq' },
         },
       ],
@@ -156,27 +156,27 @@ export const sfsvcContent: ProductPageContent = {
       eyebrow: 'Integration',
       title: 'Integration Path',
       description:
-        'SFSVC integrates into existing inspection and monitoring systems through public C headers, Python bindings, and a documented API surface. Integration engineers receive documentation, example code, and onboarding support.',
+        'Public C headers, Python bindings, and documented API. Integration engineers receive documentation, examples, and onboarding support.',
       items: [
         {
           title: 'Public Headers',
           description:
-            'The SDK exposes a stable C API through versioned public headers. Types, function signatures, and error codes are defined in a single header file. ABI stability is maintained across minor versions. Breaking changes are reserved for major version increments.',
+            'Stable versioned C API in a single header. ABI stable across minor versions. Breaking changes reserved for major increments.',
         },
         {
           title: 'Python Bindings',
           description:
-            'Python bindings provide access to the SpikeCodec, CrackDetector, and VideoProcessor classes. Bindings use the native shared library through ctypes/cffi. NumPy array interop is supported for frame data. Suitable for prototyping, evaluation, and integration testing.',
+            'SpikeCodec, CrackDetector, VideoProcessor via ctypes/cffi. NumPy interop for frame data. For prototyping, evaluation, and testing.',
         },
         {
           title: 'Example Code and Documentation',
           description:
-            'The SDK ships with documented examples covering initialization, frame processing, telemetry retrieval, and evidence export. A quickstart guide walks through first-frame classification in under 10 minutes. API reference documentation is generated from annotated headers.',
+            'Documented examples for initialization, processing, telemetry, and export. Quickstart guide for first-frame classification in under 10 minutes.',
         },
         {
           title: 'Developer Onboarding',
           description:
-            'Engineering teams receive guided onboarding during evaluation — architecture walkthrough, integration planning, deployment configuration review, and access to engineering support for technical questions during the integration period.',
+            'Guided onboarding during evaluation — architecture walkthrough, integration planning, configuration review, and engineering support.',
         },
       ],
     },

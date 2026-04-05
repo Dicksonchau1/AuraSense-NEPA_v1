@@ -2,10 +2,10 @@ import type { PageContent } from '../types/content';
 
 export const platformContent: PageContent = {
   hero: {
-    headline: 'NEPA — Neuromorphic Edge Perception Architecture',
-    subheadline: 'Deterministic Inspection Infrastructure',
+    subheadline: 'Deterministic Edge Middleware for Critical Infrastructure',
+    headline: 'Perceive. Percept. Process.',
     description:
-      'NEPA is a deterministic edge runtime for infrastructure inspection, surveillance, and robotic autonomy. Every processing lane operates under bounded latency constraints. Every output is replay-verifiable. Every evidence artifact is retained under a governance-aware chain of custody with cryptographic integrity. CPU-native. Offline-capable. Enterprise-auditable.',
+      'NEPA is the middleware layer between raw sensor input and structured operational output. Bounded latency. Replay-verified evidence. Offline-capable. Audit-ready.',
     primaryCta: { label: 'Request Technical Briefing', href: '/contact' },
     secondaryCta: { label: 'View Products', href: '/products' },
   },
@@ -15,22 +15,22 @@ export const platformContent: PageContent = {
       eyebrow: 'Foundation',
       title: 'What Deterministic Inspection Infrastructure Means',
       description:
-        'Most edge inference systems operate as statistical black boxes — they ingest data, produce outputs, and offer no structural guarantee that results are reproducible, auditable, or independently verifiable. NEPA rejects this model. Deterministic inspection infrastructure means that every frame processed, every classification emitted, and every telemetry artifact produced can be traced from raw input through model state to final output. Replay verification is not a feature — it is an architectural invariant. The same input, the same model snapshot, the same runtime configuration will always produce the same output. This property enables third-party audit, regulatory evidence submission, and operational accountability at a level that probabilistic inference pipelines cannot provide.',
+        'Every frame, classification, and artifact is traceable from input through model state to output. Replay verification is an architectural invariant enabling third-party audit and regulatory submission.',
       items: [
         {
           title: 'Reproducible Outputs',
           description:
-            'Given identical inputs and model state, NEPA produces bit-identical outputs across runs, hardware platforms, and deployment environments. No floating-point non-determinism from GPU scheduling. No order-dependent aggregation. No hidden state mutation between frames.',
+            'Bit-identical outputs across runs and platforms given the same inputs and model state. No GPU non-determinism, no hidden state mutation.',
         },
         {
           title: 'Structural Traceability',
           description:
-            'Every processing decision is logged with sufficient context to reconstruct the full inference path. Model version, runtime configuration, input digest, and output classification are bound together in a verifiable evidence record.',
+            'Every processing decision is logged with model version, configuration, input digest, and output — bound together in a verifiable evidence record.',
         },
         {
           title: 'Independent Verification',
           description:
-            'Third parties — auditors, regulators, counterparties — can verify processing outputs without access to the live runtime. Sealed session logs and the replay verification tool are sufficient to confirm output correctness.',
+            'Auditors and regulators verify outputs without live runtime access. Sealed session logs and the replay tool confirm correctness independently.',
         },
       ],
     },
@@ -39,27 +39,27 @@ export const platformContent: PageContent = {
       eyebrow: 'Runtime',
       title: 'Parallel Processing and Bounded Latency',
       description:
-        'NEPA processing lanes are isolated, pre-allocated, and time-bounded. Each lane handles a single sensor stream with no shared mutable state, no dynamic memory allocation in the hot path, and no lock contention. Frame-level classification completes within hard latency bounds — P95 under 0.5ms, P99 under 0.8ms at 720p resolution on commodity x86_64 CPUs. This is achieved through pre-allocated buffer pools, SIMD-accelerated frame differencing (AVX2 on x86_64, NEON on ARM64), and lock-free inter-stage communication using single-producer single-consumer queues. There is no garbage collector. There is no GPU scheduler. There is no unbounded syscall in the frame path.',
+        'Isolated, pre-allocated processing lanes with P95 < 0.5ms, P99 < 0.8ms at 720p. SIMD-accelerated, lock-free, no GC, no GPU dependency.',
       items: [
         {
           title: 'Pre-Allocated Processing Lanes',
           description:
-            'All buffers, queues, and working memory are allocated at startup. No heap allocation occurs during frame processing. Memory layout is deterministic and cache-friendly, with aligned SIMD buffers for vectorized operations.',
+            'All buffers allocated at startup. No heap allocation during frame processing. Deterministic, cache-friendly memory layout with aligned SIMD buffers.',
         },
         {
           title: 'SIMD-Accelerated Frame Differencing',
           description:
-            'Temporal frame differences are computed using 256-bit SIMD operations — AVX2 on x86_64, NEON on ARM64. The inner loop processes 32 bytes per cycle with fused multiply-add instructions, achieving 8–12× throughput over scalar implementations.',
+            '256-bit SIMD frame differencing — AVX2 on x86_64, NEON on ARM64. Fused multiply-add inner loop achieves 8–12× throughput over scalar.',
         },
         {
           title: 'Lock-Free Communication',
           description:
-            'Inter-stage data flow uses single-producer single-consumer lock-free queues. No mutex. No condition variable. No priority inversion. Stages communicate through bounded ring buffers with atomic pointer updates.',
+            'Lock-free SPSC queues between stages. No mutex, no condition variable, no priority inversion. Bounded ring buffers with atomic updates.',
         },
         {
           title: 'No Shared Mutable State',
           description:
-            'Each processing lane owns its buffers, model snapshot, and output state. Cross-lane coordination — when required — occurs through message passing on dedicated control channels, never through shared memory mutation.',
+            'Each lane owns its buffers and model snapshot. Cross-lane coordination uses message passing on control channels, never shared memory mutation.',
         },
       ],
     },
@@ -68,22 +68,22 @@ export const platformContent: PageContent = {
       eyebrow: 'Verification',
       title: 'Replay Verification',
       description:
-        'Every NEPA processing session produces a sealed session log containing the input sequence, model snapshot reference, runtime configuration, and output sequence. The replay verification tool re-executes the session from the sealed log and confirms bit-identical output. This is not a test convenience — it is the primary evidence mechanism for regulatory audit, incident investigation, and operational accountability. If a classification is disputed, the sealed session log is the authoritative record. Replay it. Verify the output. No ambiguity.',
+        'Sealed session logs capture inputs, model references, and outputs. The replay tool re-executes and confirms bit-identical results — the primary evidence mechanism for audit.',
       items: [
         {
           title: 'Sealed Session Logs',
           description:
-            'Session logs capture the complete processing context: input frame digests, model version hash, runtime configuration snapshot, and output classification sequence. Logs are sealed with a chain hash — each entry references the SHA-256 hash of the previous entry in canonical JSON form.',
+            'Complete processing context sealed with chain hashes — input digests, model version, configuration, and outputs. Each entry references the previous SHA-256 hash.',
         },
         {
           title: 'Bit-Identical Replay',
           description:
-            'The replay tool ingests a sealed session log and re-executes the processing pipeline with the referenced model snapshot and configuration. Output must be bit-identical to the original session. Any divergence indicates tampering, configuration drift, or runtime defect.',
+            'Re-executes the pipeline from sealed logs. Output must be bit-identical. Any divergence indicates tampering, drift, or defect.',
         },
         {
           title: 'Third-Party Verifiability',
           description:
-            'Replay verification requires only the sealed session log, the referenced model artifact, and the replay tool binary. No access to the live runtime, production infrastructure, or internal systems is required. Auditors and regulators receive a self-contained verification package.',
+            'Requires only the sealed log, model artifact, and replay tool. No live runtime access needed. Self-contained verification package for auditors.',
         },
       ],
     },
@@ -92,22 +92,22 @@ export const platformContent: PageContent = {
       eyebrow: 'Governance',
       title: 'Audit and Chain-of-Custody',
       description:
-        'Infrastructure inspection produces evidence that enters regulatory, legal, and operational review processes. NEPA treats evidence integrity as a structural requirement. Every classification, every telemetry artifact, every model update decision is recorded in an append-only audit chain with cryptographic integrity. The chain-of-custody model ensures that evidence provenance is traceable from field capture through processing to final archival — with no gaps, no silent mutations, and no ambiguous ownership transitions.',
+        'Every classification and artifact is recorded in an append-only audit chain with cryptographic integrity. Evidence provenance is traceable from capture to archival.',
       items: [
         {
           title: 'Append-Only Audit Chain',
           description:
-            'Audit records are written to an append-only hash chain. Each record includes the SHA-256 hash of the previous record in canonical JSON form. Insertion, deletion, or reordering of records breaks the chain and is independently detectable.',
+            'Append-only hash chain with SHA-256 canonical JSON linking. Any insertion, deletion, or reordering is independently detectable.',
         },
         {
           title: 'Model Provenance',
           description:
-            'Every model artifact deployed to the edge is traceable to a versioned bundle with a known build hash, promotion history, and approval chain. No model runs in production without a signed release tag and a recorded promotion decision.',
+            'Every deployed model traces to a versioned bundle with known build hash and approval chain. No production deployment without a signed release tag.',
         },
         {
           title: 'Evidence Lifecycle',
           description:
-            'Evidence artifacts follow a defined lifecycle: capture → seal → retain → archive → dispose. Retention policies are enforced at the storage layer. Disposal requires explicit authorization and produces its own audit record.',
+            'Defined lifecycle: capture → seal → retain → archive → dispose. Retention enforced at storage layer. Disposal requires authorization and audit.',
         },
       ],
     },
@@ -116,22 +116,22 @@ export const platformContent: PageContent = {
       eyebrow: 'Evidence',
       title: 'Evidence Immutability',
       description:
-        'Structured telemetry — defect classifications, anomaly scores, sensor readings, navigation decisions — is retained as immutable evidence records. Each record carries a cryptographic digest, a chain reference, and sufficient metadata to reconstruct the processing context. Evidence immutability is not a policy preference. It is enforced at the storage layer through append-only writes, hash chain validation, and integrity checks on read.',
+        'Structured telemetry retained as immutable records with cryptographic digests and chain references. Enforced at the storage layer through append-only writes and integrity checks.',
       items: [
         {
           title: 'Cryptographic Integrity',
           description:
-            'Every evidence record includes a SHA-256 digest computed over its canonical JSON representation. Records are independently verifiable — no trust relationship with the producing runtime is required to confirm integrity.',
+            'SHA-256 digest over canonical JSON for every record. Independently verifiable without trust in the producing runtime.',
         },
         {
           title: 'Structured Telemetry Retention',
           description:
-            'Telemetry is retained in structured, queryable form — not as opaque binary blobs. Defect type, severity grade, zone identifier, anomaly score, model version, and timestamp are first-class fields in every evidence record.',
+            'Queryable structured telemetry — defect type, severity, zone, anomaly score, model version, and timestamp as first-class fields in every record.',
         },
         {
           title: 'Immutable Storage Enforcement',
           description:
-            'Evidence volumes are configured as append-only at the filesystem or storage service layer. Application code cannot overwrite or delete existing records. Retention and disposal are governed by infrastructure policy, not application logic.',
+            'Append-only at the filesystem layer. Application code cannot overwrite or delete records. Retention governed by infrastructure policy.',
         },
       ],
     },
@@ -140,22 +140,22 @@ export const platformContent: PageContent = {
       eyebrow: 'Integration',
       title: 'Enterprise Integration',
       description:
-        'NEPA is designed for deployment within enterprise infrastructure environments — not as a standalone appliance, but as a composable edge layer that integrates with existing asset management, compliance, and operational technology systems. API surfaces, deployment models, and configuration management follow enterprise expectations for versioning, authentication, and auditability.',
+        'Composable edge layer integrating with existing asset management, compliance, and OT systems. Enterprise-grade API versioning, authentication, and auditability.',
       items: [
         {
           title: 'Compliance Posture',
           description:
-            'NEPA supports configurable compliance profiles that map audit chain behavior, evidence retention periods, and access control policies to organizational and regulatory requirements. Compliance configuration is versioned and auditable.',
+            'Configurable compliance profiles mapping audit behavior, retention, and access control to regulatory requirements. Versioned and auditable configuration.',
         },
         {
           title: 'API Surfaces',
           description:
-            'Edge modules expose gRPC and REST API surfaces for telemetry retrieval, configuration management, health monitoring, and evidence export. API versioning follows semver conventions. Authentication uses mTLS or API key schemes depending on deployment context.',
+            'gRPC and REST APIs for telemetry, configuration, health, and evidence export. Semver versioning with mTLS or API key authentication.',
         },
         {
           title: 'Deployment Models',
           description:
-            'NEPA supports air-gapped deployment with offline activation, connected deployment with periodic uplink, and hybrid models with local processing and selective cloud synchronization. Deployment topology is configured at provisioning time and enforced by the runtime.',
+            'Air-gapped, connected, or hybrid deployment models. Offline activation, periodic uplink, or selective cloud sync — configured at provisioning time.',
         },
       ],
     },

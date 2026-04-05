@@ -14,7 +14,7 @@ const columnClass: Record<number, string> = {
 
 export function FeatureGrid({ items, columns = 3 }: FeatureGridProps) {
   return (
-    <div className={`grid grid-cols-1 md:grid-cols-2 ${columnClass[columns]} gap-6`}>
+    <div className={`grid grid-cols-1 md:grid-cols-2 ${columnClass[columns]} gap-6 stagger-children animate-on-scroll`}>
       {items.map((item) => (
         <Card
           key={item.title}

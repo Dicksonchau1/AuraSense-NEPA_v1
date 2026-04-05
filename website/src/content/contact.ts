@@ -5,7 +5,7 @@ export const contactPageContent: PageContent = {
     headline: 'Talk to Engineering',
     subheadline: 'Technical Evaluation, Partnership, and Support',
     description:
-      'AuraSense engineering handles technical inquiries directly. Whether you are evaluating the NEPA platform for an infrastructure inspection program, exploring integration for a robotic autonomy deployment, or seeking support for an existing installation — reach the team that builds the systems.',
+      'Engineering handles inquiries directly. Evaluating NEPA for inspection, integration for robotic deployment, or seeking support — reach the team that builds the systems.',
     primaryCta: { label: 'Email Engineering', href: 'mailto:contact@aurasensehk.com' },
   },
   sections: [
@@ -14,17 +14,17 @@ export const contactPageContent: PageContent = {
       eyebrow: 'Evaluation',
       title: 'Technical Evaluation',
       description:
-        'For organizations evaluating the NEPA platform, SFSVC SDK, NERMN navigation module, or NSSIM surveillance intelligence for infrastructure inspection, robotic autonomy, or surveillance applications. Technical briefings are conducted by engineering — not sales. We discuss your deployment context, integration requirements, and evaluation criteria, and provide architecture-level detail sufficient for technical assessment.',
+        'Evaluating NEPA, SFSVC, NERMN, or NSSIM for inspection, autonomy, or surveillance. Technical briefings by engineering — architecture-level detail for assessment.',
       items: [
         {
           title: 'Request a Technical Briefing',
           description:
-            'Contact engineering to schedule a technical briefing covering platform architecture, product capabilities, deployment requirements, and evaluation access. Briefings are scoped to your specific use case and technical context. Email contact@aurasensehk.com with a brief description of your organization, deployment context, and evaluation objectives.',
+            'Schedule a technical briefing on architecture, capabilities, and deployment. Email contact@aurasensehk.com with your organization and evaluation objectives.',
         },
         {
           title: 'Evaluation Access',
           description:
-            'Qualified organizations can receive time-limited evaluation access to NEPA modules including SDK, documentation, sample model bundles, and engineering support during the evaluation period. Evaluation scope is defined collaboratively based on your deployment requirements and integration context.',
+            'Time-limited evaluation access with SDK, documentation, sample bundles, and engineering support. Scope defined collaboratively based on deployment requirements.',
         },
       ],
     },
@@ -33,17 +33,17 @@ export const contactPageContent: PageContent = {
       eyebrow: 'Partnership',
       title: 'Enterprise and Partner Inquiry',
       description:
-        'For system integrators, technology partners, and enterprise organizations exploring NEPA integration into existing infrastructure inspection, surveillance, or robotic autonomy programs. We work with partners who deploy real systems in operational environments and who value deterministic, auditable, governance-aware edge intelligence.',
+        'For system integrators, partners, and enterprises exploring NEPA integration into operational inspection, surveillance, or autonomy programs.',
       items: [
         {
           title: 'Integration Partnership',
           description:
-            'System integrators deploying NEPA modules within larger inspection, surveillance, or robotic solutions. We provide integration architecture guidance, co-deployment support, and joint solution validation. Contact contact@aurasensehk.com to discuss partnership scope.',
+            'Integration architecture guidance, co-deployment support, and joint solution validation. Contact contact@aurasensehk.com to discuss partnership scope.',
         },
         {
           title: 'Enterprise Deployment',
           description:
-            'Enterprise organizations deploying NEPA at scale across multiple sites, platforms, or operational domains. We provide deployment architecture review, volume licensing, enterprise support agreements, and dedicated engineering liaison. Contact contact@aurasensehk.com for enterprise inquiries.',
+            'Multi-site deployment, volume licensing, enterprise support, and dedicated engineering liaison. Contact contact@aurasensehk.com for enterprise inquiries.',
         },
       ],
     },
@@ -52,22 +52,22 @@ export const contactPageContent: PageContent = {
       eyebrow: 'Support',
       title: 'Support',
       description:
-        'For organizations with existing NEPA deployments or active evaluation agreements. Support covers runtime issues, model bundle management, evidence integrity questions, deployment configuration, and integration troubleshooting.',
+        'For existing deployments or active evaluations. Covers runtime issues, bundle management, evidence integrity, configuration, and integration troubleshooting.',
       items: [
         {
           title: 'Production Support',
           description:
-            'Organizations with production deployments covered by enterprise support agreements should contact support@aurasensehk.com for runtime issues, configuration assistance, and escalation. Support SLAs and escalation paths are defined in your support agreement.',
+            'Contact support@aurasensehk.com for runtime issues and configuration. SLAs and escalation defined in your support agreement.',
         },
         {
           title: 'Evaluation Support',
           description:
-            'Organizations in active evaluation receive engineering support during the evaluation period. For technical questions, integration issues, or deployment configuration assistance during evaluation, contact support@aurasensehk.com with your evaluation reference.',
+            'Engineering support during active evaluation. Contact support@aurasensehk.com with your evaluation reference for technical questions.',
         },
         {
           title: 'Documentation and FAQ',
           description:
-            'Public documentation, product overviews, and frequently asked questions are available in the resources section. Many common questions about platform capabilities, deployment requirements, and licensing are addressed there.',
+            'Public documentation, product overviews, and FAQ available in the resources section for common questions.',
           cta: { label: 'View Resources', href: '/resources' },
         },
       ],
@@ -82,7 +82,7 @@ export const contactPageContent: PageContent = {
         {
           title: 'Engineering Roles',
           description:
-            'We are selectively hiring across systems engineering, computer vision, edge AI, robotics, and product engineering. If your background aligns with our work, send a short note and relevant portfolio or GitHub profile to careers@aurasensehk.com. Review the careers page for detailed role descriptions and what we look for.',
+            'Selectively hiring in systems, CV, edge AI, robotics, and product engineering. Send portfolio or GitHub to careers@aurasensehk.com.',
           cta: { label: 'View Careers', href: '/careers' },
         },
       ],

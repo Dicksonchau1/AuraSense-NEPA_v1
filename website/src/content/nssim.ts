@@ -2,10 +2,10 @@ import type { ProductPageContent } from '../types/content';
 
 export const nssimContent: ProductPageContent = {
   hero: {
-    headline: 'NSSIM — Neuromorphic Smart Surveillance Intelligence Module',
-    subheadline: 'Multi-Sensor Surveillance Intelligence for Critical Infrastructure',
+    subheadline: 'NSSIM — Neuromorphic Smart Surveillance Intelligence Module',
+    headline: 'Camera Intelligence at the Edge',
     description:
-      'NSSIM is a multi-sensor surveillance intelligence module that processes camera, acoustic, and environmental sensor feeds through a spike-based temporal reasoning engine. It produces actionable alerts with severity tiering, temporal event correlation, and chain-of-custody evidence packages for regulatory and operational review. Designed for perimeter security, critical asset monitoring, and multi-site surveillance operations. Edge-native. Offline-capable. Audit-ready.',
+      'Multi-sensor ingest. Temporal event reasoning. Real-time alerting with structured evidence retention. No cloud dependency. Operator-ready from day one.',
     primaryCta: { label: 'Request NSSIM Briefing', href: '/contact' },
     secondaryCta: { label: 'View All Products', href: '/products' },
   },
@@ -15,27 +15,27 @@ export const nssimContent: ProductPageContent = {
       eyebrow: 'Architecture',
       title: 'Intelligence Pipeline',
       description:
-        'NSSIM processes multi-sensor input through a spike-based intelligence pipeline that transforms raw sensor feeds into actionable surveillance alerts. The pipeline is deterministic — identical sensor inputs produce identical alert outputs. Every intermediate stage is logged for replay verification and audit.',
+        'Deterministic spike-based pipeline from raw sensor feeds to actionable alerts. Identical inputs produce identical outputs. Every stage logged for replay.',
       items: [
         {
           title: 'Multi-Sensor Ingestion',
           description:
-            'NSSIM ingests camera streams (RGB, thermal, IR), acoustic sensor feeds, environmental telemetry (vibration, temperature, humidity), and access control events. Sensor data is timestamped at ingestion with nanosecond precision and routed to modality-specific encoding stages. Sensor health monitoring detects degradation and triggers fallback processing.',
+            'Ingests RGB, thermal, IR cameras, acoustic, environmental telemetry, and access control. Nanosecond timestamping with sensor health monitoring.',
         },
         {
           title: 'Spike-Based Encoding',
           description:
-            'Each sensor modality is encoded into a spike representation through modality-appropriate transformations. Video frames use temporal differencing — new motion triggers spike events, static scenes are suppressed. Acoustic data uses spectral change detection. Environmental sensors use threshold-crossing encoding. The result is a unified, sparse event representation across all modalities.',
+            'Each modality encoded into sparse spike representation. Video uses temporal differencing, audio uses spectral change, sensors use threshold-crossing.',
         },
         {
           title: 'Feature Correlation Engine',
           description:
-            'Spike events from multiple sensor modalities are correlated in a temporal feature engine that identifies coincident or sequential patterns across sensors. A perimeter camera motion event coinciding with an acoustic anomaly and an access control event produces a correlated multi-modal alert with higher confidence than any single-sensor detection.',
+            'Cross-modal temporal correlation of spike events. Multi-sensor coincidence produces higher-confidence alerts than single-sensor detection.',
         },
         {
           title: 'Classification and Alert Generation',
           description:
-            'Correlated features are classified using spike-timing-dependent pattern matching against learned threat profiles. Classifications carry confidence scores, severity tiers, and evidence references. Alerts are emitted with full provenance — which sensors contributed, what temporal window was analyzed, which prototype matched, and what the anomaly score was.',
+            'Spike-timing pattern matching against threat profiles. Alerts with confidence scores, severity tiers, and full sensor provenance.',
         },
       ],
     },
@@ -44,27 +44,27 @@ export const nssimContent: ProductPageContent = {
       eyebrow: 'Intelligence',
       title: 'Temporal Reasoning',
       description:
-        'Surveillance intelligence is fundamentally temporal. A single frame or sensor reading rarely constitutes actionable information. NSSIM implements temporal reasoning over spike event streams — detecting patterns that unfold over seconds, minutes, or hours. This enables detection of behavioral patterns, gradual environmental changes, and coordinated multi-stage events that frame-by-frame processing would miss.',
+        'Temporal reasoning over spike streams — detecting patterns across seconds to hours. Behavioral patterns and multi-stage events that frame-by-frame processing misses.',
       items: [
         {
           title: 'Temporal Event Windows',
           description:
-            'Spike events are analyzed within configurable temporal windows — from milliseconds (rapid motion detection) to hours (behavioral pattern analysis). Window sizes are tuned per alert type and deployment context. Multiple temporal scales operate simultaneously, enabling both immediate threat detection and slow-evolving anomaly recognition.',
+            'Configurable windows from milliseconds to hours. Multiple scales operate simultaneously for immediate threats and slow-evolving anomalies.',
         },
         {
           title: 'Sequential Pattern Detection',
           description:
-            'The temporal engine detects sequential event patterns — A followed by B within a time window, repeated access attempts with increasing frequency, gradual perimeter probe sequences. Patterns are defined as configurable detection rules with temporal constraints, sensor scope, and confidence thresholds.',
+            'Detects sequential event patterns with temporal constraints and confidence thresholds. Repeated access attempts, gradual probes, coordinated sequences.',
         },
         {
           title: 'Behavioral Baseline Adaptation',
           description:
-            'NSSIM maintains a temporal baseline of normal activity patterns for each monitored zone. Deviations from baseline — unusual activity timing, atypical sensor patterns, unexpected environmental changes — are detected as anomalies. Baseline adaptation uses gated learning: only confirmed non-threat events update the baseline, preventing adversarial pattern injection.',
+            'Per-zone activity baselines with gated learning. Deviations detected as anomalies. Only confirmed non-threats update the baseline.',
         },
         {
           title: 'Cross-Sensor Temporal Correlation',
           description:
-            'Events from different sensors are correlated across time — a visual motion event at T=0 correlated with an acoustic signature at T=200ms and a vibration event at T=500ms may indicate a single physical event observed across modalities. Temporal correlation produces multi-modal evidence packages with higher reliability than single-sensor detection.',
+            'Events from different sensors correlated across time. Multi-modal evidence packages with higher reliability than single-sensor detection.',
         },
       ],
     },
@@ -73,27 +73,27 @@ export const nssimContent: ProductPageContent = {
       eyebrow: 'Operations',
       title: 'Alert Orchestration',
       description:
-        'Raw detections are not alerts. NSSIM implements an alert orchestration layer that aggregates, deduplicates, prioritizes, and routes detections into actionable alerts with appropriate severity, context, and evidence. The orchestration layer prevents alert fatigue while ensuring that genuine threats are surfaced with sufficient information for operational response.',
+        'Aggregates, deduplicates, prioritizes, and routes detections into actionable alerts. Prevents alert fatigue while ensuring genuine threats surface.',
       items: [
         {
           title: 'Severity Tiering',
           description:
-            'Alerts are classified into configurable severity tiers — informational, advisory, elevated, critical. Tier assignment considers anomaly score, multi-sensor corroboration, temporal pattern match strength, and zone sensitivity. Critical alerts are never suppressed or delayed. Advisory alerts may be aggregated in digest form.',
+            'Configurable tiers: informational, advisory, elevated, critical. Based on anomaly score, multi-sensor corroboration, and zone sensitivity.',
         },
         {
           title: 'Alert Deduplication',
           description:
-            'Multiple detections of the same physical event across sensors or temporal windows are consolidated into a single alert with composite evidence. Deduplication uses spatial proximity, temporal overlap, and classification similarity to identify duplicate detections. Each contributing detection is preserved in the evidence chain.',
+            'Duplicate detections consolidated using spatial proximity and temporal overlap. Contributing detections preserved in the evidence chain.',
         },
         {
           title: 'Routing and Escalation',
           description:
-            'Alerts are routed to configured destinations — operator consoles, SIEM integrations, notification channels, and evidence archives. Escalation rules promote unacknowledged alerts to higher severity tiers after configurable timeout periods. Routing is zone-aware: different zones can have different alert routing configurations.',
+            'Zone-aware routing to consoles, SIEM, and notification channels. Escalation rules promote unacknowledged alerts after timeout.',
         },
         {
           title: 'Alert Context Packaging',
           description:
-            'Each alert is packaged with contextual information: contributing sensor data, temporal event timeline, classification details, zone metadata, and evidence references. Operators receive sufficient context to make response decisions without querying additional systems.',
+            'Each alert packaged with sensor data, timeline, classification details, and zone metadata. Operators receive full context for response.',
         },
       ],
     },
@@ -102,27 +102,27 @@ export const nssimContent: ProductPageContent = {
       eyebrow: 'Governance',
       title: 'Audit and Evidence',
       description:
-        'Surveillance operations in critical infrastructure environments produce evidence that may enter regulatory, legal, or operational review processes. NSSIM treats evidence integrity as a structural requirement. Every detection, every alert, every operator acknowledgment is recorded in a chain-sealed evidence log with cryptographic integrity and full provenance.',
+        'Evidence integrity as a structural requirement. Every detection, alert, and operator action recorded in a chain-sealed log with cryptographic integrity.',
       items: [
         {
           title: 'Chain-of-Custody Evidence',
           description:
-            'Alert evidence packages include raw sensor excerpts, spike-encoded intermediate representations, classification outputs, and temporal correlation records. Every artifact is chain-sealed with SHA-256 hashing in canonical JSON form. The evidence chain is tamper-evident — any modification is independently detectable.',
+            'Raw excerpts, spike encodings, classifications, and correlations chain-sealed with SHA-256. Tamper-evident and independently verifiable.',
         },
         {
           title: 'Operator Action Logging',
           description:
-            'Operator responses to alerts — acknowledgment, dismissal, escalation, response actions — are recorded in the evidence chain with operator identity, timestamp, and action context. The audit trail captures not only what the system detected but how operators responded.',
+            'Operator responses recorded with identity, timestamp, and context. Audit trail captures both system detections and human actions.',
         },
         {
           title: 'Replay Verification',
           description:
-            'Surveillance sessions can be replayed from sealed session logs to verify that alerts were correctly generated from the recorded sensor data. Replay produces bit-identical alert outputs, enabling post-incident review and regulatory audit without access to the live system.',
+            'Sessions replayed from sealed logs producing bit-identical alerts. Post-incident review without live system access.',
         },
         {
           title: 'Evidence Retention and Export',
           description:
-            'Evidence is retained locally on the edge device in append-only storage. Configurable retention periods govern automatic archival. Evidence export produces self-contained packages with integrity verification metadata suitable for regulatory submission, legal discovery, or operational review.',
+            'Local append-only storage with configurable retention. Self-contained export packages for regulatory submission and legal discovery.',
         },
       ],
     },
@@ -131,27 +131,27 @@ export const nssimContent: ProductPageContent = {
       eyebrow: 'Deployment',
       title: 'Multi-Site Deployment',
       description:
-        'Critical infrastructure surveillance typically spans multiple physical sites with centralized operational oversight. NSSIM supports multi-site deployment through site gateways that aggregate local intelligence, coordinate alert routing, and manage evidence consolidation across distributed installations.',
+        'Multi-site deployment with site gateways for local intelligence aggregation, alert routing, and evidence consolidation across installations.',
       items: [
         {
           title: 'Site Gateway Architecture',
           description:
-            'Each site runs one or more NSSIM instances on edge devices. A site gateway aggregates local alerts, manages model bundles, and provides the uplink to centralized operations. Gateways operate independently during connectivity outages — local alerting and evidence retention continue uninterrupted.',
+            'Edge instances per site with gateway aggregation. Independent operation during connectivity outages with uninterrupted local alerting.',
         },
         {
           title: 'Cross-Site Alert Correlation',
           description:
-            'Site gateways forward alerts to a central coordination layer that correlates events across sites. Coordinated activity spanning multiple locations — simultaneous perimeter probes, sequential access attempts at different facilities — is detected at the cross-site level and escalated as correlated multi-site events.',
+            'Central coordination correlates events across sites. Simultaneous multi-location activity detected and escalated as correlated events.',
         },
         {
           title: 'Centralized Configuration Management',
           description:
-            'Detection rules, severity thresholds, alert routing, and model bundles are managed centrally and distributed to sites through the governance pipeline. Configuration changes are versioned, auditable, and require approval before deployment. Sites can operate with local configuration overrides for site-specific requirements.',
+            'Detection rules, thresholds, routing, and bundles managed centrally. Versioned, auditable, with approval required before deployment.',
         },
         {
           title: 'Bandwidth-Efficient Uplink',
           description:
-            'NSSIM transmits structured alert metadata and evidence references — not raw sensor streams — to the central coordination layer. Full sensor data and evidence packages are retained locally and retrieved on demand for investigation. This enables effective multi-site coordination over bandwidth-constrained or intermittent connectivity.',
+            'Structured alert metadata transmitted — not raw streams. Full data retained locally, retrieved on demand over constrained connectivity.',
         },
       ],
     },
