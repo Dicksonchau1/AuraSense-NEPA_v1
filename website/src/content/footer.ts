@@ -19,19 +19,21 @@ export const footerColumns: FooterColumn[] = [
     ],
   },
   {
-    title: 'Company',
+    title: 'Resources',
     links: [
-      { label: 'Careers', href: '/careers' },
-      { label: 'Contact', href: '/contact' },
-      { label: 'About', href: '/about' },
+      { label: 'Resources', href: '/resources' },
+      { label: 'Documentation', href: '/resources#documentation' },
+      { label: 'FAQ', href: '/faq' },
+      { label: 'Support', href: '/resources#support' },
     ],
   },
   {
-    title: 'Resources',
+    title: 'Company',
     links: [
-      { label: 'Documentation', href: '/resources#documentation' },
-      { label: 'FAQ', href: '/resources#faq' },
-      { label: 'Support', href: '/resources#support' },
+      { label: 'About', href: '/about' },
+      { label: 'Careers', href: '/careers' },
+      { label: 'Contact', href: '/contact' },
+      { label: 'Sign in', href: '/contact' },
     ],
   },
   {

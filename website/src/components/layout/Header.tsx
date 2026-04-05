@@ -153,6 +153,19 @@ export function Header() {
               ))}
             </div>
           ))}
+          <div className="flex flex-col gap-2 mt-4 pt-4 border-t border-border-subtle">
+            {navActions.map((action) => (
+              <Button
+                key={action.label}
+                variant={action.variant}
+                size="sm"
+                href={action.href}
+                className="w-full"
+              >
+                {action.label}
+              </Button>
+            ))}
+          </div>
         </nav>
       )}
     </header>
