@@ -67,9 +67,9 @@ export function Hero({ content, large = false, videoSrc, videoFadeAt = 3.5 }: He
 
       {/* ── Content (fades in after video cue) ── */}
       <div
-        className={`relative z-10 max-w-4xl px-6 transition-opacity duration-[1200ms] ease-out ${
+        className={`relative z-10 px-6 transition-opacity duration-[1200ms] ease-out ${
           contentVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        } ${large ? 'hero-3d ml-8 md:ml-16 lg:ml-24' : 'hero-animate mx-auto'}`}
+        } ${large ? 'hero-3d ml-8 md:ml-16 lg:ml-24 max-w-2xl' : 'hero-animate mx-auto max-w-4xl'}`}
       >
         {content.subheadline && (
           <p className="hero-float text-accent text-xs font-semibold tracking-[0.2em] uppercase mb-5"
