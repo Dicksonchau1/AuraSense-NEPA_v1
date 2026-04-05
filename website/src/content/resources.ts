@@ -1,21 +1,21 @@
-import type { PageContent, ResourceEntry, SectionContent } from '../types/content';
+﻿import type { PageContent, ResourceEntry } from '../types/content';
 
 export const resourceCategories: string[] = [
-  'Platform Documentation',
-  'Product Documentation',
+  'Platform Overview',
+  'Product Briefs',
   'Integration Guides',
-  'Deployment Notes',
-  'Licensing & Legal',
-  'FAQ & Support',
-  'Architecture Briefs',
-  'Product Briefings',
+  'Deployment Guidance',
+  'Architecture Notes',
+  'Governance Materials',
+  'FAQ',
+  'Support',
 ];
 
 export const featuredResources: ResourceEntry[] = [
   {
     title: 'NEPA Platform Overview',
     description:
-      'NEPA deterministic runtime, evidence retention, and governance. For technical leadership assessing platform suitability.',
+      'A high-level overview of the NEPA platform, including runtime structure, evidence handling, operator review, and governance approach for technical evaluation and deployment planning.',
     type: 'Architecture brief',
     audience: 'Enterprise evaluators',
     cta: { label: 'Request Access', href: '/contact' },
@@ -23,58 +23,58 @@ export const featuredResources: ResourceEntry[] = [
   {
     title: 'SFSVC Deployment Guide',
     description:
-      'Step-by-step SFSVC deployment on Linux x86_64 and ARM64. Installation, activation, pipeline setup, and evidence export with C and Python examples.',
-    type: 'Integration guide',
+      'Deployment guidance for SFSVC across supported environments, covering installation flow, runtime setup, operational configuration, and engineering onboarding.',
+    type: 'Deployment guide',
     audience: 'Engineering teams',
     cta: { label: 'View Guide', href: '/resources/sfsvc-deployment-guide' },
   },
   {
-    title: 'SFSVC Licensing & Activation FAQ',
-    description:
-      'Offline Ed25519 activation, hardware fingerprint binding, evaluation terms, production licensing, and renewal procedures.',
-    type: 'FAQ',
-    audience: 'Engineering teams',
-    cta: { label: 'Read FAQ', href: '/faq' },
-  },
-  {
-    title: 'NERMN Navigation Stack Brief',
-    description:
-      'NERMN sensor ingestion, spike encoding, path planning, and safety supervision. Latency specs and deployment profiles for robotics engineers.',
-    type: 'Product brief',
-    audience: 'Robotics engineers',
-    cta: { label: 'Request Access', href: '/contact' },
-  },
-  {
     title: 'NSSIM Surveillance Intelligence Overview',
     description:
-      'NSSIM temporal correlation, alert orchestration, evidence retention, and multi-site deployment for security operations.',
+      'Overview of NSSIM for surveillance intelligence workflows, including event detection, operator review, alert handling, and evidence-aware operational coordination.',
     type: 'Product brief',
     audience: 'Security teams',
     cta: { label: 'Request Access', href: '/contact' },
   },
   {
-    title: 'Edge Deployment Reference Architecture',
+    title: 'NERMN Navigation Stack Brief',
     description:
-      'Standalone devices, site gateways, multi-site coordination, and enterprise uplink. Hardware specs and monitoring guidance.',
-    type: 'Architecture brief',
-    audience: 'Infrastructure engineers',
+      'Technical briefing for robotics and autonomy teams covering navigation workflows, runtime supervision, fallback handling, and deployment considerations.',
+    type: 'Product brief',
+    audience: 'Robotics engineers',
     cta: { label: 'Request Access', href: '/contact' },
   },
   {
-    title: 'Governance and Replay Verification Brief',
+    title: 'Edge Deployment Architecture',
     description:
-      'Chain-sealed audit logs, replay verification, model provenance, and bundle promotion for regulatory and legal compliance.',
-    type: 'Governance document',
-    audience: 'Enterprise evaluators',
+      'Reference material for edge and multi-site deployment planning, including device roles, coordination layers, monitoring expectations, and system integration considerations.',
+    type: 'Architecture note',
+    audience: 'Infrastructure teams',
     cta: { label: 'Request Access', href: '/contact' },
   },
   {
-    title: 'Integration API Reference',
+    title: 'Governance and Replay Brief',
     description:
-      'gRPC and REST API for telemetry, configuration, health, and evidence export. Authentication, error codes, and versioning.',
-    type: 'Technical documentation',
+      'Overview of auditability, evidence traceability, replay workflows, and governance controls for regulated, safety-sensitive, or high-trust environments.',
+    type: 'Governance brief',
+    audience: 'Technical evaluators',
+    cta: { label: 'Request Access', href: '/contact' },
+  },
+  {
+    title: 'Integration Overview',
+    description:
+      'General guidance for teams evaluating system integration, data exchange, deployment alignment, and technical onboarding across AuraSense products.',
+    type: 'Integration overview',
     audience: 'Engineering teams',
-    cta: { label: 'Contact for Docs', href: '/contact' },
+    cta: { label: 'Contact Engineering', href: '/contact' },
+  },
+  {
+    title: 'FAQ and Access Support',
+    description:
+      'Answers to common questions on evaluation access, documentation availability, onboarding pathways, and technical support channels.',
+    type: 'Support resource',
+    audience: 'All teams',
+    cta: { label: 'Read FAQ', href: '/faq' },
   },
 ];
 
@@ -82,116 +82,76 @@ export const audienceSegments: { title: string; description: string }[] = [
   {
     title: 'Engineering Teams',
     description:
-      'Integration guides, API references, SDK documentation. C/C++ headers, Python bindings, and platform-specific deployment.',
+      'Integration guidance, deployment materials, product documentation, and technical onboarding resources for implementation teams.',
   },
   {
-    title: 'Enterprise Evaluators',
+    title: 'Technical Evaluators',
     description:
-      'Architecture briefs, platform overviews, governance docs, and compliance materials for technical leadership.',
+      'Architecture notes, platform overviews, governance materials, and evaluation briefs for technical assessment and internal review.',
   },
   {
-    title: 'Security & Operations',
+    title: 'Operations and Deployment',
     description:
-      'Deployment architecture and operational docs for surveillance, alert orchestration, evidence handling, and multi-site coordination.',
+      'Deployment planning materials, environment guidance, monitoring expectations, and rollout support references for operational teams.',
   },
   {
-    title: 'Partners & Integrators',
+    title: 'Procurement and Partners',
     description:
-      'Integration architecture, co-deployment guides, and partnership materials. API surfaces, deployment models, and joint solutions.',
+      'Commercial evaluation materials, access pathways, support models, and engagement references for qualified partners and enterprise stakeholders.',
   },
 ];
 
-const categoriesSection: SectionContent = {
-  id: 'categories',
-  eyebrow: 'Library',
-  title: 'Resource Categories',
-  description:
-    'Resources organized by type and function — platform docs, product docs, integration guides, architecture briefs for evaluation and planning.',
+export const resourcesIntro = {
+  heading: 'Technical resources and evaluation materials',
+  body: 'AuraSense provides structured documentation and technical reference materials to support evaluation, integration, deployment planning, and product understanding. Materials are organized by audience, product area, and operational function.',
+};
+
+export const accessModel = {
+  heading: 'Access and support model',
+  body: 'Technical resources are provided through guided evaluation access, engineering engagement, or active platform programs. Public materials provide overview-level information, while deeper documentation is shared through approved access channels.',
   items: [
     {
-      title: 'Platform Documentation',
+      title: 'Evaluation Access',
       description:
-        'NEPA architecture, processing model, evidence retention, governance. Foundation documentation across all product modules.',
+        'Qualified teams can request access to technical materials, guided onboarding resources, and product-specific documentation for structured evaluation.',
     },
     {
-      title: 'Product Documentation',
+      title: 'Engineering Support',
       description:
-        'Module-specific docs for SFSVC, NERMN, and NSSIM. Architecture, API reference, configuration, deployment, and operations.',
+        'Engineering contact is available for integration discussions, deployment planning, and technical evaluation support.',
     },
     {
-      title: 'Integration Guides',
+      title: 'Documentation Access',
       description:
-        'Step-by-step deployment on target hardware, system integration, and parameter configuration. Includes code examples and platform instructions.',
-    },
-    {
-      title: 'Architecture Briefs',
-      description:
-        'High-level technical overviews for evaluation and planning. Processing model, deployment topology, evidence architecture, and governance.',
-    },
-    {
-      title: 'Licensing & Legal',
-      description:
-        'License activation guides, terms, privacy, and compliance. Covers offline activation, hardware fingerprint binding, and deployment licensing.',
-    },
-    {
-      title: 'FAQ & Support',
-      description:
-        'FAQs, troubleshooting guides, and support contacts organized by product module and deployment context.',
+        'Selected materials are available publicly, while deeper implementation and deployment documentation is shared through approved programs or licensed engagement.',
     },
   ],
 };
 
-const audienceSection: SectionContent = {
-  id: 'audience',
-  eyebrow: 'Audience',
-  title: 'Resources by Audience',
+export const signInPanel = {
+  eyebrow: 'Platform Access',
+  title: 'Sign in for workspace and operational access.',
   description:
-    'Materials organized by audience — engineers find integration details, evaluators find architecture overviews, operators find deployment guidance.',
-  items: audienceSegments.map((segment) => ({
-    title: segment.title,
-    description: segment.description,
-  })),
+    'Authorized users can sign in to access platform workspaces, evaluation materials, and connected operational interfaces across surveillance, drone, and robotics environments.',
+  primaryCta: { label: 'Sign in', href: '/contact' },
+  secondaryCta: { label: 'Request Access', href: '/contact' },
 };
 
-const supportModelSection: SectionContent = {
-  id: 'support',
-  eyebrow: 'Support',
-  title: 'Support Model',
-  description:
-    'Tiered support by engagement stage. Public docs available on website. Guided onboarding during evaluation. Enterprise agreements for production.',
-  items: [
-    {
-      title: 'Public Documentation',
-      description:
-        'Product overviews, architecture briefs, and FAQ available on the website without registration. Sufficient for assessment and evaluation planning.',
-    },
-    {
-      title: 'Guided Onboarding',
-      description:
-        'Architecture walkthrough, integration planning, configuration review, and engineering access during active evaluation. Scoped to evaluation agreement.',
-    },
-    {
-      title: 'Enterprise Briefings',
-      description:
-        'In-depth platform briefings for enterprise evaluation teams. Scheduled through the contact page, conducted by AuraSense engineering.',
-      cta: { label: 'Schedule Briefing', href: '/contact' },
-    },
-    {
-      title: 'Production Support',
-      description:
-        'Defined SLAs, escalation paths, and engineering access for production deployments. Contact support@aurasensehk.com for inquiries.',
-    },
-  ],
+export const resourcesCta = {
+  heading: 'Request evaluation access',
+  body: 'Access the documentation library, technical materials, and engineering support through the AuraSense evaluation process.',
+  primaryCta: { label: 'Request Access', href: '/contact' },
+  secondaryCta: { label: 'View Platform', href: '/platform' },
 };
 
 export const resourcesPageContent: PageContent = {
   hero: {
-    headline: 'Technical Resources and Evaluation Materials',
-    subheadline: 'Documentation, Guides, and Architecture Briefs',
+    headline: 'Documentation, guides, and technical materials.',
+    subheadline: 'Resources',
     description:
-      'Platform documentation, deployment guides, product briefs, and governance materials for evaluators, engineers, and partners. Organized by audience and function.',
+      'Access platform overviews, deployment guidance, product briefs, and evaluation materials for engineers, technical evaluators, and deployment partners.',
     primaryCta: { label: 'Request Access', href: '/contact' },
     secondaryCta: { label: 'Contact Engineering', href: '/contact' },
   },
-  sections: [categoriesSection, audienceSection, supportModelSection],
+  sections: [],
 };

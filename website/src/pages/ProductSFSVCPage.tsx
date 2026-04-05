@@ -81,22 +81,36 @@ export function ProductSFSVCPage() {
         </header>
       </SectionWrapper>
 
-      {/* ── Visual Band (media placeholder) ── */}
+      {/* ── Visual Band ── */}
       <SectionWrapper id="live-output" dark>
         <header className="section-header">
           <span className="section-eyebrow">{visualBand.eyebrow}</span>
           <h2>{visualBand.title}</h2>
           <p className="max-w-3xl mx-auto">{visualBand.description}</p>
         </header>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
-          {visualBand.mediaLabels.map((label) => (
-            <div
-              key={label}
-              className="aspect-video rounded-lg bg-surface flex items-center justify-center border border-border-subtle"
-            >
-              <span className="text-text-secondary text-sm font-medium">{label}</span>
-            </div>
-          ))}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-10">
+          <figure className="rounded-lg overflow-hidden border border-border-subtle">
+            <img
+              src="/assets/Website_SFSVC_livefeeddemo.png"
+              alt="NEPA live feed — LiDAR overlay, thermal heatmap, and spike stream on a facade surface"
+              className="w-full h-auto"
+              loading="lazy"
+            />
+            <figcaption className="bg-surface-raised px-4 py-2 text-text-secondary text-xs text-center">
+              Live Feed — LiDAR overlay · Thermal heatmap · Spike stream
+            </figcaption>
+          </figure>
+          <figure className="rounded-lg overflow-hidden border border-border-subtle">
+            <img
+              src="/assets/Website_SFSVC_Inference.png"
+              alt="NEPA inference engine — crack detection, growth analysis, risk scoring, and carbonation depth profile"
+              className="w-full h-auto"
+              loading="lazy"
+            />
+            <figcaption className="bg-surface-raised px-4 py-2 text-text-secondary text-xs text-center">
+              Inference Engine — Crack detect · Growth · Risk · Chemical map
+            </figcaption>
+          </figure>
         </div>
       </SectionWrapper>
 

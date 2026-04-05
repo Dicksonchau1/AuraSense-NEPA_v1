@@ -1,6 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
+﻿import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { mainNavLinks } from '../../content/navigation';
+import { mainNavLinks, navActions } from '../../content/navigation';
+import { Button } from '../ui/Button';
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -16,10 +17,7 @@ export function Header() {
   // Close dropdown on outside click
   useEffect(() => {
     function handleClick(e: MouseEvent) {
-      if (
-        navRef.current &&
-        !navRef.current.contains(e.target as Node)
-      ) {
+      if (navRef.current && !navRef.current.contains(e.target as Node)) {
         setOpenDropdown(null);
       }
     }
@@ -27,7 +25,15 @@ export function Header() {
     return () => document.removeEventListener('mousedown', handleClick);
   }, []);
 
+  // Close menus on route change
+  useEffect(() => {
+    closeMenus();
+  }, [location.pathname]);
+
   function isActive(href: string) {
+    if (href.includes('#')) {
+      return location.pathname === href.split('#')[0];
+    }
     return location.pathname === href || location.pathname.startsWith(href + '/');
   }
 
@@ -47,7 +53,9 @@ export function Header() {
               <div key={link.label} className="relative">
                 <button
                   type="button"
-                  onClick={() => setOpenDropdown((o) => o === link.label ? null : link.label)}
+                  onClick={() =>
+                    setOpenDropdown((o) => (o === link.label ? null : link.label))
+                  }
                   className={`flex items-center gap-1 text-sm transition-colors duration-150 ${
                     isActive(link.href)
                       ? 'text-accent'
@@ -56,7 +64,9 @@ export function Header() {
                 >
                   {link.label}
                   <svg
-                    className={`w-3.5 h-3.5 transition-transform duration-150 ${openDropdown === link.label ? 'rotate-180' : ''}`}
+                    className={`w-3.5 h-3.5 transition-transform duration-150 ${
+                      openDropdown === link.label ? 'rotate-180' : ''
+                    }`}
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -102,6 +112,20 @@ export function Header() {
           )}
         </nav>
 
+        {/* Desktop action buttons (Sign in) */}
+        <div className="hidden md:flex items-center gap-3">
+          {navActions.map((action) => (
+            <Button
+              key={action.label}
+              variant={action.variant}
+              size="sm"
+              href={action.href}
+            >
+              {action.label}
+            </Button>
+          ))}
+        </div>
+
         {/* Mobile hamburger */}
         <button
           type="button"
@@ -129,7 +153,7 @@ export function Header() {
               <Link
                 to={link.href}
                 onClick={closeMenus}
-                className={`block py-2 text-sm transition-colors duration-150 ${
+                className={`block py-2 text-sm font-medium transition-colors duration-150 ${
                   isActive(link.href)
                     ? 'text-accent'
                     : 'text-text-secondary hover:text-text-primary'

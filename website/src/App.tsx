@@ -11,6 +11,7 @@ import { ResourcesPage } from './pages/ResourcesPage';
 import { CareersPage } from './pages/CareersPage';
 import { ContactPage } from './pages/ContactPage';
 import { FAQPage } from './pages/FAQPage';
+import { LoginPage } from './pages/LoginPage';
 export default function App() {
   return (
     <BrowserRouter>
@@ -27,6 +28,7 @@ export default function App() {
           <Route path="careers" element={<CareersPage />} />
           <Route path="contact" element={<ContactPage />} />
           <Route path="faq" element={<FAQPage />} />
+          <Route path="login" element={<LoginPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -1,12 +1,14 @@
-import type { NavLink } from '../types/content';
+﻿import type { NavLink } from '../types/content';
 
 export const mainNavLinks: NavLink[] = [
   {
-    label: 'About',
-    href: '/about',
+    label: 'Platform',
+    href: '/platform',
     children: [
-      { label: 'Company', href: '/about' },
-      { label: 'Platform', href: '/platform' },
+      { label: 'NEPA', href: '/platform' },
+      { label: 'Architecture', href: '/platform#architecture' },
+      { label: 'Replay Verification', href: '/platform#replay-verification' },
+      { label: 'Governance', href: '/platform#governance' },
     ],
   },
   {
@@ -19,15 +21,24 @@ export const mainNavLinks: NavLink[] = [
     ],
   },
   {
-    label: 'Resources',
-    href: '/resources',
+    label: 'About',
+    href: '/about',
+    children: [
+      { label: 'Company', href: '/about' },
+      { label: 'Platform', href: '/platform' },
+      { label: 'Careers', href: '/careers' },
+    ],
   },
   {
-    label: 'Careers',
-    href: '/careers',
+    label: 'Resources',
+    href: '/resources',
   },
   {
     label: 'Contact',
     href: '/contact',
   },
+];
+
+export const navActions = [
+  { label: 'Sign in', href: '/login', variant: 'primary' as const },
 ];
