@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import type { HeroContent } from '../../types/content';
 import { Button } from '../ui/Button';
 
@@ -13,18 +13,31 @@ interface HeroProps {
 export function Hero({ content, large = false, videoSrc, videoFadeAt = 3.5 }: HeroProps) {
   const headlineWords = content.headline.split(' ');
   const [contentVisible, setContentVisible] = useState(!videoSrc);
+  const [videoReady, setVideoReady] = useState(false);
   const hasFired = useRef(false);
+
+  const show = useCallback(() => {
+    if (hasFired.current) return;
+    hasFired.current = true;
+    setContentVisible(true);
+  }, []);
+
+  // Fallback: always show content after videoFadeAt + 1s even if video fails
+  useEffect(() => {
+    if (!videoSrc) return;
+    const timer = setTimeout(show, (videoFadeAt + 1) * 1000);
+    return () => clearTimeout(timer);
+  }, [videoSrc, videoFadeAt, show]);
 
   const handleTimeUpdate = useCallback(
     (e: React.SyntheticEvent<HTMLVideoElement>) => {
       if (hasFired.current) return;
       const video = e.currentTarget;
       if (video.currentTime >= videoFadeAt) {
-        hasFired.current = true;
-        setContentVisible(true);
+        show();
       }
     },
-    [videoFadeAt],
+    [videoFadeAt, show],
   );
 
   return (
@@ -37,13 +50,15 @@ export function Hero({ content, large = false, videoSrc, videoFadeAt = 3.5 }: He
       {/* ── Background video ── */}
       {videoSrc && (
         <video
-          className="hero-video"
+          className={`hero-video ${videoReady ? 'opacity-100' : 'opacity-0'} transition-opacity duration-700`}
           src={videoSrc}
           autoPlay
           loop
           muted
           playsInline
+          onCanPlay={() => setVideoReady(true)}
           onTimeUpdate={handleTimeUpdate}
+          onError={show}
         />
       )}
 
