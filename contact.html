@@ -195,14 +195,7 @@
   </div>
 </footer>
 
-<script>
-(function(){
-  const dd=document.getElementById('company-dd'),btn=document.getElementById('company-btn');
-  if(dd&&btn){btn.addEventListener('click',function(e){e.stopPropagation();const o=dd.classList.toggle('open');btn.setAttribute('aria-expanded',o);});document.addEventListener('click',()=>{dd.classList.remove('open');btn.setAttribute('aria-expanded','false');});}
-  const ham=document.getElementById('hamburger'),drawer=document.getElementById('mobile-drawer');
-  if(ham&&drawer){ham.addEventListener('click',()=>drawer.classList.toggle('open'));}
-})();
-</script>
+
 <!-- ═══ NAV DROPDOWN + MOBILE ══════════════════════════════════ -->
 <script>
 (function(){
