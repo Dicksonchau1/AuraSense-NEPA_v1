@@ -37,10 +37,10 @@ export const footerColumns: FooterColumn[] = [
   {
     title: 'Legal',
     links: [
-      { label: 'Terms of Service', href: '/terms' },
-      { label: 'Privacy Policy', href: '/privacy' },
-      { label: 'Refund Policy', href: '/refund' },
-      { label: 'Cookie Policy', href: '/cookies' },
+      { label: 'Terms of Service', href: '/legal/terms.html' },
+      { label: 'Privacy Policy', href: '/legal/privacy.html' },
+      { label: 'Refund Policy', href: '/legal/refund.html' },
+      { label: 'Cookie Policy', href: '/legal/cookies.html' },
     ],
   },
 ];

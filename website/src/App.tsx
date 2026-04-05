@@ -10,8 +10,6 @@ import { ResourcesPage } from './pages/ResourcesPage';
 import { CareersPage } from './pages/CareersPage';
 import { ContactPage } from './pages/ContactPage';
 import { FAQPage } from './pages/FAQPage';
-import { LegalPage } from './pages/LegalPage';
-
 export default function App() {
   return (
     <BrowserRouter>
@@ -27,10 +25,6 @@ export default function App() {
           <Route path="careers" element={<CareersPage />} />
           <Route path="contact" element={<ContactPage />} />
           <Route path="faq" element={<FAQPage />} />
-          <Route path="legal/terms" element={<LegalPage title="Terms of Service" />} />
-          <Route path="legal/privacy" element={<LegalPage title="Privacy Policy" />} />
-          <Route path="legal/refund" element={<LegalPage title="Refund Policy" />} />
-          <Route path="legal/cookies" element={<LegalPage title="Cookie Policy" />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -15,12 +15,21 @@ export function Footer() {
               <ul className="space-y-2">
                 {col.links.map((link) => (
                   <li key={link.href}>
-                    <Link
-                      to={link.href}
-                      className="text-text-muted text-sm hover:text-text-secondary transition-colors duration-150"
-                    >
-                      {link.label}
-                    </Link>
+                    {link.href.endsWith('.html') ? (
+                      <a
+                        href={link.href}
+                        className="text-text-muted text-sm hover:text-text-secondary transition-colors duration-150"
+                      >
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link
+                        to={link.href}
+                        className="text-text-muted text-sm hover:text-text-secondary transition-colors duration-150"
+                      >
+                        {link.label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
