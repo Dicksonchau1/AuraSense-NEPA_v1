@@ -1,126 +1,300 @@
 import { useEffect, useState } from 'react';
-import { Hero } from '../components/sections/Hero';
 import { SectionWrapper } from '../components/ui/SectionWrapper';
-import { FeatureGrid } from '../components/sections/FeatureGrid';
 import { Button } from '../components/ui/Button';
 import { sfsvcContent } from '../content/sfsvc';
-import type { ProductPageContent } from '../types/content';
 
 export function ProductSFSVCPage() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const { hero, sections, specs, faqItems } = sfsvcContent as ProductPageContent;
+  const {
+    hero,
+    proofStrip,
+    overview,
+    visualBand,
+    architecture,
+    capabilityOne,
+    capabilityTwo,
+    capabilityThree,
+    deployment,
+    governance,
+    integration,
+    technicalProfile,
+    faq,
+    finalCta,
+  } = sfsvcContent;
 
   return (
     <main>
-      <Hero content={hero} />
-
-      {sections.map((section, index) => (
-        <SectionWrapper key={section.id} id={section.id} dark={index % 2 === 0}>
-          <header className="section-header">
-            {section.eyebrow && (
-              <span className="section-eyebrow">{section.eyebrow}</span>
-            )}
-            <h2>{section.title}</h2>
-            <p>{section.description}</p>
-          </header>
-          {section.items && section.items.length > 0 && (
-            <FeatureGrid items={section.items} columns={section.items.length <= 3 ? 3 : 4} />
-          )}
-        </SectionWrapper>
-      ))}
-
-      {specs && specs.length > 0 && (
-        <SectionWrapper id="specs" dark>
-          <header className="section-header">
-            <h2>Technical Specifications</h2>
-            <p>Measured performance characteristics under reference conditions.</p>
-          </header>
-          <div className="specs-table" role="table" aria-label="SFSVC Specifications">
-            {specs.map((spec) => (
-              <div
-                key={spec.label}
-                className="specs-row"
-                role="row"
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  padding: '0.75rem 1rem',
-                  borderBottom: '1px solid var(--border-subtle, #1e293b)',
-                }}
-              >
-                <span style={{ color: '#94a3b8', fontWeight: 500 }}>{spec.label}</span>
-                <span style={{ color: '#ffffff', fontFamily: 'monospace' }}>{spec.value}</span>
-              </div>
-            ))}
-          </div>
-        </SectionWrapper>
-      )}
-
-      {faqItems && faqItems.length > 0 && (
-        <SectionWrapper id="faq">
-          <header className="section-header">
-            <h2>Frequently Asked Questions</h2>
-          </header>
-          <div className="faq-list">
-            {faqItems.map((item) => (
-              <FAQItem key={item.question} question={item.question} answer={item.answer} />
-            ))}
-          </div>
-        </SectionWrapper>
-      )}
-
-      <SectionWrapper id="sfsvc-cta" dark>
-        <header className="section-header">
-          <h2>Evaluate SFSVC</h2>
-          <p>
-            Request SDK access, review integration documentation, or schedule a technical briefing.
+      {/* ── Hero ── */}
+      <section className="relative flex items-center justify-center text-center py-16 lg:py-24">
+        <div className="relative z-10 max-w-4xl mx-auto px-6 hero-animate">
+          <p className="hero-float text-accent text-xs font-semibold tracking-[0.2em] uppercase mb-5"
+             style={{ animationDelay: '0s' }}>
+            {hero.eyebrow}
           </p>
+          <h1 className="hero-float text-text-primary font-bold leading-[1.1] tracking-tight text-3xl md:text-4xl lg:text-5xl"
+              style={{ animationDelay: '0.2s' }}>
+            {hero.title}
+          </h1>
+          <p className="hero-float text-text-secondary text-base md:text-lg max-w-2xl mx-auto mt-5 leading-relaxed"
+             style={{ animationDelay: '0.4s' }}>
+            {hero.description}
+          </p>
+          <div className="hero-float mt-8 flex flex-wrap items-center justify-center gap-4"
+               style={{ animationDelay: '0.6s' }}>
+            <Button variant="primary" size="lg" href={hero.primaryCta.href}>
+              {hero.primaryCta.label}
+            </Button>
+            <Button variant="secondary" size="lg" href={hero.secondaryCta.href}>
+              {hero.secondaryCta.label}
+            </Button>
+          </div>
+          <p className="hero-float text-text-secondary text-sm mt-6 opacity-70"
+             style={{ animationDelay: '0.8s' }}>
+            {hero.supportLine}
+          </p>
+        </div>
+      </section>
+
+      {/* ── Proof Strip ── */}
+      <div className="bg-surface-raised border-y border-border-subtle">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex flex-wrap items-center justify-center gap-6 md:gap-10">
+          {proofStrip.map((tag) => (
+            <span
+              key={tag}
+              className="text-accent text-xs font-semibold tracking-[0.15em] uppercase"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* ── Overview ── */}
+      <SectionWrapper id="overview">
+        <header className="section-header">
+          <span className="section-eyebrow">{overview.eyebrow}</span>
+          <h2>{overview.title}</h2>
+          <p className="max-w-3xl mx-auto">{overview.description}</p>
         </header>
-        <div className="cta-actions">
-          <Button variant="primary" href="/contact">Request SDK Access</Button>
-          <Button variant="secondary" href="/products">All Products</Button>
+      </SectionWrapper>
+
+      {/* ── Visual Band (media placeholder) ── */}
+      <SectionWrapper id="live-output" dark>
+        <header className="section-header">
+          <span className="section-eyebrow">{visualBand.eyebrow}</span>
+          <h2>{visualBand.title}</h2>
+          <p className="max-w-3xl mx-auto">{visualBand.description}</p>
+        </header>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
+          {visualBand.mediaLabels.map((label) => (
+            <div
+              key={label}
+              className="aspect-video rounded-lg bg-surface flex items-center justify-center border border-border-subtle"
+            >
+              <span className="text-text-secondary text-sm font-medium">{label}</span>
+            </div>
+          ))}
+        </div>
+      </SectionWrapper>
+
+      {/* ── Architecture ── */}
+      <SectionWrapper id="architecture">
+        <header className="section-header">
+          <span className="section-eyebrow">{architecture.eyebrow}</span>
+          <h2>{architecture.title}</h2>
+          <p className="max-w-3xl mx-auto">{architecture.description}</p>
+        </header>
+
+        {/* Flow strip */}
+        <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3 mt-10">
+          {architecture.flow.map((step, i) => (
+            <span key={step} className="flex items-center gap-2 md:gap-3">
+              <span className="px-4 py-2 rounded-md bg-surface-raised border border-border-subtle text-text-primary text-sm font-medium">
+                {step}
+              </span>
+              {i < architecture.flow.length - 1 && (
+                <span className="text-accent text-lg">→</span>
+              )}
+            </span>
+          ))}
+        </div>
+
+        {/* Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mt-10 stagger-children animate-on-scroll">
+          {architecture.cards.map((card) => (
+            <div
+              key={card.title}
+              className="rounded-lg bg-surface-raised border border-border-subtle p-5"
+            >
+              <h3 className="text-text-primary font-semibold text-sm mb-2">{card.title}</h3>
+              <p className="text-text-secondary text-sm leading-relaxed">{card.description}</p>
+            </div>
+          ))}
+        </div>
+      </SectionWrapper>
+
+      {/* ── Capability: Edge Processing ── */}
+      <CapabilityBand section={capabilityOne} dark />
+
+      {/* ── Capability: Detection Logic ── */}
+      <CapabilityBand section={capabilityTwo} />
+
+      {/* ── Capability: Operational Output ── */}
+      <CapabilityBand section={capabilityThree} dark />
+
+      {/* ── Deployment + Governance split ── */}
+      <SectionWrapper id="deployment">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* Deployment */}
+          <div>
+            <span className="section-eyebrow">{deployment.eyebrow}</span>
+            <h2 className="text-text-primary text-2xl font-bold mt-2">{deployment.title}</h2>
+            <p className="text-text-secondary mt-3 leading-relaxed">{deployment.description}</p>
+            <div className="flex flex-wrap gap-3 mt-6">
+              {deployment.bands.map((band) => (
+                <span
+                  key={band}
+                  className="px-3 py-1.5 rounded-md bg-surface-raised border border-border-subtle text-text-primary text-xs font-medium"
+                >
+                  {band}
+                </span>
+              ))}
+            </div>
+          </div>
+          {/* Governance */}
+          <div>
+            <span className="section-eyebrow">{governance.eyebrow}</span>
+            <h2 className="text-text-primary text-2xl font-bold mt-2">{governance.title}</h2>
+            <p className="text-text-secondary mt-3 leading-relaxed">{governance.description}</p>
+            <ul className="mt-6 space-y-3">
+              {governance.items.map((item) => (
+                <li key={item} className="flex items-start gap-2">
+                  <span className="text-accent mt-0.5">✓</span>
+                  <span className="text-text-secondary text-sm">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </SectionWrapper>
+
+      {/* ── Integration ── */}
+      <SectionWrapper id="integration" dark>
+        <header className="section-header">
+          <span className="section-eyebrow">{integration.eyebrow}</span>
+          <h2>{integration.title}</h2>
+          <p className="max-w-3xl mx-auto">{integration.description}</p>
+        </header>
+        <ul className="flex flex-wrap items-center justify-center gap-6 mt-8">
+          {integration.items.map((item) => (
+            <li key={item} className="flex items-center gap-2">
+              <span className="text-accent">✓</span>
+              <span className="text-text-secondary text-sm">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </SectionWrapper>
+
+      {/* ── Technical Profile ── */}
+      <SectionWrapper id="technical-profile">
+        <header className="section-header">
+          <span className="section-eyebrow">{technicalProfile.eyebrow}</span>
+          <h2>{technicalProfile.title}</h2>
+          <p className="max-w-3xl mx-auto">{technicalProfile.description}</p>
+        </header>
+        <div className="flex flex-wrap items-center justify-center gap-3 mt-8">
+          {technicalProfile.chips.map((chip) => (
+            <span
+              key={chip}
+              className="px-4 py-2 rounded-full bg-surface-raised border border-border-subtle text-text-primary text-sm font-medium"
+            >
+              {chip}
+            </span>
+          ))}
+        </div>
+      </SectionWrapper>
+
+      {/* ── FAQ ── */}
+      <SectionWrapper id="faq" dark>
+        <header className="section-header">
+          <span className="section-eyebrow">{faq.eyebrow}</span>
+          <h2>{faq.title}</h2>
+        </header>
+        <div className="max-w-2xl mx-auto mt-8">
+          {faq.items.map((item) => (
+            <FAQItem key={item.question} question={item.question} answer={item.answer} />
+          ))}
+        </div>
+      </SectionWrapper>
+
+      {/* ── Final CTA ── */}
+      <SectionWrapper id="sfsvc-cta">
+        <header className="section-header">
+          <span className="section-eyebrow">{finalCta.eyebrow}</span>
+          <h2>{finalCta.title}</h2>
+          <p className="max-w-2xl mx-auto">{finalCta.description}</p>
+        </header>
+        <div className="cta-actions mt-8">
+          <Button variant="primary" href={finalCta.primaryCta.href}>
+            {finalCta.primaryCta.label}
+          </Button>
+          <Button variant="secondary" href={finalCta.secondaryCta.href}>
+            {finalCta.secondaryCta.label}
+          </Button>
         </div>
       </SectionWrapper>
     </main>
   );
 }
 
+/* ── Capability Band (reused for three sections) ── */
+function CapabilityBand({
+  section,
+  dark = false,
+}: {
+  section: { eyebrow: string; title: string; description: string; items: string[] };
+  dark?: boolean;
+}) {
+  return (
+    <SectionWrapper dark={dark}>
+      <div className="max-w-3xl mx-auto text-center">
+        <span className="section-eyebrow">{section.eyebrow}</span>
+        <h2 className="text-text-primary text-2xl md:text-3xl font-bold mt-2">{section.title}</h2>
+        <p className="text-text-secondary mt-3 leading-relaxed">{section.description}</p>
+        <ul className="flex flex-wrap items-center justify-center gap-5 mt-8">
+          {section.items.map((item) => (
+            <li key={item} className="flex items-center gap-2">
+              <span className="text-accent">✓</span>
+              <span className="text-text-secondary text-sm">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </SectionWrapper>
+  );
+}
+
+/* ── FAQ accordion item ── */
 function FAQItem({ question, answer }: { question: string; answer: string }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div
-      className="faq-item"
-      style={{
-        borderBottom: '1px solid var(--border-subtle, #1e293b)',
-        padding: '1.25rem 0',
-      }}
-    >
+    <div className="border-b border-border-subtle py-5">
       <button
         onClick={() => setOpen(!open)}
         aria-expanded={open}
-        style={{
-          all: 'unset',
-          cursor: 'pointer',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          width: '100%',
-          color: '#ffffff',
-          fontWeight: 600,
-          fontSize: '1rem',
-        }}
+        className="w-full flex items-center justify-between text-left cursor-pointer bg-transparent border-0 text-text-primary font-semibold text-base p-0"
       >
         <span>{question}</span>
-        <span style={{ color: '#14b8a6', fontSize: '1.25rem', marginLeft: '1rem' }}>
+        <span className="text-accent text-xl ml-4" aria-hidden="true">
           {open ? '−' : '+'}
         </span>
       </button>
       {open && (
-        <p style={{ color: '#94a3b8', marginTop: '0.75rem', lineHeight: 1.6 }}>
+        <p className="text-text-secondary mt-3 leading-relaxed">
           {answer}
         </p>
       )}

@@ -1,218 +1,197 @@
-import type { ProductPageContent } from '../types/content';
+import type { SFSVCPageContent } from '../types/content';
 
-export const sfsvcContent: ProductPageContent = {
+export const sfsvcContent: SFSVCPageContent = {
   hero: {
-    headline: 'SFSVC — Neuromorphic Compression and Perception SDK',
-    subheadline: 'Spike-based Facade Surface Vision Codec',
+    eyebrow: 'SFSVC',
+    title: 'Spike-based Facade Surface Vision Codec.',
     description:
-      'Neuromorphic compression and perception SDK for edge inspection. Spike-train encoding, CPU-only classification with SIMD, structured defect telemetry. No GPU. Offline-capable.',
+      'Neuromorphic compression and perception for edge inspection. SFSVC converts live surface video into sparse events, visual overlays, and structured telemetry on CPU-first edge systems.',
+    primaryCta: { label: 'Request SFSVC Evaluation', href: '/contact' },
+    secondaryCta: { label: 'View All Products', href: '/products' },
+    supportLine:
+      'Built for inspection workflows on drones, gateways, and field systems.',
+  },
+
+  proofStrip: ['CPU-first', 'Spike-based', 'Deterministic', 'Offline-capable'],
+
+  overview: {
+    eyebrow: 'Overview',
+    title: 'Compression, perception, and evidence in one edge pipeline.',
+    description:
+      'SFSVC is designed for inspection environments where compute, power, and reliability matter. It suppresses static background, encodes temporal change as sparse events, and produces replay-ready output for review, analysis, and downstream action.',
+  },
+
+  visualBand: {
+    eyebrow: 'Live Output',
+    title: 'From live feed to inspection overlay.',
+    description:
+      'Use live video, spike plots, anomaly graphs, and surface overlays to show how SFSVC turns raw inspection footage into structured output.',
+    mediaLabels: [
+      'Live Feed',
+      'Spike Activity',
+      'Surface Overlay',
+      'Telemetry Output',
+    ],
+  },
+
+  architecture: {
+    eyebrow: 'Architecture',
+    title: 'Surface in. Structured output out.',
+    description:
+      'A deterministic edge pipeline for live inspection and replay-ready telemetry.',
+    flow: [
+      'Live Feed',
+      'Temporal Change',
+      'Spike Encoding',
+      'Anomaly Scoring',
+      'Overlay + Telemetry',
+    ],
+    cards: [
+      {
+        title: 'Live feed',
+        description:
+          'Ingests facade or inspection video directly from edge devices.',
+      },
+      {
+        title: 'Temporal change',
+        description:
+          'Suppresses static background and isolates surface change.',
+      },
+      {
+        title: 'Spike encoding',
+        description: 'Converts change into sparse timestamped events.',
+      },
+      {
+        title: 'Anomaly scoring',
+        description: 'Measures deviation and flags surface risk.',
+      },
+      {
+        title: 'Structured output',
+        description:
+          'Emits overlay, severity, region, and replay-ready telemetry.',
+      },
+    ],
+  },
+
+  capabilityOne: {
+    eyebrow: 'Edge Processing',
+    title: 'CPU-first by design.',
+    description:
+      'SFSVC runs on CPUs with SIMD acceleration and does not depend on GPU infrastructure. It is built for deployable inspection systems where thermal budget, portability, and reliability matter.',
+    items: [
+      'AVX2 / NEON acceleration',
+      'No GPU dependency',
+      'Deployable on edge hardware',
+    ],
+  },
+
+  capabilityTwo: {
+    eyebrow: 'Detection Logic',
+    title: 'Sparse signals, not full-frame waste.',
+    description:
+      'SFSVC tracks structural change instead of reprocessing static background. This keeps the pipeline compact, fast, and better aligned with real inspection scenes.',
+    items: [
+      'Temporal differencing',
+      'Spike-based event streams',
+      'Reduced background load',
+    ],
+  },
+
+  capabilityThree: {
+    eyebrow: 'Operational Output',
+    title: 'Built for review and downstream action.',
+    description:
+      'SFSVC output is structured for dashboards, replay, audit trails, and engineering workflows. It does not stop at a raw model score.',
+    items: [
+      'Surface region and severity',
+      'Replay-ready records',
+      'Telemetry for NEPA workflows',
+    ],
+  },
+
+  deployment: {
+    eyebrow: 'Deployment',
+    title: 'Runs where inspection actually happens.',
+    description:
+      'Deploy SFSVC on drones, gateways, inspection rigs, and field devices. Offline-capable operation and local evidence retention make it suitable for constrained or air-gapped environments.',
+    bands: [
+      'Linux x86_64',
+      'Linux ARM64',
+      'Offline activation',
+      'Local evidence retention',
+    ],
+  },
+
+  governance: {
+    eyebrow: 'Governance',
+    title: 'Traceable by design.',
+    description:
+      'SFSVC is built for deterministic replay, structured evidence, and governed model use. Outputs remain reviewable, attributable, and fit for technical evaluation.',
+    items: [
+      'Replay-ready artifacts',
+      'Versioned bundle control',
+      'Evidence-grade telemetry',
+    ],
+  },
+
+  integration: {
+    eyebrow: 'Integration',
+    title: 'Fits into existing inspection systems.',
+    description:
+      'SFSVC is designed to connect cleanly with mission software, inspection dashboards, edge runtimes, and downstream analysis pipelines.',
+    items: [
+      'C and Python integration paths',
+      'Dashboard and telemetry compatibility',
+      'Engineering onboarding available',
+    ],
+  },
+
+  technicalProfile: {
+    eyebrow: 'Technical Profile',
+    title: 'High-speed edge perception under real constraints.',
+    description:
+      'Latency, throughput, compression behavior, and deployment profiles can be demonstrated through evaluator materials, plots, and live reference outputs rather than long static specification tables.',
+    chips: [
+      'Sub-millisecond classification',
+      'High-frame-rate operation',
+      'Sparse event compression',
+      'CPU-only deployment',
+    ],
+  },
+
+  faq: {
+    eyebrow: 'FAQ',
+    title: 'Common questions.',
+    items: [
+      {
+        question: 'Does SFSVC require a GPU?',
+        answer:
+          'No. SFSVC is designed for CPU-first execution with SIMD acceleration.',
+      },
+      {
+        question: 'Can SFSVC run offline?',
+        answer:
+          'Yes. Activation and evidence handling are designed for offline and controlled environments.',
+      },
+      {
+        question: 'What does SFSVC output?',
+        answer:
+          'Visual overlays, anomaly signals, and structured telemetry for inspection and review.',
+      },
+      {
+        question: 'Is SFSVC replay-ready?',
+        answer:
+          'Yes. Output artifacts are designed to support replay, traceability, and audit workflows.',
+      },
+    ],
+  },
+
+  finalCta: {
+    eyebrow: 'Evaluate SFSVC',
+    title: 'See the codec in a real inspection workflow.',
+    description:
+      'Request evaluation access, review deployment materials, or schedule a technical discussion with AuraSense engineering.',
     primaryCta: { label: 'Request SFSVC Evaluation', href: '/contact' },
     secondaryCta: { label: 'View All Products', href: '/products' },
   },
-  sections: [
-    {
-      id: 'why-sfsvc',
-      eyebrow: 'Overview',
-      title: 'Why SFSVC',
-      description:
-        'Spike-based temporal encoding produces structured defect telemetry at sub-millisecond latency on commodity CPUs. Deterministic, auditable, no GPU dependency.',
-      items: [
-        {
-          title: 'CPU-First Architecture',
-          description:
-            'Runs entirely on CPU with AVX2/NEON SIMD. No GPU, no CUDA, no driver matrix. Deploys on drones, gateways, and ruggedized field units.',
-        },
-        {
-          title: 'Spike-Based Temporal Encoding',
-          description:
-            'Encodes temporal frame differences as sparse spike events capturing structural changes. 10–50× compression over raw frames while discarding static background.',
-        },
-        {
-          title: 'Deterministic Classification',
-          description:
-            'Identical outputs for identical inputs regardless of timing or platform. No GPU non-determinism. Every classification is replay-verifiable.',
-        },
-        {
-          title: 'Offline Operation',
-          description:
-            'No network required. Ed25519 offline license verification. Self-contained binaries, models, and local evidence storage. Post-mission retrieval via physical media.',
-        },
-      ],
-    },
-    {
-      id: 'compression-pipeline',
-      eyebrow: 'Architecture',
-      title: 'Compression Pipeline',
-      description:
-        'Deterministic stages: temporal differencing, spike encoding, feature extraction, anomaly scoring, classification. Each stage bounded-latency with artifacts retained for replay.',
-      items: [
-        {
-          title: 'Temporal Differencing',
-          description:
-            'SIMD-accelerated pixel-wise subtraction highlights structural changes. Static background suppressed, reducing downstream processing 80–95%.',
-        },
-        {
-          title: 'Spike Encoding',
-          description:
-            'Temporal differences encoded as discrete, timestamped spike events. Configurable threshold per deployment. Naturally compressed, temporally precise.',
-        },
-        {
-          title: 'Feature Extraction and Anomaly Scoring',
-          description:
-            'Cosine similarity matching against D=256 prototypes. Advisory threshold at 0.35, high-severity at 0.55. Anomaly scores drive telemetry emission.',
-        },
-        {
-          title: 'Structured Telemetry Output',
-          description:
-            'Structured records with defect type, severity, zone, anomaly score, and model version. Chain-sealed into evidence log for review and replay.',
-        },
-      ],
-    },
-    {
-      id: 'deployment-profile',
-      eyebrow: 'Deployment',
-      title: 'Deployment Profile',
-      description:
-        'Native shared library with C headers and Python bindings. Linux x86_64 and ARM64 with SIMD. Offline-capable with Ed25519 activation.',
-      items: [
-        {
-          title: 'Platform Targets',
-          description:
-            'Linux x86_64 with AVX2 (primary). ARM64 with NEON (embedded). Minimum 2GB RAM. No GPU or specialized accelerator required.',
-        },
-        {
-          title: 'SIMD Acceleration',
-          description:
-            '256-bit SIMD with _mm256_fmadd_ps, 4-way unrolling, 32-byte aligned buffers. Compile-time target selection with scalar fallback.',
-        },
-        {
-          title: 'Offline Activation',
-          description:
-            'Ed25519 public-key verification. Offline token, no server callback, no network dependency. Persists across reboots.',
-        },
-        {
-          title: 'Model Bundle Management',
-          description:
-            'Versioned bundles with SHA-256 integrity. Governed promotion pipeline with human approval gates. No autonomous bundle promotion.',
-        },
-      ],
-    },
-    {
-      id: 'supported-environments',
-      eyebrow: 'Compatibility',
-      title: 'Supported Environments',
-      description:
-        'Validated target environments. Deployment outside these targets may work but is not covered by support guarantees.',
-      items: [
-        {
-          title: 'Linux x86_64 (Primary)',
-          description:
-            'Ubuntu 20.04+, Debian 11+, RHEL 8+. AVX2-capable CPU (Haswell+/Excavator+). Recommended 4+ cores, 4GB+ RAM.',
-        },
-        {
-          title: 'Linux ARM64 (Embedded)',
-          description:
-            'Ubuntu 20.04+ aarch64, Yocto/Buildroot. NEON-capable Cortex-A53+. Validated on Jetson, Raspberry Pi 4/5, and Qualcomm RB5.',
-        },
-        {
-          title: 'Containerized Deployment',
-          description:
-            'Docker multi-stage build. Compatible with Kubernetes, Docker Compose, and standalone runtimes. CPU pinning recommended for latency-sensitive use.',
-        },
-        {
-          title: 'Cross-Compilation',
-          description:
-            'CMake cross-compilation for ARM64 from x86_64 hosts. Toolchain files for common embedded Linux configurations.',
-        },
-      ],
-    },
-    {
-      id: 'licensing',
-      eyebrow: 'Licensing',
-      title: 'Licensing',
-      description:
-        'Commercial license with offline activation. Evaluation access for qualified operators, integrators, and enterprise teams.',
-      items: [
-        {
-          title: 'Activation Model',
-          description:
-            'Ed25519-signed tokens bound to hardware fingerprint. No network required. Terms and expiration encoded in-token.',
-        },
-        {
-          title: 'Evaluation Access',
-          description:
-            'Time-limited evaluation with full SDK, sample bundles, documentation, and engineering support. Contact engineering to discuss scope.',
-        },
-        {
-          title: 'Deployment Licensing',
-          description:
-            'Production licenses scoped by device count, site, and term. Volume and enterprise licensing available for multi-site deployments.',
-          cta: { label: 'Read Licensing FAQ', href: '/faq' },
-        },
-      ],
-    },
-    {
-      id: 'integration-path',
-      eyebrow: 'Integration',
-      title: 'Integration Path',
-      description:
-        'Public C headers, Python bindings, and documented API. Integration engineers receive documentation, examples, and onboarding support.',
-      items: [
-        {
-          title: 'Public Headers',
-          description:
-            'Stable versioned C API in a single header. ABI stable across minor versions. Breaking changes reserved for major increments.',
-        },
-        {
-          title: 'Python Bindings',
-          description:
-            'SpikeCodec, CrackDetector, VideoProcessor via ctypes/cffi. NumPy interop for frame data. For prototyping, evaluation, and testing.',
-        },
-        {
-          title: 'Example Code and Documentation',
-          description:
-            'Documented examples for initialization, processing, telemetry, and export. Quickstart guide for first-frame classification in under 10 minutes.',
-        },
-        {
-          title: 'Developer Onboarding',
-          description:
-            'Guided onboarding during evaluation — architecture walkthrough, integration planning, configuration review, and engineering support.',
-        },
-      ],
-    },
-  ],
-  specs: [
-    { label: 'Classification Latency (P95)', value: '< 0.5ms at 720p' },
-    { label: 'Classification Latency (P99)', value: '< 0.8ms at 720p' },
-    { label: 'Throughput', value: '125+ FPS on commodity x86_64' },
-    { label: 'Compression Ratio', value: '10–50× over raw frames' },
-    { label: 'Embedding Dimension', value: '256 (float32)' },
-    { label: 'Similarity Metric', value: 'Cosine (L2-normalized dot product)' },
-    { label: 'SIMD Requirement', value: 'AVX2 (x86_64) / NEON (ARM64)' },
-    { label: 'Memory Allocation', value: 'Pre-allocated, no hot-path heap' },
-    { label: 'License Verification', value: 'Ed25519 offline activation' },
-    { label: 'Platform', value: 'Linux x86_64, Linux ARM64' },
-  ],
-  faqItems: [
-    {
-      question: 'Does SFSVC require a GPU?',
-      answer:
-        'No. SFSVC runs entirely on CPU using AVX2 (x86_64) or NEON (ARM64) SIMD acceleration. There is no GPU dependency, no CUDA requirement, and no driver compatibility concern.',
-    },
-    {
-      question: 'Can SFSVC operate offline?',
-      answer:
-        'Yes. SFSVC is designed for offline operation. License activation uses Ed25519 offline verification. Model bundles, runtime, and evidence storage are self-contained. No network connectivity is required for inference or evidence retention.',
-    },
-    {
-      question: 'What defect types does SFSVC classify?',
-      answer:
-        'SFSVC classifies structural surface defects including cracks, spalling, delamination, corrosion, and surface anomalies. Defect types and severity grades are configurable per deployment context through the model bundle.',
-    },
-    {
-      question: 'How is evidence integrity maintained?',
-      answer:
-        'Every telemetry record is chain-sealed — each entry includes the SHA-256 hash of the previous entry in canonical JSON form. The evidence chain is append-only and tamper-evident. Replay verification confirms output correctness from sealed session logs.',
-    },
-  ],
 };
