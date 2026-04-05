@@ -25,9 +25,39 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ═══ Scroll-triggered animations ═══ */
+/* ═══ Hero background video ═══ */
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
 
-/* ═══ Nav logo — floating with glow ═══ */
+.hero-video-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    to bottom,
+    rgba(17, 17, 20, 0.25) 0%,
+    rgba(17, 17, 20, 0.55) 60%,
+    rgba(17, 17, 20, 0.9) 100%
+  );
+}
+
+/* ═══ Hero floating effect ═══ */
+@keyframes heroFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+
+.hero-float {
+  animation: heroFloat 4s ease-in-out infinite;
+}
+
+/* ═══ Scroll-triggered animations ═══ */
 @keyframes navLogoFloat {
   0%, 100% { transform: translateY(0); }
   50%      { transform: translateY(-3px); }

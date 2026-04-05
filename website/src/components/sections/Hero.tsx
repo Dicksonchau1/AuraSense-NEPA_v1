@@ -1,33 +1,74 @@
+import { useState, useRef, useCallback } from 'react';
 import type { HeroContent } from '../../types/content';
 import { Button } from '../ui/Button';
 
 interface HeroProps {
   content: HeroContent;
   large?: boolean;
+  videoSrc?: string;
+  /** Seconds into first play when hero content fades in (default 3.5) */
+  videoFadeAt?: number;
 }
 
-export function Hero({ content, large = false }: HeroProps) {
+export function Hero({ content, large = false, videoSrc, videoFadeAt = 3.5 }: HeroProps) {
   const headlineWords = content.headline.split(' ');
+  const [contentVisible, setContentVisible] = useState(!videoSrc);
+  const hasFired = useRef(false);
+
+  const handleTimeUpdate = useCallback(
+    (e: React.SyntheticEvent<HTMLVideoElement>) => {
+      if (hasFired.current) return;
+      const video = e.currentTarget;
+      if (video.currentTime >= videoFadeAt) {
+        hasFired.current = true;
+        setContentVisible(true);
+      }
+    },
+    [videoFadeAt],
+  );
 
   return (
     <section
-      className={`flex items-center justify-center text-center ${
-        large ? 'min-h-[80vh]' : 'py-16 lg:py-24'
+      className={`relative flex items-center justify-center text-center overflow-hidden ${
+        large ? 'min-h-[100vh]' : 'py-16 lg:py-24'
       }`}
       style={large ? { perspective: '1200px' } : undefined}
     >
-      <div className={`max-w-4xl mx-auto px-6 ${large ? 'hero-3d' : 'hero-animate'}`}>
+      {/* ── Background video ── */}
+      {videoSrc && (
+        <video
+          className="hero-video"
+          src={videoSrc}
+          autoPlay
+          loop
+          muted
+          playsInline
+          onTimeUpdate={handleTimeUpdate}
+        />
+      )}
+
+      {/* ── Dark overlay for readability ── */}
+      {videoSrc && <div className="hero-video-overlay" />}
+
+      {/* ── Content (fades in after video cue) ── */}
+      <div
+        className={`relative z-10 max-w-4xl mx-auto px-6 transition-opacity duration-[1200ms] ease-out ${
+          contentVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        } ${large ? 'hero-3d' : 'hero-animate'}`}
+      >
         {content.subheadline && (
-          <p className="text-accent text-xs font-semibold tracking-[0.2em] uppercase mb-5">
+          <p className="hero-float text-accent text-xs font-semibold tracking-[0.2em] uppercase mb-5"
+             style={{ animationDelay: '0s' }}>
             {content.subheadline}
           </p>
         )}
         <h1
-          className={`text-text-primary font-bold leading-[1.1] tracking-tight ${
+          className={`hero-float text-text-primary font-bold leading-[1.1] tracking-tight ${
             large
               ? 'text-4xl md:text-5xl lg:text-6xl'
               : 'text-3xl md:text-4xl lg:text-5xl'
           }`}
+          style={{ animationDelay: '0.2s' }}
         >
           {large ? (
             headlineWords.map((word, i) => (
@@ -43,10 +84,12 @@ export function Hero({ content, large = false }: HeroProps) {
             content.headline
           )}
         </h1>
-        <p className="text-text-secondary text-base md:text-lg max-w-2xl mx-auto mt-5 leading-relaxed">
+        <p className="hero-float text-text-secondary text-base md:text-lg max-w-2xl mx-auto mt-5 leading-relaxed"
+           style={{ animationDelay: '0.4s' }}>
           {content.description}
         </p>
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+        <div className="hero-float mt-8 flex flex-wrap items-center justify-center gap-4"
+             style={{ animationDelay: '0.6s' }}>
           <Button variant="primary" size="lg" href={content.primaryCta.href}>
             {content.primaryCta.label}
           </Button>

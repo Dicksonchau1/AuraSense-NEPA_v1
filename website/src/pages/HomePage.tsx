@@ -20,7 +20,7 @@ export function HomePage() {
 
   return (
     <main>
-      <Hero content={hero} large />
+      <Hero content={hero} large videoSrc="/assets/hero-video.mp4" videoFadeAt={3.5} />
 
       <NepaAgentSection />
 
