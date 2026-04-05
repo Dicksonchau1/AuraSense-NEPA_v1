@@ -42,8 +42,8 @@ export function Hero({ content, large = false, videoSrc, videoFadeAt = 3.5 }: He
 
   return (
     <section
-      className={`relative flex items-center justify-center text-center overflow-hidden ${
-        large ? 'min-h-[100vh]' : 'py-16 lg:py-24'
+      className={`relative flex items-center overflow-hidden ${
+        large ? 'min-h-[100vh] justify-start text-left' : 'justify-center text-center py-16 lg:py-24'
       }`}
       style={large ? { perspective: '1200px' } : undefined}
     >
@@ -67,9 +67,9 @@ export function Hero({ content, large = false, videoSrc, videoFadeAt = 3.5 }: He
 
       {/* ── Content (fades in after video cue) ── */}
       <div
-        className={`relative z-10 max-w-4xl mx-auto px-6 transition-opacity duration-[1200ms] ease-out ${
+        className={`relative z-10 max-w-4xl px-6 transition-opacity duration-[1200ms] ease-out ${
           contentVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        } ${large ? 'hero-3d' : 'hero-animate'}`}
+        } ${large ? 'hero-3d ml-8 md:ml-16 lg:ml-24' : 'hero-animate mx-auto'}`}
       >
         {content.subheadline && (
           <p className="hero-float text-accent text-xs font-semibold tracking-[0.2em] uppercase mb-5"
@@ -99,11 +99,11 @@ export function Hero({ content, large = false, videoSrc, videoFadeAt = 3.5 }: He
             content.headline
           )}
         </h1>
-        <p className="hero-float text-text-secondary text-base md:text-lg max-w-2xl mx-auto mt-5 leading-relaxed"
+        <p className="hero-float text-text-secondary text-base md:text-lg max-w-2xl mt-5 leading-relaxed"
            style={{ animationDelay: '0.4s' }}>
           {content.description}
         </p>
-        <div className="hero-float mt-8 flex flex-wrap items-center justify-center gap-4"
+        <div className={`hero-float mt-8 flex flex-wrap items-center gap-4 ${large ? 'justify-start' : 'justify-center'}`}
              style={{ animationDelay: '0.6s' }}>
           <Button variant="primary" size="lg" href={content.primaryCta.href}>
             {content.primaryCta.label}

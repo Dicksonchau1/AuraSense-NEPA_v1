@@ -25,7 +25,6 @@ export const mainNavLinks: NavLink[] = [
     href: '/about',
     children: [
       { label: 'Company', href: '/about' },
-      { label: 'Platform', href: '/platform' },
       { label: 'Careers', href: '/careers' },
     ],
   },
